@@ -41,8 +41,7 @@ jobs:
           output=$(npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}" 2>&1)
           status=$?
           set -e
-          printf '%s
-' "$output"
+          printf '%s\n' "$output"
 
           if [ "$status" -eq 0 ]; then
             exit 0
