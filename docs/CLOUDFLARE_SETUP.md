@@ -4,6 +4,12 @@
 
 Cecil v1 は **Cloudflare Workers Static Assets** で配信する。
 
+Production URL:
+
+`https://cecil-hub.edward-se-pg.workers.dev/`
+
+当面、独自ドメインは使用しない。
+
 公開対象ディレクトリは `public/` のみ。
 
 `docs/`、`AGENTS.md`、`.github/`、ADR、Issue / PRなどの開発ノウハウは配信対象に含めない。
@@ -18,29 +24,38 @@ RepositoryはPrivateで運用する。
 
 公開サイトのためにRepository自体をPublicへ変更する必要はない。
 
+公開サイトからPrivate GitHub Repositoryへはリンクしない。
+
 ## 3. Standard Deployment Path
 
-v1では **Cloudflare Git integration** を優先する。
+標準経路は **GitHub Actions → Wrangler → Cloudflare Workers Static Assets** とする。
 
 ```text
 Private GitHub Repository
         |
-        | Git integration
+        | GitHub Actions
+        v
+Wrangler
+        |
         v
 Cloudflare Workers Static Assets
         |
-        v
-Public Cecil Website
+        +--> PR Preview URL
+        |
+        +--> workers.dev Production URL
 ```
 
-GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
+Cloudflare Git integrationは使用しない。
 
-## 4. Static Assets
+## 4. Wrangler
 
-`wrangler.jsonc` の公開ディレクトリ:
+`wrangler.jsonc`:
 
 ```json
 {
+  "name": "cecil-hub",
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page",
@@ -51,9 +66,14 @@ GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
 
 v1ではWorker backend、DB、KV、D1、R2、Secrets、Bindingsを使用しない。
 
+GitHub ActionsではCloudflare認証用に以下のRepository Secretsを使用する。
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
 ## 5. Preview
 
-Productionへ反映する前にPreviewで確認する。
+Productionへ反映する前にPull Request Previewで確認する。
 
 最低限:
 
@@ -66,15 +86,18 @@ Productionへ反映する前にPreviewで確認する。
 - Security Headers
 - 公開対象が `public/` に限定されていること
 
-Previewは原則として検索index対象にしない。
-
 ## 6. Production
 
 Productionは承認済み `main` を基準とする。
 
-本番公開前に以下を確定する。
+Production URL:
 
-- Public URL
+`https://cecil-hub.edward-se-pg.workers.dev/`
+
+mainへのmerge後、GitHub Actionsで `wrangler deploy` を実行する。
+
+Production URL確定後の公開整備は別Issueで行う。
+
 - canonical
 - og:url
 - OGP image
@@ -96,7 +119,6 @@ Deploy成功だけでRelease完了としない。
 - 404
 - Security Headers
 - Production URLが承認済みmainを配信していること
-- Preview用noindexがProductionへ誤適用されていないこと
 
 ## 8. Security
 
@@ -106,7 +128,7 @@ Deploy成功だけでRelease完了としない。
 
 ## 9. Analytics
 
-v1の公開URL確定後に導入判断する。
+Production URLを正本として導入判断する。
 
 候補:
 
