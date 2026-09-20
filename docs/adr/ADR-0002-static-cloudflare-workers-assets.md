@@ -1,6 +1,6 @@
 # ADR-0002: Use Cloudflare Workers Static Assets for v1
 
-- Status: Accepted
+- Status: Superseded by ADR-0003
 - Date: 2026-09-20
 
 ## Context
