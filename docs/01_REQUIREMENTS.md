@@ -1,73 +1,63 @@
 # Requirements
 
-## 1. 文書目的
+## Functional Requirements
 
-この文書は「何を満たすべきか」の正本とする。実装方法やファイル配置はここへ書かず、Architecture文書へ分離する。
+### REQ-001 Home
+Cecil の立ち位置と主要導線を10秒程度で理解できるHeroを表示する。
 
-## 2. 対象ユーザー
+### REQ-002 Featured Works
+代表作をカードで表示し、Demo / GitHub / ProtoPedia等の外部導線を必要に応じて提供する。
 
-CHANGE-ME
+v1候補:
+- くるくるソムリエ
+- あと一杯ナビ
+- よう拝
 
-## 3. 解決する課題
+### REQ-003 Featured Writing
+note の代表記事を厳選して表示する。単なる記事一覧にはしない。
 
-CHANGE-ME
+### REQ-004 Activity
+直近の制作・改善・調査活動を簡潔に表示する。
 
-## 4. 利用シナリオ
+### REQ-005 About
+匿名のSEとしての活動方針を説明する。
 
-| ID | シナリオ | 主体 | 成功条件 |
-| --- | --- | --- | --- |
-| REQ-001 | CHANGE-ME | CHANGE-ME | CHANGE-ME |
+### REQ-006 Elsewhere
+note / GitHub / ProtoPedia / X / Instagram / 楽天ROOM / LINE / マシュマロ等への外部リンクを提供する。
 
-## 5. 機能要件
+### REQ-007 Theme
+OS設定へ自動追従し、Auto / Dark / Light を手動で切り替えられる。
 
-| ID | 要件 | 優先度 | 受け入れ条件 | 状態 |
-| --- | --- | --- | --- | --- |
-| REQ-001 | CHANGE-ME | Must | CHANGE-ME | Planned |
+### REQ-008 Responsive
+スマートフォンを主要確認環境の一つとして扱い、412px前後でも可読性と操作性を維持する。
 
-状態例: Planned / Active / Replaced / Deferred / Removed
+## Non Functional Requirements
 
-## 6. 非機能要件
+### NFR-001 Privacy
+勤務先・顧客・案件・内部情報を推測できる情報を公開しない。
 
-| ID | 分類 | 要件 | 測定・確認方法 |
-| --- | --- | --- | --- |
-| NFR-001 | Performance | CHANGE-ME | CHANGE-ME |
-| NFR-002 | Security | CHANGE-ME | CHANGE-ME |
-| NFR-003 | Availability | CHANGE-ME | CHANGE-ME |
-| NFR-004 | Accessibility | CHANGE-ME | CHANGE-ME |
-| NFR-005 | Cost | CHANGE-ME | CHANGE-ME |
+### NFR-002 Repository Confidentiality
+開発用RepositoryはPrivateとする。設計書・AGENTS・ADR・Issue/PR等を公開サイトのStatic Assetsへ含めない。
 
-## 7. データ・外部情報要件
+### NFR-003 Performance
+v1は静的HTML/CSS/JavaScriptを基本とし、不要なFrameworkやRuntimeを追加しない。
 
-- データ源: CHANGE-ME
-- 更新頻度: CHANGE-ME
-- 正確性・欠損時の扱い: CHANGE-ME
-- 利用条件・規約: CHANGE-ME
-- 個人情報・秘密情報: CHANGE-ME
+### NFR-004 Accessibility
+意味のあるHTML、十分なコントラスト、キーボード操作、aria属性を必要箇所で使用する。
 
-外部仕様や現在値は推測で確定しない。必要に応じて一次情報または公式仕様を確認する。
+### NFR-005 Security
+Static AssetsにSecurity Headerを付与し、不要なcamera / microphone / geolocation権限を許可しない。
 
-## 8. 制約
+### NFR-006 SEO
+title / description / OGPの初期情報を持つ。canonical / og:url / sitemap は本番URL確定後に追加する。
 
-- 技術制約: CHANGE-ME
-- コスト制約: CHANGE-ME
-- 運用制約: CHANGE-ME
-- 法務・規約上の制約: CHANGE-ME
+### NFR-007 Maintainability
+v1はコンテンツ量が小さいため静的ファイルを正本とする。CMSは必要性が発生した時点で再評価する。
 
-## 9. Out of Scope
+## Acceptance
 
-CHANGE-ME
-
-## 10. 未決事項
-
-| ID | 論点 | 決定者 | 期限/条件 | 状態 |
-| --- | --- | --- | --- | --- |
-| TBD-001 | CHANGE-ME | Human | CHANGE-ME | Open |
-
-未決事項をAIが推測で確定しない。
-
-## 11. 要件変更管理
-
-- 要件変更はIDを維持して履歴を追えるようにする
-- 削除ではなく Replaced / Deferred / Removed を使い、理由をIssue/PRへ残す
-- 要件変更時は `06_REQUIREMENTS_TRACEABILITY.md` も更新する
-- 実装方法の変更だけで要件が変わらない場合、この文書を無理に更新しない
+- Light / Dark / mobileで表示崩れがない
+- 外部リンクが意図したURLへ遷移する
+- Theme切替がlocalStorageに保持される
+- 404が独自ページになる
+- Private開発情報がStatic Assetsへ混入しない

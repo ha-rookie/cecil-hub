@@ -1,79 +1,92 @@
-# Visual Design
+# Cecil Visual Design
 
-## 目的
+## Status
 
-画面・Interaction・レスポンシブ挙動など、文章だけでは認識差が出る設計をブラウザで確認可能にする。
+v1 approved direction / implementation candidate.
 
-## 朝マズメ潮ナビから継承する点
+## Brand
 
-- HTML/CSSによるDesign Previewを使える
-- Production実装前にスマホで確認する
-- PR単位の設計差分を人間が確認する
-- 承認されたDesignをImplementationへ引き継ぐ
+Display name: `Cecil`
 
-## このTemplateでの改善
+Descriptor:
 
-視覚設計を全設計の正本にはしない。
+`SYSTEM ENGINEER / DEVELOPER / WRITER`
 
-- 要件の正本: `01_REQUIREMENTS.md`
-- System構成の正本: `02_SYSTEM_ARCHITECTURE.md`
-- App内部構成の正本: `03_APPLICATION_ARCHITECTURE.md`
-- 視覚設計の正本: 本Directory内のファイル
+Hero message:
 
-同じ要件やArchitecture説明をHTMLへ大量コピーしない。設計IDで参照する。
+> 作ったもの、書いたもの、考えていることを、ひとつの場所に。
 
-## 推奨構成
+## Design Principle
 
-必要になった時点で作成する。
+シンプルな個人ポータルを基本にし、装飾は「静かな幾何学 + ごく少量のネオン」とする。
 
-```text
-docs/design/
-├─ README.md
-├─ index.html
-├─ styles/
-├─ scripts/
-├─ screens/
-└─ assets/
-```
+装飾自体を主役にしない。
 
-空Directoryは作らない。
+## Light
 
-## index.htmlに含める候補
+- warm off-white background
+- dark text
+- thin gold / olive geometry
+- teal neon dots
+- neon dots are independently visible from geometry opacity
 
-- 画面一覧
-- 画面遷移
-- 画面イメージ
-- 主要画面項目
-- Interaction/Event
-- State
-- Responsive behavior
-- Error/empty/loading state
-- Accessibility note
-- Security/privacy note
-- Design ID
-- TBD
-- Design Decision
+## Dark
 
-テーブル設計や外部IFなど、視覚レビューに向かない内容はArchitecture文書へ置く。
+- near-black background
+- off-white text
+- blue-green geometry
+- cyan neon dots
 
-## Design Preview
+## Geometry
 
-必要なプロジェクトではCloudflare等でDesign専用Previewを構成する。
+使用:
+- hexagon
+- grid
+- node
+- broken / drafting line
 
-要件:
+使用しない:
+- compass
+- direction / 方位
+- 強いglow
+- full-screen neon
+- text behind dense decoration
 
-- Production Applicationとは別配信
-- 検索エンジンへ公開しない
-- 可能ならAccess制御
-- PR Previewとmain latest Previewを区別
-- ハッシュDeployment URLはスナップショット扱い
-- スマホ実機確認
-- Preview URLをPRへ記録
+## Placement
 
-Design Previewは表示面であり、Repository内ファイルが正本。
+- Hero: upper-right geometry
+- Page edge: subtle grid / node
+- Featured Works: small corner fragment
 
-## 承認
+Mobileでは模様を残すが本文可読性を優先する。
 
-重要なUI変更では、Design PRの承認head SHAをImplementation Issueへ引き継ぐ。
+## Theme
 
-Assetを伴う場合は `ASSET_WORKFLOW.md` とFeature Issueの `Asset Handoff` を併用する。
+OS setting is default.
+
+Manual cycle:
+
+`Auto -> Dark -> Light -> Auto`
+
+## Responsive
+
+主要確認サイズ:
+- Smartphone: about 412px width
+- Desktop: 1440px class
+
+## Content Hierarchy
+
+1. Brand / position
+2. Hero statement
+3. Featured Works
+4. Featured Writing
+5. Activity
+6. About
+7. Elsewhere
+8. Footer
+
+## Design Source of Truth
+
+Figmaはv1の正本にしない。
+
+現在の正本はこの文書 + `public/` の実装とする。

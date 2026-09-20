@@ -1,126 +1,84 @@
 # System Architecture
 
-## 1. 文書目的
+## Overview
 
-この文書は、ユーザー・Cloudflare・GitHub・外部サービス・データストア等を含む「システム全体の構成」の正本とする。
-
-## 2. Architecture Goals
-
-- ARCH-001: CHANGE-ME
-- ARCH-002: CHANGE-ME
-
-## 3. System Context
+Cecil v1 は静的サイトとして構成する。
 
 ```text
-User / Browser
-      |
-      v
-CHANGE-ME Web App
-      |
-      +--> CHANGE-ME External Service
-      |
-      +--> CHANGE-ME Data / API
-
-GitHub
-  |
-  +--> CI / Build / Data Update
-  |
-  v
-Cloudflare Pages / Workers / CHANGE-ME
+Private GitHub Repository
+  ha-rookie/cecil-hub
+        |
+        | Git integration / deploy
+        v
+Cloudflare Workers Static Assets
+        |
+        v
+Public Cecil Website
+        |
+        +--> note
+        +--> ProtoPedia
+        +--> GitHub
+        +--> X / Instagram / LINE / etc.
 ```
 
-実際の採用構成に合わせ、使わない要素は削除せず「該当なし」と明記する。
+## Repository / Publication Boundary
 
-## 4. Deployment Architecture
+GitHub Repository全体はPrivate。
 
-| ID | Component | Platform | Responsibility | Production | Preview |
-| --- | --- | --- | --- | --- | --- |
-| ARCH-010 | Frontend | CHANGE-ME | CHANGE-ME | CHANGE-ME | CHANGE-ME |
-| ARCH-011 | Server/API | CHANGE-ME | CHANGE-ME | CHANGE-ME | CHANGE-ME |
-| ARCH-012 | Data Store | CHANGE-ME | CHANGE-ME | CHANGE-ME | CHANGE-ME |
+Cloudflareへ配信する対象は `public/` のみとする。
 
-### Environment Separation
+配信対象外:
+- `docs/`
+- `AGENTS.md`
+- `.github/`
+- ADR
+- Issue / PR
+- 開発ノウハウ
 
-- ProductionとPreviewのSecrets/Variables/Bindingsを分離する
-- PreviewからProductionデータへ書き込まない
-- Production固有のDomain/Auth/Billing設定をPreviewへコピーしない
-- 環境差分がある場合はこの文書と `CLOUDFLARE_SETUP.md` の役割を分ける
-  - なぜ分けるか・何を分けるか → 本文書
-  - 具体的な設定手順 → Cloudflare Setup
+## Hosting
 
-## 5. Runtime Data Flow
+- Cloudflare Workers Static Assets
+- v1ではWorker backendなし
+- DB / KV / D1 / R2なし
+- Loginなし
+- APIなし
 
-```text
-CHANGE-ME
-```
+## Deployment
 
-ユーザー操作時に発生する通信・計算・保存を記載する。
+CloudflareのGitHub連携を優先する。
 
-## 6. Build / Update Data Flow
+GitHub Actionsによる本番デプロイはv1の必須構成にしない。Actions minutes節約と運用単純化を理由とする。
 
-```text
-CHANGE-ME
-```
+## Environments
 
-CI、定期更新、バッチ、事前生成がある場合、Runtimeと分けて記載する。
+### Development
+GitHub branch上で設計・実装。
 
-## 7. External Dependencies
+### Preview
+Cloudflare Previewでスマホを含む人間確認を行う。
 
-| ID | Service | Purpose | Runtime Dependency | Auth | Failure Behavior |
-| --- | --- | --- | --- | --- | --- |
-| IF-001 | CHANGE-ME | CHANGE-ME | Yes/No | CHANGE-ME | CHANGE-ME |
+### Production
+人間承認後にProductionへ反映する。
 
-外部障害時にコア機能まで停止させるか、縮退できるかを明示する。
+## Security Boundary
 
-## 8. Trust Boundaries / Security
+Static Assetsは公開される前提で扱う。
 
-- Browserで保持してよい情報: CHANGE-ME
-- Browserへ出してはいけない情報: Secrets / tokens / CHANGE-ME
-- Server側検証: CHANGE-ME
-- CORS / CSP / same-origin: CHANGE-ME
-- 認証・認可: CHANGE-ME
-- 個人情報: CHANGE-ME
-- Rate limit / abuse対策: CHANGE-ME
+秘密情報・Token・内部設計は `public/` に置かない。
 
-## 9. Availability / Failure Strategy
+Security Header:
+- X-Frame-Options
+- X-Content-Type-Options
+- Referrer-Policy
+- Permissions-Policy
+- Content-Security-Policy
 
-| Failure | User-visible behavior | Fallback | Logging/Detection |
-| --- | --- | --- | --- |
-| External API unavailable | CHANGE-ME | CHANGE-ME | CHANGE-ME |
-| Data missing | CHANGE-ME | CHANGE-ME | CHANGE-ME |
-| Analytics unavailable | Core機能へ波及させない/CHANGE-ME | CHANGE-ME | CHANGE-ME |
+## Analytics
 
-架空値を生成して正常に見せるより、取得失敗・データ不足を明示する。
+公開URL確定後に以下を検討する。
 
-## 10. Observability
+- Cloudflare Web Analytics
+- Google Search Console
+- outbound click event
 
-- Cloudflare Web Analytics: CHANGE-ME
-- Application events: CHANGE-ME
-- Error logs: CHANGE-ME
-- Deployment history: CHANGE-ME
-- Privacy boundary: CHANGE-ME
-
-## 11. Performance / Cost
-
-- Performance budget: CHANGE-ME
-- Cloudflare無料枠/費用上限: CHANGE-ME
-- API費用上限: CHANGE-ME
-- Asset/cache strategy: CHANGE-ME
-
-## 12. Architecture Decisions
-
-重要な選択は `adr/` に残す。
-
-例:
-
-- Pages vs Workers
-- Runtime API vs static pre-generated data
-- Database採用/非採用
-- SPA/MPA
-- PWA採用
-- Analytics方式
-- Auth方式
-
-## 13. 未決事項
-
-- TBD-ARCH-001: CHANGE-ME
+第三者サイト遷移後の行動をCecil側だけで完全追跡できる前提は置かない。
