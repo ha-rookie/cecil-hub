@@ -1,179 +1,134 @@
-# Cloudflare Setup
+# Cloudflare Setup — Cecil
 
-## 1. Readiness Check
+## 1. v1 Hosting
 
-- [ ] GitHub Repository接続権限
-- [ ] Production Branch
-- [ ] Build Command
-- [ ] Output Directory
-- [ ] Node.js version
-- [ ] Environment Variables
-- [ ] Secrets
-- [ ] Bindings
-- [ ] Analytics Engine
-- [ ] Web Analytics
-- [ ] Domain / DNS
+Cecil v1 は **Cloudflare Workers Static Assets** で配信する。
 
-## 2. 標準配信経路
+公開対象ディレクトリは `public/` のみ。
 
-Webアプリの標準候補は **GitHub Actions → Wrangler → Cloudflare Pages** とする。
+`docs/`、`AGENTS.md`、`.github/`、ADR、Issue / PRなどの開発ノウハウは配信対象に含めない。
 
-Cloudflare DashboardのGit連携Buildを必須経路にはしない。アプリごとに採否は判断できるが、複数アプリで同じGitHub Actions + Wrangler方式を再現できる状態を優先する。
+## 2. Source Repository
 
-Repository Secrets候補:
+Source Repository:
 
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+`ha-rookie/cecil-hub`
 
-SecretsはFrontend、ログ、Issue本文、公開設計書へ露出しない。
+RepositoryはPrivateで運用する。
 
-## 3. Hello World Gate
+公開サイトのためにRepository自体をPublicへ変更する必要はない。
 
-機能実装前に最小構成をDeployし、PreviewとProductionの配信経路を確認する。
+## 3. Standard Deployment Path
 
-確認項目:
+v1では **Cloudflare Git integration** を優先する。
 
-- mainからProduction Deployできる
-- 非main Branch / PRからPreview Deployできる
-- HTTPSで表示できる
-- Output Directoryが正しい
-- Secrets / Variables / Bindingsが想定どおり
-- Production smokeが通る
-
-Hello World Gateが失敗中は、原因を切り分けず機能実装へ進まない。
-
-## 4. Pages Project Bootstrap
-
-Pages Projectが存在しない場合は、Wranglerからの作成を標準候補にする。
-
-概念例:
-
-```bash
-npx wrangler pages project create CHANGE-ME_PROJECT_NAME
-npx wrangler pages deploy CHANGE-ME_OUTPUT_DIR --project-name=CHANGE-ME_PROJECT_NAME
+```text
+Private GitHub Repository
+        |
+        | Git integration
+        v
+Cloudflare Workers Static Assets
+        |
+        v
+Public Cecil Website
 ```
 
-### Project名
+GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
 
-- 個人名、ニックネーム、アカウント名等を明示的な許可なく含めない
-- 公開URLへ出ても問題ない中立的な名前を使う
-- Project createが1回失敗しても方式全体の失敗と決めつけない
-- 命名衝突、API Token権限、Account ID、Cloudflare側状態を分けて確認する
-- 既存の成功アプリとWorkflow・Secrets・Wrangler versionを比較する
+## 4. Static Assets
 
-## 5. Environment Separation
+`wrangler.jsonc` の公開ディレクトリ:
 
-ProductionとPreviewを分離する。
+```json
+{
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
+```
 
-最低限分ける対象:
+v1ではWorker backend、DB、KV、D1、R2、Secrets、Bindingsを使用しない。
 
-- Cloudflare Pages Project
-- Environment Variables
-- Secrets
-- Bindings
-- 書き込み先
-- Analytics backend
-- 外部サービスのProduction credential
+## 5. Preview
 
-PreviewからProductionデータへ書き込まない。
+Productionへ反映する前にPreviewで確認する。
 
-Production / Previewを同一Projectで運用する場合でも、Bindings・Variables・データ境界が明確であることを設計書へ残す。
+最低限:
 
-## 6. Production Workflow
+- Smartphone表示
+- Light
+- Dark
+- Theme toggle
+- 主要外部リンク
+- 404
+- Security Headers
+- 公開対象が `public/` に限定されていること
 
-Template Repository自身ではProduction Deployを自動実行しない。
+Previewは原則として検索index対象にしない。
 
-新規アプリでCloudflare設定とSecretsを確定した後、`docs/workflow-templates/deploy-production.yml` を `.github/workflows/` へコピーし、CHANGE-MEを置き換えて有効化する。
+## 6. Production
 
-有効化前に確認する:
+Productionは承認済み `main` を基準とする。
 
-- Project名
-- Output Directory
-- Wrangler version
-- Production branch
-- Secrets
-- build/test command
-- Functions / Workersの有無
-- smokeで確認するURL/marker
+本番公開前に以下を確定する。
+
+- Public URL
+- canonical
+- og:url
+- OGP image
+- sitemap.xml
+- robots.txt Sitemap
+- Cloudflare Web Analytics
+- Google Search Console
 
 ## 7. Production Smoke
 
-Deploy成功だけでRelease完了としない。stable Production URLの実レスポンスを確認する。
+Deploy成功だけでRelease完了としない。
 
 最低限:
 
 - HTTP 200
 - HTTPS
-- 想定したHTML marker / application-name等
-- 主要静的Asset
-- 必要なAPI / Functions
+- CecilのHTML marker
+- CSS / JavaScript / SVG
+- 404
 - Security Headers
-- Preview用noindexがProductionへ誤適用されていないか、または意図したnoindexか
-- Production URLが最新mainを配信していること
+- Production URLが承認済みmainを配信していること
+- Preview用noindexがProductionへ誤適用されていないこと
 
-titleの文言など変更されやすい値だけをsmoke markerにしない。アプリ固有の安定markerを選ぶ。
+## 8. Security
 
-## 8. Domain・SEO
+秘密情報を `public/` に置かない。
 
-HTTPS、www有無、canonical、title、description、OGP、favicon、robots.txt、sitemap.xml、Preview noindexを確認する。
+`public/_headers` を初期Security Headerの正本とし、Preview / Productionの実レスポンスでも確認する。
 
-Productionをindex公開するか、noindexのまま限定共有するかはHuman decisionとする。
+## 9. Analytics
 
-## 9. Security
+v1の公開URL確定後に導入判断する。
 
-秘密情報をRepositoryへ入れない。Security Headersはbaselineから導入する。CSPは外部script、Beacon、PWA、same-origin APIをPreviewで確認してから強制する。
+候補:
 
-静的 `_headers` が存在しても、Pages Functions等の動的レスポンスで同じHeaderが返るとは限らない。本番レスポンスを実測する。
+- Cloudflare Web Analytics
+- Google Search Console
+- outbound click measurement
 
-## 10. Analytics
+第三者サイトへ遷移した後の行動をCecilだけで完全に把握できる前提は置かない。
 
-Production受信を確認し、Previewを本番計測から除外する。Analytics側の未設定とアプリのBuild失敗を分ける。
+## 10. Rollback
 
-Analyticsを導入しない判断も有効。導入有無は利用目的・Privacy・運用コストを踏まえてHuman decisionとする。
-
-## 11. Operations
-
-Deploy履歴、ログ、前回正常版、Rollback、障害時判断、データ更新方法を記録する。
-
-### Rollback
-
-重大な回帰時は、直前の正常Production deploymentまたは直前の正常main commitを特定する。
+重大な回帰時は直前の正常main commitまたは正常deploymentを特定する。
 
 - mainをforce updateしない
 - revert PRを基本にする
-- rollback対象と理由をIssue/PRへ残す
-- rollback後もProduction smokeを行う
+- 理由をIssue / PRへ残す
+- rollback後もProduction Smokeを行う
 
-## 12. Pages Project作成失敗時の切り分け
+## 11. Design Previewとの責務分離
 
-1. Project名が既存Projectと衝突していないか
-2. Project名に不適切な個人識別文字列を使っていないか
-3. `CLOUDFLARE_API_TOKEN` が設定済みか
-4. TokenにPages編集権限があるか
-5. `CLOUDFLARE_ACCOUNT_ID` が正しいか
-6. Wrangler version / commandが既存成功例と同じか
-7. Project createだけ失敗しているか、deployも失敗しているか
-8. 別の中立的なProject名で再現するか
-9. Cloudflare側障害・APIエラーか
-
-1回の失敗だけで「手動作成が必要」「Wrangler方式は使えない」と判断しない。
-
-## 13. Design Previewとの責務分離
-
-Design Previewは `docs/DESIGN_PREVIEW.md` の標準に従い、視覚設計レビュー専用の配信面として扱う。
-
-Production App Preview / Production Deployとは別物とする。
-
-- Design Preview: HTML設計・見た目・画面構造の確認
-- App Preview: 実装Branch / PRの実アプリ確認
+- Design Preview: 視覚設計レビュー
+- App Preview: 実装Branch / PRの動作確認
 - Production: mainの承認済み成果物
 
-Production用Functions/Workers/BindingsをDesign Previewへ混入させない。
-
-
-## 14. 関連文書
-
-- `DESIGN_PREVIEW.md`: Design専用Pages Project / Preview alias / noindex
-- `SECURITY_BASELINE.md`: Recommended Security Headers / Production実測
-- `PUBLIC_WEB_QUALITY.md`: SEO / Search Console / Public Trust / index判断
-- `RELEASE_CHECKLIST.md`: Production verification / Release完了条件
+Design Previewは `docs/DESIGN_PREVIEW.md` に従う。

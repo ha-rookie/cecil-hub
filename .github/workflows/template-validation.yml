@@ -1,4 +1,4 @@
-name: Template validation
+name: Project validation
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
+
       - name: Check required files
         shell: bash
         run: |
@@ -49,21 +50,37 @@ jobs:
             .github/ISSUE_TEMPLATE/feature.yml
             .github/ISSUE_TEMPLATE/bug.yml
             .github/PULL_REQUEST_TEMPLATE.md
+            public/index.html
+            public/styles.css
+            public/script.js
+            public/404.html
+            public/robots.txt
+            public/_headers
+            wrangler.jsonc
+            package.json
           )
           for path in "${required[@]}"; do
             test -s "$path" || { echo "Missing or empty: $path"; exit 1; }
           done
-      - name: Confirm template placeholders exist
+
+      - name: Confirm project placeholders are resolved
         shell: bash
         run: |
           set -eu
-          for path in             docs/00_PROJECT_OVERVIEW.md             docs/01_REQUIREMENTS.md             docs/02_SYSTEM_ARCHITECTURE.md             docs/03_APPLICATION_ARCHITECTURE.md             docs/04_REPOSITORY_STRUCTURE.md             docs/adr/ADR-0000-template.md
-          do
-            grep -q "CHANGE-ME" "$path" || {
-              echo "Template file must retain CHANGE-ME placeholders: $path"
+          project_docs=(
+            docs/00_PROJECT_OVERVIEW.md
+            docs/01_REQUIREMENTS.md
+            docs/02_SYSTEM_ARCHITECTURE.md
+            docs/03_APPLICATION_ARCHITECTURE.md
+            docs/04_REPOSITORY_STRUCTURE.md
+          )
+          for path in "${project_docs[@]}"; do
+            if grep -q "CHANGE-ME" "$path"; then
+              echo "Unresolved project placeholder: $path"
               exit 1
-            }
+            fi
           done
+
       - name: Confirm design management rules exist
         shell: bash
         run: |
@@ -74,6 +91,7 @@ jobs:
           grep -q "Requirements Traceability" docs/05_DESIGN_MANAGEMENT.md
           grep -q "Design Previewは表示面" docs/design/README.md
           grep -q "Superseded" docs/adr/README.md
+
       - name: Confirm Replacement PR handoff fields exist
         shell: bash
         run: |
@@ -84,6 +102,7 @@ jobs:
           grep -q "CI run:" .github/PULL_REQUEST_TEMPLATE.md
           grep -q "Preview run:" .github/PULL_REQUEST_TEMPLATE.md
           grep -q "引き継ぐ承認内容:" .github/PULL_REQUEST_TEMPLATE.md
+
       - name: Confirm Asset Handoff fields exist
         shell: bash
         run: |
@@ -94,6 +113,7 @@ jobs:
           grep -q "Asset配置場所:" .github/ISSUE_TEMPLATE/feature.yml
           grep -q "file hash または承認head SHA:" .github/ISSUE_TEMPLATE/feature.yml
           grep -q "## 実装Issueへの引き継ぎ" docs/ASSET_WORKFLOW.md
+
       - name: Confirm GitHub Actions resource rules exist
         shell: bash
         run: |
@@ -115,14 +135,14 @@ jobs:
           grep -q "## favicon / App Icon / PWA Icon" docs/ASSET_WORKFLOW.md
           grep -q "Git Blob + Base64直接輸送" docs/ASSET_WORKFLOW.md
 
-      - name: Confirm Cloudflare v0.2 standards exist
+      - name: Confirm Cecil Cloudflare architecture
         shell: bash
         run: |
           set -eu
-          grep -q "GitHub Actions → Wrangler → Cloudflare Pages" docs/CLOUDFLARE_SETUP.md
-          grep -q "Hello World Gate" docs/CLOUDFLARE_SETUP.md
+          grep -q "Workers Static Assets" docs/CLOUDFLARE_SETUP.md
+          grep -q "Cloudflare Git integration" docs/CLOUDFLARE_SETUP.md
           grep -q "Production Smoke" docs/CLOUDFLARE_SETUP.md
-          grep -q "CHANGE-ME_PROJECT_NAME" docs/workflow-templates/deploy-production.yml
+          grep -q '"directory": "./public"' wrangler.jsonc
 
       - name: Confirm Security baseline exists
         shell: bash
@@ -133,6 +153,7 @@ jobs:
           grep -q "X-Permitted-Cross-Domain-Policies" docs/SECURITY_BASELINE.md
           grep -q "Production Smoke" docs/SECURITY_BASELINE.md
           grep -q "外部診断" docs/SECURITY_BASELINE.md
+          grep -q "Content-Security-Policy" public/_headers
 
       - name: Confirm Public Web Quality exists
         shell: bash
