@@ -8,16 +8,19 @@ Cecil v1 は静的サイトとして構成する。
 Private GitHub Repository
   ha-rookie/cecil-hub
         |
-        | Git integration / deploy
+        | GitHub Actions + Wrangler
         v
 Cloudflare Workers Static Assets
+        |
+        +--> PR Version Preview
+        |
+        +--> Production（公開URL確定後）
         |
         v
 Public Cecil Website
         |
         +--> note
         +--> ProtoPedia
-        +--> GitHub
         +--> X / Instagram / LINE / etc.
 ```
 
@@ -35,6 +38,8 @@ Cloudflareへ配信する対象は `public/` のみとする。
 - Issue / PR
 - 開発ノウハウ
 
+公開サイトからPrivate GitHub Repositoryへリンクしない。
+
 ## Hosting
 
 - Cloudflare Workers Static Assets
@@ -42,12 +47,25 @@ Cloudflareへ配信する対象は `public/` のみとする。
 - DB / KV / D1 / R2なし
 - Loginなし
 - APIなし
+- 独自ドメインは当面使用しない
 
 ## Deployment
 
-CloudflareのGitHub連携を優先する。
+標準経路は GitHub Actions + Wrangler とする。
 
-GitHub Actionsによる本番デプロイはv1の必須構成にしない。Actions minutes節約と運用単純化を理由とする。
+### Pull Request
+
+`wrangler versions upload --preview-alias` を使い、PRごとのVersion Previewを作成する。
+
+Preview URLはCloudflareアカウントの `workers.dev` サブドメインを利用する。
+
+### main
+
+承認済みmainを `wrangler deploy` する。
+
+現時点では `workers_dev: false` のため、Productionの公開routeは有効化しない。
+
+Production URLの確定と公開route有効化は別Issueで扱う。
 
 ## Environments
 
@@ -55,10 +73,11 @@ GitHub Actionsによる本番デプロイはv1の必須構成にしない。Acti
 GitHub branch上で設計・実装。
 
 ### Preview
-Cloudflare Previewでスマホを含む人間確認を行う。
+PRごとのCloudflare Version Previewでスマホを含む人間確認を行う。
 
 ### Production
-人間承認後にProductionへ反映する。
+人間承認後にmainへmergeし、GitHub ActionsでProduction versionをdeployする。
+公開routeの有効化は別途承認する。
 
 ## Security Boundary
 
