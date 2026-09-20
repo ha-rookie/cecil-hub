@@ -75,3 +75,16 @@ jobs:
             exit 0
           fi
           npx --yes wrangler@4 deploy
+
+      - name: Production analytics smoke
+        shell: bash
+        run: |
+          set -eu
+          url="https://cecil-hub.ha-rookie.workers.dev/api/event"
+          origin="https://cecil-hub.ha-rookie.workers.dev"
+          status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
+            --request POST "$url" \
+            --header "Origin: $origin" \
+            --header "Content-Type: application/json" \
+            --data '{"event":"deployment_smoke_test"}')
+          test "$status" = "204" || { echo "Analytics smoke failed: HTTP $status"; exit 1; }

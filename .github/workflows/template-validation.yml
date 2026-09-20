@@ -53,6 +53,9 @@ jobs:
             public/index.html
             public/styles.css
             public/script.js
+            public/analytics.js
+            src/index.js
+            docs/ANALYTICS.md
             public/404.html
             public/robots.txt
             public/_headers
@@ -144,6 +147,17 @@ jobs:
           grep -q "Cloudflare Git integrationは使用しない" docs/CLOUDFLARE_SETUP.md
           grep -q "Production Smoke" docs/CLOUDFLARE_SETUP.md
           grep -q '"directory": "./public"' wrangler.jsonc
+
+      - name: Confirm Analytics instrumentation
+        shell: bash
+        run: |
+          set -eu
+          node --check public/analytics.js
+          node --check src/index.js
+          grep -q '"dataset": "cecil_hub_events"' wrangler.jsonc
+          grep -Fq '"/api/*"' wrangler.jsonc
+          grep -q 'data-analytics-destination=' public/index.html
+          grep -q 'source × destination' docs/ANALYTICS.md
 
       - name: Confirm Security baseline exists
         shell: bash
