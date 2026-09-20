@@ -98,8 +98,8 @@ button { font: inherit; }
 .theme-icon { color: var(--accent); }
 
 .hero {
-  min-height: 530px;
-  padding: 88px 0 76px;
+  min-height: 460px;
+  padding: 72px 0 48px;
   position: relative;
   isolation: isolate;
 }
