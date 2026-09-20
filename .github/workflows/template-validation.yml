@@ -140,7 +140,8 @@ jobs:
         run: |
           set -eu
           grep -q "Workers Static Assets" docs/CLOUDFLARE_SETUP.md
-          grep -q "Cloudflare Git integration" docs/CLOUDFLARE_SETUP.md
+          grep -q "GitHub Actions" docs/CLOUDFLARE_SETUP.md
+          grep -q "Cloudflare Git integrationは使用しない" docs/CLOUDFLARE_SETUP.md
           grep -q "Production Smoke" docs/CLOUDFLARE_SETUP.md
           grep -q '"directory": "./public"' wrangler.jsonc
 

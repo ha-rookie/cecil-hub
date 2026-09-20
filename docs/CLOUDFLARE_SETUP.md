@@ -8,6 +8,8 @@ Cecil v1 は **Cloudflare Workers Static Assets** で配信する。
 
 `docs/`、`AGENTS.md`、`.github/`、ADR、Issue / PRなどの開発ノウハウは配信対象に含めない。
 
+独自ドメインは当面使用しない。
+
 ## 2. Source Repository
 
 Source Repository:
@@ -18,29 +20,35 @@ RepositoryはPrivateで運用する。
 
 公開サイトのためにRepository自体をPublicへ変更する必要はない。
 
+公開サイトからPrivate GitHub Repositoryへリンクしない。
+
 ## 3. Standard Deployment Path
 
-v1では **Cloudflare Git integration** を優先する。
+標準経路は **GitHub Actions → Wrangler → Cloudflare Workers Static Assets** とする。
 
 ```text
 Private GitHub Repository
         |
-        | Git integration
+        | GitHub Actions
         v
-Cloudflare Workers Static Assets
+Wrangler
         |
-        v
-Public Cecil Website
+        +--> PR: Version Preview
+        |
+        +--> main: Production version deploy
 ```
 
-GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
+Cloudflare Git integrationは使用しない。
 
-## 4. Static Assets
+## 4. Wrangler
 
-`wrangler.jsonc` の公開ディレクトリ:
+`wrangler.jsonc`:
 
 ```json
 {
+  "name": "cecil-hub",
+  "workers_dev": false,
+  "preview_urls": true,
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page",
@@ -49,11 +57,18 @@ GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
 }
 ```
 
-v1ではWorker backend、DB、KV、D1、R2、Secrets、Bindingsを使用しない。
+v1ではWorker backend、DB、KV、D1、R2、Bindingsを使用しない。
+
+GitHub ActionsではCloudflare認証用に以下のRepository Secretsを使用する。
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
 
 ## 5. Preview
 
-Productionへ反映する前にPreviewで確認する。
+Pull Requestでは `wrangler versions upload --preview-alias "pr-<PR番号>"` を使う。
+
+Preview URLはCloudflareが返した実URLを正とし、アカウントの `workers.dev` サブドメイン変更後もハードコードしない。
 
 最低限:
 
@@ -66,26 +81,19 @@ Productionへ反映する前にPreviewで確認する。
 - Security Headers
 - 公開対象が `public/` に限定されていること
 
-Previewは原則として検索index対象にしない。
-
 ## 6. Production
 
 Productionは承認済み `main` を基準とする。
 
-本番公開前に以下を確定する。
+mainへのmerge後、GitHub Actionsから `wrangler deploy` を実行する。
 
-- Public URL
-- canonical
-- og:url
-- OGP image
-- sitemap.xml
-- robots.txt Sitemap
-- Cloudflare Web Analytics
-- Google Search Console
+現時点では `workers_dev: false` のためProduction公開routeは有効化しない。
+
+Production公開URLの確定とroute有効化は別Issueで行う。
 
 ## 7. Production Smoke
 
-Deploy成功だけでRelease完了としない。
+Production公開routeを有効化した後は、Deploy成功だけでRelease完了としない。
 
 最低限:
 
@@ -106,7 +114,7 @@ Deploy成功だけでRelease完了としない。
 
 ## 9. Analytics
 
-v1の公開URL確定後に導入判断する。
+Production公開URL確定後に導入判断する。
 
 候補:
 
