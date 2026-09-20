@@ -8,16 +8,15 @@ Cecil v1 は静的サイトとして構成する。
 Private GitHub Repository
   ha-rookie/cecil-hub
         |
-        | Git integration / deploy
+        | GitHub Actions + Wrangler Direct Upload
         v
-Cloudflare Workers Static Assets
+Cloudflare Pages
         |
         v
-Public Cecil Website
+https://cecil-hub.pages.dev/
         |
         +--> note
         +--> ProtoPedia
-        +--> GitHub
         +--> X / Instagram / LINE / etc.
 ```
 
@@ -25,7 +24,7 @@ Public Cecil Website
 
 GitHub Repository全体はPrivate。
 
-Cloudflareへ配信する対象は `public/` のみとする。
+Cloudflare Pagesへ配信する対象は `public/` のみとする。
 
 配信対象外:
 - `docs/`
@@ -35,19 +34,27 @@ Cloudflareへ配信する対象は `public/` のみとする。
 - Issue / PR
 - 開発ノウハウ
 
+公開サイトからPrivate GitHub Repositoryへリンクしない。
+
 ## Hosting
 
-- Cloudflare Workers Static Assets
-- v1ではWorker backendなし
+- Cloudflare Pages
+- Production URL: `https://cecil-hub.pages.dev/`
+- Custom domain: 当面使用しない
+- Backend APIなし
 - DB / KV / D1 / R2なし
 - Loginなし
-- APIなし
 
 ## Deployment
 
-CloudflareのGitHub連携を優先する。
+Cloudflare Git integrationは使用しない。
 
-GitHub Actionsによる本番デプロイはv1の必須構成にしない。Actions minutes節約と運用単純化を理由とする。
+GitHub Actions + Wrangler Direct Uploadを標準経路とする。
+
+- Pull Request: `pr-<番号>.cecil-hub.pages.dev`
+- main: `cecil-hub.pages.dev`
+- Production branch: `main`
+- Deploy directory: `public/`
 
 ## Environments
 
@@ -55,10 +62,10 @@ GitHub Actionsによる本番デプロイはv1の必須構成にしない。Acti
 GitHub branch上で設計・実装。
 
 ### Preview
-Cloudflare Previewでスマホを含む人間確認を行う。
+Pull RequestごとのCloudflare Pages Previewでスマホを含む人間確認を行う。
 
 ### Production
-人間承認後にProductionへ反映する。
+人間承認後にmainへmergeし、GitHub ActionsからCloudflare Pages Productionへ反映する。
 
 ## Security Boundary
 
@@ -75,7 +82,7 @@ Security Header:
 
 ## Analytics
 
-公開URL確定後に以下を検討する。
+Production URL確定後に以下を検討する。
 
 - Cloudflare Web Analytics
 - Google Search Console
