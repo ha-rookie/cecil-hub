@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "cecil-hub",
-  "compatibility_date": "2026-09-20",
-  "workers_dev": false,
-  "preview_urls": true,
-  "assets": {
-    "directory": "./public",
-    "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+  "pages_build_output_dir": "./public",
+  "compatibility_date": "2026-09-20"
 }
