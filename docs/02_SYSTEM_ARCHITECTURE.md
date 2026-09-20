@@ -8,16 +8,16 @@ Cecil v1 は静的サイトとして構成する。
 Private GitHub Repository
   ha-rookie/cecil-hub
         |
-        | Git integration / deploy
+        | GitHub Actions + Wrangler
         v
 Cloudflare Workers Static Assets
         |
+        | workers.dev
         v
 Public Cecil Website
         |
         +--> note
         +--> ProtoPedia
-        +--> GitHub
         +--> X / Instagram / LINE / etc.
 ```
 
@@ -35,19 +35,28 @@ Cloudflareへ配信する対象は `public/` のみとする。
 - Issue / PR
 - 開発ノウハウ
 
+公開サイトからPrivate GitHub Repositoryへリンクしない。
+
 ## Hosting
 
 - Cloudflare Workers Static Assets
-- v1ではWorker backendなし
+- Production URL: `https://cecil-hub.edward-se-pg.workers.dev/`
+- Custom domain: v1では使用しない
+- Worker backendなし
 - DB / KV / D1 / R2なし
 - Loginなし
 - APIなし
 
 ## Deployment
 
-CloudflareのGitHub連携を優先する。
+GitHub Actions + Wranglerを標準経路とする。
 
-GitHub Actionsによる本番デプロイはv1の必須構成にしない。Actions minutes節約と運用単純化を理由とする。
+- Pull Request: Preview versionをupload
+- main: Productionへdeploy
+- Production route: `workers.dev`
+- Preview URLs: enabled
+
+Cloudflare Git integrationは使用しない。
 
 ## Environments
 
@@ -55,10 +64,10 @@ GitHub Actionsによる本番デプロイはv1の必須構成にしない。Acti
 GitHub branch上で設計・実装。
 
 ### Preview
-Cloudflare Previewでスマホを含む人間確認を行う。
+Pull RequestごとのCloudflare Preview URLでスマホを含む人間確認を行う。
 
 ### Production
-人間承認後にProductionへ反映する。
+人間承認後にmainへmergeし、GitHub ActionsからProductionへ反映する。
 
 ## Security Boundary
 
@@ -75,7 +84,7 @@ Security Header:
 
 ## Analytics
 
-公開URL確定後に以下を検討する。
+Production URLを正本として以下を導入・確認する。
 
 - Cloudflare Web Analytics
 - Google Search Console
