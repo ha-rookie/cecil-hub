@@ -36,7 +36,26 @@ jobs:
             echo "::notice::Cloudflare secrets are not registered yet. Preview upload skipped."
             exit 0
           fi
-          npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}"
+
+          set +e
+          output=$(npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}" 2>&1)
+          status=$?
+          set -e
+          printf '%s
+' "$output"
+
+          if [ "$status" -eq 0 ]; then
+            exit 0
+          fi
+
+          if printf '%s' "$output" | grep -q "does not yet exist"; then
+            echo "::notice::Worker does not exist yet. Bootstrapping once with workers_dev disabled."
+            npx --yes wrangler@4 deploy
+            npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}"
+            exit 0
+          fi
+
+          exit "$status"
 
   production:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
