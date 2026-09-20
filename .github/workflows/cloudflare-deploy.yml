@@ -118,8 +118,8 @@ jobs:
           require_header() {
             name="$1"
             pattern="$2"
-            if ! printf '%s\n' "$headers" | grep -Eiq "^\${name}:[[:space:]]*\${pattern}[[:space:]]*$"; then
-              echo "::error::Missing or unexpected \${name}"
+            if ! printf '%s\n' "$headers" | grep -Eiq "^${name}:[[:space:]]*${pattern}[[:space:]]*$"; then
+              echo "::error::Missing or unexpected ${name}"
               exit 1
             fi
           }
