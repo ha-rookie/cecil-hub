@@ -52,3 +52,13 @@ dataset:
 `cecil_hub_events`
 
 期間は7日または30日。
+
+
+## QAデータの除外
+
+通常レポートでは、動作確認用の以下を自動除外する。
+
+- `source = outbound_test`
+- `medium = qa`
+
+生データはAnalytics Engineに残す。通常の7日/30日集計からだけ除外する。
