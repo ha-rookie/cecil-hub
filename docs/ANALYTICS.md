@@ -112,6 +112,16 @@ Cecil本番URL:
 
 referrerはhostnameのみ保存する。
 
+保持期間:
+
+- Workers Analytics Engineへ書き込まれたデータはCloudflare公式仕様で3か月
+- 参照: https://developers.cloudflare.com/analytics/analytics-engine/limits/#data-retention
+
+公開Privacy:
+
+- `/privacy.html`
+- Privacyページ自体では `analytics.js` を読み込まず、計測対象外とする。
+
 ## Analytics Engine schema
 
 index:

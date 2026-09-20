@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Cecilのアクセス解析とプライバシーに関する方針です。">
+  <meta name="robots" content="noindex,follow">
+  <title>Privacy — Cecil</title>
+  <link rel="canonical" href="https://cecil-hub.ha-rookie.workers.dev/privacy.html">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f3ea">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111315">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header wrap">
+      <a class="brand" href="./" aria-label="Cecil ホーム">Cecil</a>
+      <nav class="nav" aria-label="Privacyページメニュー">
+        <a href="./">Home</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="表示テーマを切り替える">
+          <span class="theme-icon" aria-hidden="true">◐</span>
+          <span class="theme-label">Auto</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section wrap privacy-page">
+        <p class="eyebrow">PRIVACY</p>
+        <h1>アクセス解析とプライバシー</h1>
+        <p class="privacy-updated">更新日：2026年9月21日</p>
+
+        <h2>このサイトで計測していること</h2>
+        <p>Cecilでは、サイトへの流入元や、サイト内のリンクからどこへ移動したかを把握するため、Cloudflare Workers Analytics Engineを使った匿名のアクセス解析を行っています。</p>
+        <p>主に、ページ表示と外部リンクのクリックについて、流入元、参照元のホスト名、ページのパス、クリック先の種類などを記録します。</p>
+
+        <h2>保存しない情報</h2>
+        <p>Cecil独自のAnalytics Engineには、次の情報を保存しません。</p>
+        <ul>
+          <li>IPアドレス</li>
+          <li>User-Agent</li>
+          <li>Cookie ID</li>
+          <li>localStorageによるユーザーID</li>
+          <li>ブラウザ指紋（fingerprint）</li>
+          <li>氏名・メールアドレス</li>
+          <li>参照元URLの全文</li>
+        </ul>
+        <p>Cecil独自の計測では、Cookieや個別ユーザーを識別するIDを使用していません。</p>
+
+        <h2>利用目的</h2>
+        <p>集計データは、どの場所からCecilへ来たか、Cecilからどのコンテンツへ進んだかを把握し、サイト内の導線や掲載内容を改善するために利用します。</p>
+
+        <h2>データの保持</h2>
+        <p>CloudflareのWorkers Analytics Engineに書き込まれたデータは、Cloudflare公式仕様では3か月保存されます。</p>
+        <p><a class="section-link" href="https://developers.cloudflare.com/analytics/analytics-engine/limits/#data-retention" target="_blank" rel="noopener">Cloudflare公式ドキュメントを見る ↗</a></p>
+
+        <h2>Cloudflareについて</h2>
+        <p>このサイトはCloudflareのインフラを利用して配信されています。アクセス時の通信はCloudflareのサービスを経由します。上記の「保存しない情報」は、Cecilが独自にWorkers Analytics Engineへ保存する計測データについての説明です。</p>
+
+        <h2>連絡先</h2>
+        <p>このサイトに関する連絡は、Cecilトップページに掲載しているマシュマロまたは公式LINE等の公開窓口をご利用ください。</p>
+      </section>
+    </main>
+
+    <footer class="footer wrap">
+      <p>© Cecil — 作って、書いて、考える個人ポータル。</p>
+      <a href="./">Home</a>
+    </footer>
+  </div>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
