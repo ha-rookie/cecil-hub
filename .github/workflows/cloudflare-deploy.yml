@@ -1,137 +1,51 @@
-name: Cloudflare Pages deploy
+name: Cleanup accidental Cecil Pages project
 
 on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - main
-  workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: cloudflare-pages-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  preview:
-    if: github.event_name == 'pull_request'
+  cleanup:
+    if: github.event.pull_request.number == 14
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 
-      - name: Check Cloudflare credentials
-        id: cf
+      - name: Delete accidental Cloudflare Pages project
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        shell: bash
-        run: |
-          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Cloudflare secrets are not registered. Preview deploy skipped."
-          fi
-
-      - name: Deploy PR preview to Cloudflare Pages
-        if: steps.cf.outputs.ready == 'true'
-        id: deploy
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: latest
-          preCommands: npx wrangler pages project create cecil-hub --production-branch main || true
-          command: pages deploy public --project-name=cecil-hub --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
-
-      - name: Add preview status to summary
-        shell: bash
-        run: |
-          echo '## Cecil Pages Preview' >> "$GITHUB_STEP_SUMMARY"
-          echo '' >> "$GITHUB_STEP_SUMMARY"
-          if [ "${{ steps.cf.outputs.ready }}" = "true" ]; then
-            echo 'Stable preview alias: https://pr-${{ github.event.pull_request.number }}.cecil-hub.pages.dev/' >> "$GITHUB_STEP_SUMMARY"
-            echo 'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}' >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo 'Cloudflare deployment was skipped because repository secrets are not configured.' >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-  production:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Check Cloudflare credentials
-        id: cf
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        shell: bash
-        run: |
-          set -eu
-          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "::error::Cloudflare production credentials are not configured."
-            exit 1
-          fi
-          echo "ready=true" >> "$GITHUB_OUTPUT"
-
-      - name: Deploy approved main to Cloudflare Pages
-        id: deploy
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: latest
-          preCommands: npx wrangler pages project create cecil-hub --production-branch main || true
-          command: pages deploy public --project-name=cecil-hub --branch=main --commit-dirty=true
-
-      - name: Production smoke test
         shell: bash
         run: |
           set -euo pipefail
-          BASE_URL="https://cecil-hub.pages.dev"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          npx --yes wrangler@4 pages project delete cecil-hub --yes
 
-          ready=0
-          for attempt in $(seq 1 20); do
-            echo "Pages propagation attempt $attempt/20"
-            if curl -fsS "$BASE_URL/" -o /tmp/index.html               && grep -Fq '<title>Cecil — System Engineer / Developer / Writer</title>' /tmp/index.html               && curl -fsSI "$BASE_URL/" -o /tmp/home.headers               && grep -Fqi 'x-content-type-options: nosniff' /tmp/home.headers; then
-              ready=1
-              break
-            fi
-            sleep 3
-          done
-
-          if [ "$ready" -ne 1 ]; then
-            echo "::error::Cecil Pages production did not become ready."
-            exit 1
-          fi
-
-          curl -fsS "$BASE_URL/styles.css" -o /tmp/styles.css
-          curl -fsS "$BASE_URL/script.js" -o /tmp/script.js
-          test -s /tmp/styles.css
-          test -s /tmp/script.js
-          grep -Fq '朝マズメ潮ナビ' /tmp/index.html
-          grep -Fq 'いま考えていること' /tmp/index.html
-          ! grep -Fq 'github.com/' /tmp/index.html
-
-          status_404=$(curl -sS -o /tmp/not-found.html -w '%{http_code}' "$BASE_URL/__cecil-not-found-check__")
-          test "$status_404" = "404"
-          grep -Fq '404' /tmp/not-found.html
-
-          echo 'Cecil Cloudflare Pages production smoke test: OK'
-
-      - name: Add production status to summary
+      - name: Verify Pages project is gone
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         shell: bash
         run: |
-          echo '## Cecil Pages Production' >> "$GITHUB_STEP_SUMMARY"
-          echo '' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Stable URL: https://cecil-hub.pages.dev/' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Production smoke test: passed.' >> "$GITHUB_STEP_SUMMARY"
+          set -euo pipefail
+          npx --yes wrangler@4 pages project list --json > /tmp/pages.json
+          if python3 - <<'PY'
+          import json
+          with open('/tmp/pages.json', encoding='utf-8') as f:
+              projects = json.load(f)
+          names = {p.get('Name') or p.get('name') for p in projects}
+          raise SystemExit(0 if 'cecil-hub' not in names else 1)
+          PY
+          then
+            echo "cecil-hub Pages project deleted: OK"
+          else
+            echo "::error::cecil-hub Pages project still exists"
+            cat /tmp/pages.json
+            exit 1
+          fi
