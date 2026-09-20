@@ -58,6 +58,8 @@ const [viewsResult, sourcesResult, destinationsResult, journeysResult] =
       FROM cecil_hub_events
       WHERE timestamp > NOW() - ${interval}
         AND blob1 = 'page_view'
+        AND blob2 != 'outbound_test'
+        AND blob3 != 'qa'
       FORMAT JSON
     `),
     query(`
@@ -68,6 +70,8 @@ const [viewsResult, sourcesResult, destinationsResult, journeysResult] =
       FROM cecil_hub_events
       WHERE timestamp > NOW() - ${interval}
         AND blob1 = 'page_view'
+        AND blob2 != 'outbound_test'
+        AND blob3 != 'qa'
       GROUP BY source, medium
       ORDER BY views DESC
       LIMIT 20
@@ -80,6 +84,8 @@ const [viewsResult, sourcesResult, destinationsResult, journeysResult] =
       FROM cecil_hub_events
       WHERE timestamp > NOW() - ${interval}
         AND blob1 = 'outbound_click'
+        AND blob2 != 'outbound_test'
+        AND blob3 != 'qa'
       GROUP BY destination
       ORDER BY clicks DESC
       LIMIT 20
@@ -93,6 +99,8 @@ const [viewsResult, sourcesResult, destinationsResult, journeysResult] =
       FROM cecil_hub_events
       WHERE timestamp > NOW() - ${interval}
         AND blob1 = 'outbound_click'
+        AND blob2 != 'outbound_test'
+        AND blob3 != 'qa'
       GROUP BY source, destination
       ORDER BY clicks DESC
       LIMIT 30
