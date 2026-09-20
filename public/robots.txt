@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://cecil-hub.ha-rookie.workers.dev/sitemap.xml
