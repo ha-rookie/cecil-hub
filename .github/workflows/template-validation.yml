@@ -155,7 +155,7 @@ jobs:
           node --check public/analytics.js
           node --check src/index.js
           grep -q '"dataset": "cecil_hub_events"' wrangler.jsonc
-          grep -q '"/api/\\*"' wrangler.jsonc
+          grep -Fq '"/api/*"' wrangler.jsonc
           grep -q 'data-analytics-destination=' public/index.html
           grep -q 'source × destination' docs/ANALYTICS.md
 
