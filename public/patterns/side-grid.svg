@@ -1,0 +1,33 @@
+<svg width="170" height="620" viewBox="0 0 170 620" xmlns="http://www.w3.org/2000/svg">
+<style>
+.g{fill:none;stroke:#73805F;stroke-width:1.35;stroke-opacity:.22}
+.h{fill:#54E2D5;fill-opacity:.16}
+.n{fill:#008F86;fill-opacity:.94}
+@media(prefers-color-scheme:dark){
+  .g{stroke:#3a6a63;stroke-opacity:.24}
+  .h{fill:#7EF9FF;fill-opacity:.14}
+  .n{fill:#7EF9FF;fill-opacity:.90}
+}
+</style>
+<g class="g">
+  <path d="M18 0v620M54 0v620M90 0v620"/>
+  <path d="M0 72h132M0 150h150M0 242h118M0 348h145M0 468h122M0 570h152"/>
+  <path d="M18 150l72 92M90 242l-72 106M54 348l66 120M18 468l72 102"/>
+  <path d="M54 72l36 20v42l-36 20-36-20V92z"/>
+  <path d="M90 348l28 16v32l-28 16-28-16v-32z"/>
+  <circle cx="18" cy="72" r="3.2"/><circle cx="90" cy="242" r="3.2"/>
+  <circle cx="54" cy="348" r="3.2"/><circle cx="90" cy="570" r="3.2"/>
+</g>
+<g class="h">
+  <circle cx="90" cy="150" r="4.6"/>
+  <circle cx="54" cy="428" r="4.6"/>
+  <circle cx="18" cy="520" r="4.6"/>
+  <circle cx="72" cy="285" r="4.2"/>
+</g>
+<g class="n">
+  <circle cx="90" cy="150" r="2.2"/>
+  <circle cx="54" cy="428" r="2.2"/>
+  <circle cx="18" cy="520" r="2.2"/>
+  <circle cx="72" cy="285" r="2.0"/>
+</g>
+</svg>

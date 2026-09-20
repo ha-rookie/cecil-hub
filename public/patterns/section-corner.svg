@@ -1,0 +1,29 @@
+<svg width="170" height="130" viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg">
+<style>
+.g{fill:none;stroke:#A2853C;stroke-width:1.6;stroke-opacity:.24}
+.h{fill:#54E2D5;fill-opacity:.16}
+.n{fill:#008F86;fill-opacity:.94}
+@media(prefers-color-scheme:dark){
+  .g{stroke:#a7894a;stroke-opacity:.28}
+  .h{fill:#7EF9FF;fill-opacity:.14}
+  .n{fill:#7EF9FF;fill-opacity:.90}
+}
+</style>
+<g class="g">
+  <path d="M112 4l28 16v32l-28 16-28-16V20z"/>
+  <path d="M140 52l22 13v26l-22 13-22-13V65z"/>
+  <path d="M84 52l18 10v22L84 94 66 84V62z"/>
+  <path d="M84 20l28 48M140 20l-28 48M84 52h56"/>
+  <path d="M112 68l28 36"/>
+</g>
+<g class="h">
+  <circle cx="151" cy="62" r="4.4"/>
+  <circle cx="120" cy="34" r="4.2"/>
+  <circle cx="98" cy="78" r="3.9"/>
+</g>
+<g class="n">
+  <circle cx="151" cy="62" r="2.1"/>
+  <circle cx="120" cy="34" r="2.0"/>
+  <circle cx="98" cy="78" r="1.9"/>
+</g>
+</svg>

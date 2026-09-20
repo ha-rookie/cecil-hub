@@ -85,6 +85,12 @@ Manual cycle:
 7. Elsewhere
 8. Footer
 
+## Design Preview
+
+Design Previewは表示面であり、承認済み設計の正本はGitHub `main` とする。
+
+Previewはスマホ・Light・Darkなどの人間確認に使い、Preview上だけの変更を正本としない。
+
 ## Design Source of Truth
 
 Figmaはv1の正本にしない。
