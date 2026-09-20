@@ -6,7 +6,7 @@
 Cecil の立ち位置と主要導線を10秒程度で理解できるHeroを表示する。
 
 ### REQ-002 Featured Works
-代表作をカードで表示し、Demo / GitHub / ProtoPedia等の外部導線を必要に応じて提供する。
+代表作をカードで表示し、Demo / ProtoPedia等の公開済み外部導線を必要に応じて提供する。Private Repositoryへのリンクは掲載しない。
 
 v1候補:
 - くるくるソムリエ
@@ -23,7 +23,7 @@ note の代表記事を厳選して表示する。単なる記事一覧にはし
 匿名のSEとしての活動方針を説明する。
 
 ### REQ-006 Elsewhere
-note / GitHub / ProtoPedia / X / Instagram / 楽天ROOM / LINE / マシュマロ等への外部リンクを提供する。
+note / ProtoPedia / X / Instagram / 楽天ROOM / LINE / マシュマロ等、公開しているサービスへの外部リンクを提供する。GitHubはv1の公開導線に含めない。
 
 ### REQ-007 Theme
 OS設定へ自動追従し、Auto / Dark / Light を手動で切り替えられる。
@@ -39,19 +39,22 @@ OS設定へ自動追従し、Auto / Dark / Light を手動で切り替えられ�
 ### NFR-002 Repository Confidentiality
 開発用RepositoryはPrivateとする。設計書・AGENTS・ADR・Issue/PR等を公開サイトのStatic Assetsへ含めない。
 
-### NFR-003 Performance
+### NFR-003 Public Link Boundary
+公開サイトからPrivate GitHub Repositoryまたは非公開開発情報へリンクしない。GitHub Public Mirrorを将来作成した場合のみ再検討する。
+
+### NFR-004 Performance
 v1は静的HTML/CSS/JavaScriptを基本とし、不要なFrameworkやRuntimeを追加しない。
 
-### NFR-004 Accessibility
+### NFR-005 Accessibility
 意味のあるHTML、十分なコントラスト、キーボード操作、aria属性を必要箇所で使用する。
 
-### NFR-005 Security
+### NFR-006 Security
 Static AssetsにSecurity Headerを付与し、不要なcamera / microphone / geolocation権限を許可しない。
 
-### NFR-006 SEO
+### NFR-007 SEO
 title / description / OGPの初期情報を持つ。canonical / og:url / sitemap は本番URL確定後に追加する。
 
-### NFR-007 Maintainability
+### NFR-008 Maintainability
 v1はコンテンツ量が小さいため静的ファイルを正本とする。CMSは必要性が発生した時点で再評価する。
 
 ## Acceptance
