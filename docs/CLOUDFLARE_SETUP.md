@@ -2,7 +2,13 @@
 
 ## 1. v1 Hosting
 
-Cecil v1 は **Cloudflare Workers Static Assets** で配信する。
+Cecil v1 は **Cloudflare Pages** で配信する。
+
+Production URL:
+
+`https://cecil-hub.pages.dev/`
+
+当面、独自ドメインは使用しない。
 
 公開対象ディレクトリは `public/` のみ。
 
@@ -20,40 +26,50 @@ RepositoryはPrivateで運用する。
 
 ## 3. Standard Deployment Path
 
-v1では **Cloudflare Git integration** を優先する。
+標準経路は **GitHub Actions → Wrangler Direct Upload → Cloudflare Pages** とする。
 
 ```text
 Private GitHub Repository
         |
-        | Git integration
+        | GitHub Actions
         v
-Cloudflare Workers Static Assets
+Wrangler Pages Direct Upload
         |
-        v
-Public Cecil Website
+        +--> PR Preview
+        |      pr-<number>.cecil-hub.pages.dev
+        |
+        +--> Production
+               cecil-hub.pages.dev
 ```
 
-GitHub Actions → WranglerをProduction Deployの必須経路にはしない。
+Cloudflare Git integrationは使用しない。
 
-## 4. Static Assets
+## 4. Wrangler
 
-`wrangler.jsonc` の公開ディレクトリ:
+`wrangler.jsonc`:
 
 ```json
 {
-  "assets": {
-    "directory": "./public",
-    "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+  "name": "cecil-hub",
+  "pages_build_output_dir": "./public",
+  "compatibility_date": "2026-09-20"
 }
 ```
 
-v1ではWorker backend、DB、KV、D1、R2、Secrets、Bindingsを使用しない。
+v1ではPages Functions、DB、KV、D1、R2を使用しない。
+
+GitHub ActionsではCloudflare認証用に以下のRepository Secretsを使用する。
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
 
 ## 5. Preview
 
-Productionへ反映する前にPreviewで確認する。
+Productionへ反映する前にPull Request Previewで確認する。
+
+Stable Preview Alias:
+
+`https://pr-<PR番号>.cecil-hub.pages.dev/`
 
 最低限:
 
@@ -66,22 +82,17 @@ Productionへ反映する前にPreviewで確認する。
 - Security Headers
 - 公開対象が `public/` に限定されていること
 
-Previewは原則として検索index対象にしない。
-
 ## 6. Production
 
 Productionは承認済み `main` を基準とする。
 
-本番公開前に以下を確定する。
+Production URL:
 
-- Public URL
-- canonical
-- og:url
-- OGP image
-- sitemap.xml
-- robots.txt Sitemap
-- Cloudflare Web Analytics
-- Google Search Console
+`https://cecil-hub.pages.dev/`
+
+mainへのmerge後、GitHub Actionsから以下を実行する。
+
+`wrangler pages deploy public --project-name=cecil-hub --branch=main`
 
 ## 7. Production Smoke
 
@@ -92,11 +103,10 @@ Deploy成功だけでRelease完了としない。
 - HTTP 200
 - HTTPS
 - CecilのHTML marker
-- CSS / JavaScript / SVG
+- CSS / JavaScript
 - 404
 - Security Headers
 - Production URLが承認済みmainを配信していること
-- Preview用noindexがProductionへ誤適用されていないこと
 
 ## 8. Security
 
@@ -104,17 +114,18 @@ Deploy成功だけでRelease完了としない。
 
 `public/_headers` を初期Security Headerの正本とし、Preview / Productionの実レスポンスでも確認する。
 
-## 9. Analytics
+## 9. SEO / Analytics
 
-v1の公開URL確定後に導入判断する。
+Production URLを正本として、後続Issueで以下を整備する。
 
-候補:
-
+- canonical
+- og:url
+- OGP image
+- sitemap.xml
+- robots.txt Sitemap
 - Cloudflare Web Analytics
 - Google Search Console
 - outbound click measurement
-
-第三者サイトへ遷移した後の行動をCecilだけで完全に把握できる前提は置かない。
 
 ## 10. Rollback
 
@@ -124,11 +135,3 @@ v1の公開URL確定後に導入判断する。
 - revert PRを基本にする
 - 理由をIssue / PRへ残す
 - rollback後もProduction Smokeを行う
-
-## 11. Design Previewとの責務分離
-
-- Design Preview: 視覚設計レビュー
-- App Preview: 実装Branch / PRの動作確認
-- Production: mainの承認済み成果物
-
-Design Previewは `docs/DESIGN_PREVIEW.md` に従う。
