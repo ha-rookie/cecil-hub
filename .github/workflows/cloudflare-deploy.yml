@@ -1,4 +1,4 @@
-name: Cloudflare deploy
+name: Cloudflare Pages deploy
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-${{ github.workflow }}-${{ github.ref }}
+  group: cloudflare-pages-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,37 +24,42 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Upload preview version
+      - name: Check Cloudflare credentials
+        id: cf
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         shell: bash
         run: |
-          set -eu
-          if [ -z "${CLOUDFLARE_API_TOKEN}" ] || [ -z "${CLOUDFLARE_ACCOUNT_ID}" ]; then
-            echo "::notice::Cloudflare secrets are not registered yet. Preview upload skipped."
-            exit 0
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Cloudflare secrets are not registered. Preview deploy skipped."
           fi
 
-          set +e
-          output=$(npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}" 2>&1)
-          status=$?
-          set -e
-          printf '%s\n' "$output"
+      - name: Deploy PR preview to Cloudflare Pages
+        if: steps.cf.outputs.ready == 'true'
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: latest
+          preCommands: npx wrangler pages project create cecil-hub --production-branch main || true
+          command: pages deploy public --project-name=cecil-hub --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
 
-          if [ "$status" -eq 0 ]; then
-            exit 0
+      - name: Add preview status to summary
+        shell: bash
+        run: |
+          echo '## Cecil Pages Preview' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.cf.outputs.ready }}" = "true" ]; then
+            echo 'Stable preview alias: https://pr-${{ github.event.pull_request.number }}.cecil-hub.pages.dev/' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Cloudflare deployment was skipped because repository secrets are not configured.' >> "$GITHUB_STEP_SUMMARY"
           fi
-
-          if printf '%s' "$output" | grep -q "does not yet exist"; then
-            echo "::notice::Worker does not exist yet. Bootstrapping once with workers_dev disabled."
-            npx --yes wrangler@4 deploy
-            npx --yes wrangler@4 versions upload --preview-alias "pr-${PR_NUMBER}"
-            exit 0
-          fi
-
-          exit "$status"
 
   production:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -63,15 +68,70 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Deploy approved main
+      - name: Check Cloudflare credentials
+        id: cf
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         shell: bash
         run: |
           set -eu
-          if [ -z "${CLOUDFLARE_API_TOKEN}" ] || [ -z "${CLOUDFLARE_ACCOUNT_ID}" ]; then
-            echo "::notice::Cloudflare secrets are not registered yet. Production deploy skipped."
-            exit 0
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Cloudflare production credentials are not configured."
+            exit 1
           fi
-          npx --yes wrangler@4 deploy
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy approved main to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: latest
+          preCommands: npx wrangler pages project create cecil-hub --production-branch main || true
+          command: pages deploy public --project-name=cecil-hub --branch=main --commit-dirty=true
+
+      - name: Production smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE_URL="https://cecil-hub.pages.dev"
+
+          ready=0
+          for attempt in $(seq 1 20); do
+            echo "Pages propagation attempt $attempt/20"
+            if curl -fsS "$BASE_URL/" -o /tmp/index.html               && grep -Fq '<title>Cecil — System Engineer / Developer / Writer</title>' /tmp/index.html               && curl -fsSI "$BASE_URL/" -o /tmp/home.headers               && grep -Fqi 'x-content-type-options: nosniff' /tmp/home.headers; then
+              ready=1
+              break
+            fi
+            sleep 3
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            echo "::error::Cecil Pages production did not become ready."
+            exit 1
+          fi
+
+          curl -fsS "$BASE_URL/styles.css" -o /tmp/styles.css
+          curl -fsS "$BASE_URL/script.js" -o /tmp/script.js
+          test -s /tmp/styles.css
+          test -s /tmp/script.js
+          grep -Fq '朝マズメ潮ナビ' /tmp/index.html
+          grep -Fq 'いま考えていること' /tmp/index.html
+          ! grep -Fq 'github.com/' /tmp/index.html
+
+          status_404=$(curl -sS -o /tmp/not-found.html -w '%{http_code}' "$BASE_URL/__cecil-not-found-check__")
+          test "$status_404" = "404"
+          grep -Fq '404' /tmp/not-found.html
+
+          echo 'Cecil Cloudflare Pages production smoke test: OK'
+
+      - name: Add production status to summary
+        shell: bash
+        run: |
+          echo '## Cecil Pages Production' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Stable URL: https://cecil-hub.pages.dev/' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Production smoke test: passed.' >> "$GITHUB_STEP_SUMMARY"
