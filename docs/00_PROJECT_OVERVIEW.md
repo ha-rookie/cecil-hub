@@ -19,7 +19,7 @@ Cecil は、匿名の System Engineer / Developer / Writer としての活動を
 既存サービス上のIDは統一を強制しない。
 
 - note / X: `cecil_gourmet`
-- GitHub / ProtoPedia: `ha-rookie`
+- ProtoPedia: `ha-rookie`
 
 Cecil をそれらの上位ブランドとして扱う。
 
@@ -33,14 +33,14 @@ Cecil をそれらの上位ブランドとして扱う。
 
 - 作ったWebアプリに興味を持った人
 - noteの記事から来た読者
-- ProtoPedia / GitHub / X 等から来た人
+- ProtoPedia / X 等から来た人
 - AI時代のSE・開発・働き方に関心がある人
 
 ## Privacy Boundary
 
 公開サイトには、勤務先・顧客・案件を特定できる情報を載せない。
 
-開発用GitHub RepositoryはPrivateとし、AI駆動開発テンプレート、AGENTS、設計書、ADR、Issue/PR運用などの開発ノウハウを公開サイトから配信しない。
+開発用GitHub RepositoryはPrivateとし、AI駆動開発テンプレート、AGENTS、設計書、ADR、Issue/PR運用などの開発ノウハウを公開サイトから配信しない。v1の公開サイトからGitHubへの導線も設けない。
 
 ## v1 Scope
 
