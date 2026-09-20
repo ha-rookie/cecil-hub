@@ -1,0 +1,43 @@
+name: Cecil analytics report
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "集計期間"
+        required: true
+        default: "7"
+        type: choice
+        options:
+          - "7"
+          - "30"
+  pull_request:
+    paths:
+      - ".github/workflows/analytics-report.yml"
+      - "scripts/analytics-report.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_ANALYTICS_READ_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_READ_TOKEN }}
+      DAYS: ${{ inputs.days || '7' }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate analytics secrets
+        shell: bash
+        run: |
+          set -eu
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_ANALYTICS_READ_TOKEN"
+          echo "Analytics read secrets are available."
+
+      - name: Query Cecil analytics
+        run: node scripts/analytics-report.mjs
