@@ -82,9 +82,25 @@ jobs:
           set -eu
           url="https://cecil-hub.ha-rookie.workers.dev/api/event"
           origin="https://cecil-hub.ha-rookie.workers.dev"
-          status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
-            --request POST "$url" \
-            --header "Origin: $origin" \
-            --header "Content-Type: application/json" \
-            --data '{"event":"deployment_smoke_test"}')
-          test "$status" = "204" || { echo "Analytics smoke failed: HTTP $status"; exit 1; }
+          status="000"
+
+          for attempt in 1 2 3 4 5 6; do
+            status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
+              --request POST "$url" \
+              --header "Origin: $origin" \
+              --header "Content-Type: application/json" \
+              --data '{"event":"deployment_smoke_test"}' || true)
+
+            if [ "$status" = "204" ]; then
+              echo "Analytics smoke succeeded on attempt $attempt."
+              exit 0
+            fi
+
+            echo "Analytics smoke attempt $attempt: HTTP $status"
+            if [ "$attempt" -lt 6 ]; then
+              sleep 5
+            fi
+          done
+
+          echo "Analytics smoke failed after retries: HTTP $status"
+          exit 1
