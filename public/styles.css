@@ -305,3 +305,19 @@ a { color: inherit; text-decoration: none; }
 .feature-meta .arrow::after { width: 12px; }
 
 .links-grid a > .arrow { color: var(--muted); }
+
+/* Arrow fix: use one stable chevron shape; no pseudo-element shaft. */
+.arrow {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 11px;
+  height: 11px;
+  border: 0;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  vertical-align: middle;
+}
+.arrow::after { content: none; display: none; }
+.arrow-external { transform: rotate(0deg); }
+.arrow-down { transform: rotate(135deg); margin-left: 7px; }
+.feature-meta .arrow { width: 10px; height: 10px; }
