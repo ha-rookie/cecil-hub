@@ -276,3 +276,32 @@ a { color: inherit; text-decoration: none; }
   .privacy-updated { margin-bottom: 40px; }
   .privacy-page h2 { margin-top: 40px; font-size: 19px; }
 }
+
+/* Shared directional arrow: one geometry, orientation only changes. */
+.arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  flex: 0 0 auto;
+}
+.arrow::after {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right center;
+  transform: translate(-4px, 8px) rotate(-45deg);
+}
+.arrow-external { transform: translateY(1px); }
+.arrow-down { transform: rotate(135deg) translate(-1px, -1px); }
+
+.feature-meta .arrow {
+  width: 9px;
+  height: 9px;
+}
+.feature-meta .arrow::after { width: 12px; }
+
+.links-grid a > .arrow { color: var(--muted); }
