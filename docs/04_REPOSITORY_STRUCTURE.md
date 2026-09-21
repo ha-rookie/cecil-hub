@@ -67,6 +67,6 @@ GitHub公開が必要になった場合はPublic Mirrorを別Issueで検討す�
 - Human review / upload staging: `docs/design/assets/`
 - Issue #41の承認済みMaster Source Asset: `docs/design/assets/issue-41-icons/`
 - Issue #41の配信用favicon / Apple Touch Icon等の生成物: `public/icons/`
-- Issue #41では承認済みPNG MasterをSource Assetとして固定し、派生サイズは生成処理から作る。派生PNG / ICOを個別に手編集しない
+- Issue #41では承認済みPNG MasterをSource Assetとして固定し、`scripts/generate_app_icons.cjs` で `favicon-16x16.png` / `favicon-32x32.png` / `apple-touch-icon.png` を決定論的に生成する。派生PNGを個別に手編集しない\n- 16px / 32pxは `cecil-favicon-master.png`、180pxは `cecil-apple-touch-icon-master.png` を入力Sourceとして使う
 - 別IssueのSource Asset配置は、そのAsset分類と生成方式を確定してからIssue/設計で明記する
 - Human/AI間のUpload手順は `docs/HUMAN_AI_COLLABORATION.md`、Asset lifecycleは `docs/ASSET_WORKFLOW.md` を正本とする
