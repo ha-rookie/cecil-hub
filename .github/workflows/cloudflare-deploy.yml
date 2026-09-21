@@ -23,7 +23,19 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
-\n      - name: Generate approved icon derivatives\n        shell: bash\n        run: |\n          set -eu\n          test -f docs/design/assets/issue-41-icons/cecil-favicon-master.png\n          test -f docs/design/assets/issue-41-icons/cecil-apple-touch-icon-master.png\n          node --check scripts/generate_app_icons.cjs\n          npm run build:icons\n          test -f public/icons/favicon-16x16.png\n          test -f public/icons/favicon-32x32.png\n          test -f public/icons/apple-touch-icon.png\n
+
+      - name: Generate approved icon derivatives
+        shell: bash
+        run: |
+          set -eu
+          test -f docs/design/assets/issue-41-icons/cecil-favicon-master.png
+          test -f docs/design/assets/issue-41-icons/cecil-apple-touch-icon-master.png
+          node --check scripts/generate_app_icons.cjs
+          npm run build:icons
+          test -f public/icons/favicon-16x16.png
+          test -f public/icons/favicon-32x32.png
+          test -f public/icons/apple-touch-icon.png
+
       - name: Upload preview version
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -62,7 +74,19 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
-\n      - name: Generate approved icon derivatives\n        shell: bash\n        run: |\n          set -eu\n          test -f docs/design/assets/issue-41-icons/cecil-favicon-master.png\n          test -f docs/design/assets/issue-41-icons/cecil-apple-touch-icon-master.png\n          node --check scripts/generate_app_icons.cjs\n          npm run build:icons\n          test -f public/icons/favicon-16x16.png\n          test -f public/icons/favicon-32x32.png\n          test -f public/icons/apple-touch-icon.png\n
+
+      - name: Generate approved icon derivatives
+        shell: bash
+        run: |
+          set -eu
+          test -f docs/design/assets/issue-41-icons/cecil-favicon-master.png
+          test -f docs/design/assets/issue-41-icons/cecil-apple-touch-icon-master.png
+          node --check scripts/generate_app_icons.cjs
+          npm run build:icons
+          test -f public/icons/favicon-16x16.png
+          test -f public/icons/favicon-32x32.png
+          test -f public/icons/apple-touch-icon.png
+
       - name: Deploy approved main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
