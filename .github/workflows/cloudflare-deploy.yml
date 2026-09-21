@@ -68,6 +68,24 @@ jobs:
 
           exit "$status"
 
+      - name: Preview icon smoke
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -eu
+          base="https://pr-${PR_NUMBER}-cecil-hub.ha-rookie.workers.dev"
+          for path in             /icons/favicon-16x16.png             /icons/favicon-32x32.png             /icons/apple-touch-icon.png
+          do
+            headers="$(curl --silent --show-error --fail --dump-header - --output /dev/null "${base}${path}" | tr -d '\r')"
+            printf '%s\n' "$headers"
+            if ! printf '%s\n' "$headers" | grep -Eiq '^content-type:[[:space:]]*image/png([;[:space:]]|$)'; then
+              echo "::error::Unexpected Content-Type for ${path}"
+              exit 1
+            fi
+          done
+          echo "Preview icon smoke succeeded."
+
   production:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -99,6 +117,22 @@ jobs:
             exit 0
           fi
           npx --yes wrangler@4 deploy
+
+      - name: Production icon smoke
+        shell: bash
+        run: |
+          set -eu
+          base="https://cecil-hub.ha-rookie.workers.dev"
+          for path in             /icons/favicon-16x16.png             /icons/favicon-32x32.png             /icons/apple-touch-icon.png
+          do
+            headers="$(curl --silent --show-error --fail --dump-header - --output /dev/null "${base}${path}" | tr -d '\r')"
+            printf '%s\n' "$headers"
+            if ! printf '%s\n' "$headers" | grep -Eiq '^content-type:[[:space:]]*image/png([;[:space:]]|$)'; then
+              echo "::error::Unexpected Content-Type for ${path}"
+              exit 1
+            fi
+          done
+          echo "Production icon smoke succeeded."
 
       - name: Production analytics smoke
         shell: bash
