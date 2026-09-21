@@ -1,4 +1,4 @@
-name: Fork / Clone traffic check
+name: Repository traffic check
 
 on:
   issue_comment:
@@ -59,7 +59,7 @@ jobs:
               await postComment([
                 '⚠️ `TRAFFIC_READ_TOKEN` が未設定です。',
                 '',
-                'Clone統計を取得するには、Fine-grained PATをRepository Secret `TRAFFIC_READ_TOKEN` として登録してください。',
+                'Repository Trafficを取得するには、Fine-grained PATをRepository Secret `TRAFFIC_READ_TOKEN` として登録してください。',
                 'PATで確認対象にしたいRepositoryを選択し、Repository permissionは **Administration: Read-only** にしてください。',
                 '',
                 'Token値はこのIssueやActionsログへ出力しません。'
@@ -106,7 +106,7 @@ jobs:
 
             if (publicRepos.length === 0) {
               await postComment([
-                '## Fork / Clone Traffic report',
+                '## Repository Traffic report',
                 '',
                 '現在、`TRAFFIC_READ_TOKEN` から確認できるPublic repositoryはありません。',
                 '',
@@ -115,55 +115,119 @@ jobs:
               return;
             }
 
-            const reports = [];
             const failures = [];
+            const getTrafficJson = async (repoName, endpoint, label) => {
+              const response = await fetch(
+                `https://api.github.com/repos/${owner}/${repoName}/traffic/${endpoint}`,
+                { headers }
+              );
 
-            for (const repository of publicRepos) {
-              const repoName = repository.name;
-              const trafficUrl = `https://api.github.com/repos/${owner}/${repoName}/traffic/clones`;
-              const trafficResponse = await fetch(trafficUrl, { headers });
-
-              if (!trafficResponse.ok) {
+              if (!response.ok) {
                 failures.push({
                   repo: repoName,
-                  status: `${trafficResponse.status} ${trafficResponse.statusText}`
+                  metric: label,
+                  status: `${response.status} ${response.statusText}`
                 });
-                continue;
+                return null;
               }
 
-              const traffic = await trafficResponse.json();
+              return response.json();
+            };
+
+            const reports = [];
+            for (const repository of publicRepos) {
+              const repoName = repository.name;
+
+              const [clones, views, referrers, paths] = await Promise.all([
+                getTrafficJson(repoName, 'clones', 'clones'),
+                getTrafficJson(repoName, 'views', 'views'),
+                getTrafficJson(repoName, 'popular/referrers', 'referrers'),
+                getTrafficJson(repoName, 'popular/paths', 'popular paths')
+              ]);
+
               reports.push({
                 name: repoName,
                 url: repository.html_url,
                 forks: repository.forks_count ?? 0,
-                network: repository.network_count ?? '(not available)',
-                clones: traffic.count ?? 0,
-                uniques: traffic.uniques ?? 0,
-                daily: Array.isArray(traffic.clones) ? traffic.clones : []
+                clones: clones?.count ?? null,
+                uniqueCloners: clones?.uniques ?? null,
+                cloneDaily: Array.isArray(clones?.clones) ? clones.clones : [],
+                views: views?.count ?? null,
+                uniqueVisitors: views?.uniques ?? null,
+                viewDaily: Array.isArray(views?.views) ? views.views : [],
+                referrers: Array.isArray(referrers) ? referrers : [],
+                paths: Array.isArray(paths) ? paths : []
               });
             }
 
+            const value = (input) => input === null || input === undefined ? '取得失敗' : input;
+            const mdCell = (input) => String(input ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
             const checkedAt = new Date().toISOString();
-            const summaryRows = reports.length
-              ? reports.map((item) =>
-                  `| [${item.name}](${item.url}) | ${item.forks} | ${item.network} | ${item.clones} | ${item.uniques} |`
-                ).join('\n')
-              : '| - | - | - | - | - |';
+
+            const summaryRows = reports.map((item) =>
+              `| [${mdCell(item.name)}](${item.url}) | ${item.forks} | ${value(item.clones)} | ${value(item.uniqueCloners)} | ${value(item.views)} | ${value(item.uniqueVisitors)} |`
+            ).join('\n');
 
             const detailSections = reports.map((item) => {
-              const rows = item.daily.length
-                ? item.daily.map((daily) => {
-                    const date = String(daily.timestamp ?? '').slice(0, 10) || '(unknown)';
-                    return `| ${date} | ${daily.count ?? 0} | ${daily.uniques ?? 0} |`;
-                  }).join('\n')
+              const byDate = new Map();
+
+              for (const daily of item.cloneDaily) {
+                const date = String(daily.timestamp ?? '').slice(0, 10) || '(unknown)';
+                byDate.set(date, {
+                  ...(byDate.get(date) ?? {}),
+                  clones: daily.count ?? 0,
+                  uniqueCloners: daily.uniques ?? 0
+                });
+              }
+
+              for (const daily of item.viewDaily) {
+                const date = String(daily.timestamp ?? '').slice(0, 10) || '(unknown)';
+                byDate.set(date, {
+                  ...(byDate.get(date) ?? {}),
+                  views: daily.count ?? 0,
+                  uniqueVisitors: daily.uniques ?? 0
+                });
+              }
+
+              const dailyRows = [...byDate.entries()]
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([date, daily]) =>
+                  `| ${date} | ${daily.clones ?? 0} | ${daily.uniqueCloners ?? 0} | ${daily.views ?? 0} | ${daily.uniqueVisitors ?? 0} |`
+                )
+                .join('\n') || '| - | 0 | 0 | 0 | 0 |';
+
+              const referrerRows = item.referrers.length
+                ? item.referrers.map((referrer) =>
+                    `| ${mdCell(referrer.referrer)} | ${referrer.count ?? 0} | ${referrer.uniques ?? 0} |`
+                  ).join('\n')
                 : '| - | 0 | 0 |';
 
+              const pathRows = item.paths.length
+                ? item.paths.map((path) =>
+                    `| \`${mdCell(path.path)}\` | ${mdCell(path.title)} | ${path.count ?? 0} | ${path.uniques ?? 0} |`
+                  ).join('\n')
+                : '| - | - | 0 | 0 |';
+
               return [
-                `<details><summary>${item.name} daily clone history</summary>`,
+                `<details><summary>${mdCell(item.name)} details</summary>`,
                 '',
-                '| Date | Clones | Unique cloners |',
+                '### Daily traffic (UTC)',
+                '',
+                '| Date | Clones | Unique cloners | Views | Unique visitors |',
+                '| --- | ---: | ---: | ---: | ---: |',
+                dailyRows,
+                '',
+                '### Top referrers (14 days)',
+                '',
+                '| Referrer | Count | Uniques |',
                 '| --- | ---: | ---: |',
-                rows,
+                referrerRows,
+                '',
+                '### Popular paths (14 days)',
+                '',
+                '| Path | Title | Count | Uniques |',
+                '| --- | --- | ---: | ---: |',
+                pathRows,
                 '',
                 '</details>'
               ].join('\n');
@@ -172,16 +236,18 @@ jobs:
             const failureLines = failures.length
               ? [
                   '',
-                  '###取得失敗',
-                  ...failures.map((item) => `- \`${item.repo}\`: HTTP \`${item.status}\``)
+                  '### 取得失敗',
+                  ...failures.map((item) =>
+                    `- \`${item.repo}\` / ${item.metric}: HTTP \`${item.status}\``
+                  )
                 ]
               : [];
 
             await postComment([
-              '## Fork / Clone Traffic report',
+              '## Repository Traffic report',
               '',
-              '| Public repository | Forks | Network | Clones (14 days) | Unique cloners (14 days) |',
-              '| --- | ---: | ---: | ---: | ---: |',
+              '| Public repository | Forks | Clones (14 days) | Unique cloners | Views (14 days) | Unique visitors |',
+              '| --- | ---: | ---: | ---: | ---: | ---: |',
               summaryRows,
               '',
               detailSections,
@@ -190,5 +256,6 @@ jobs:
               `Checked at: \`${checkedAt}\``,
               '',
               '> `TRAFFIC_READ_TOKEN` が参照できるRepositoryのうち、実行時点でPublicなものだけを表示しています。Private repositoryの情報は公開Issueへ出力しません。',
-              '> GitHub Traffic APIが提供するClone統計は直近14日分です。cloneしたユーザー個人は特定できません。'
+              '> GitHub Traffic APIのClone / Viewは直近14日分・UTC基準です。Cloneはfull cloneで、fetchは含まれません。',
+              '> Unique cloners / Unique visitorsから個人を特定したり、人間とbotを区別したりすることはできません。'
             ].join('\n'));
