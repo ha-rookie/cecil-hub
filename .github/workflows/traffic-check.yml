@@ -1,0 +1,120 @@
+name: Fork / Clone traffic check
+
+on:
+  issue_comment:
+    types:
+      - created
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "結果を書き込むIssue番号"
+        required: true
+        default: "57"
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    if: >-
+      (github.event_name == 'issue_comment' &&
+       github.actor == 'ha-rookie' &&
+       github.event.issue.number == 57 &&
+       github.event.comment.body == '/traffic-check') ||
+      (github.event_name == 'workflow_dispatch' && github.actor == 'ha-rookie')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TARGET_ISSUE: ${{ github.event_name == 'issue_comment' && github.event.issue.number || inputs.issue_number }}
+      TRAFFIC_READ_TOKEN: ${{ secrets.TRAFFIC_READ_TOKEN }}
+    steps:
+      - name: Query repository traffic and post report
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issueNumber = Number(process.env.TARGET_ISSUE);
+            const trafficToken = process.env.TRAFFIC_READ_TOKEN;
+
+            if (!Number.isInteger(issueNumber) || issueNumber <= 0) {
+              core.setFailed('Invalid TARGET_ISSUE.');
+              return;
+            }
+
+            const postComment = async (body) => {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body
+              });
+            };
+
+            if (!trafficToken) {
+              await postComment([
+                '⚠️ `TRAFFIC_READ_TOKEN` が未設定です。',
+                '',
+                'Clone統計を取得するには、Fine-grained PATをRepository Secret `TRAFFIC_READ_TOKEN` として登録してください。',
+                '必要権限は対象Repositoryの **Administration: Read-only** です。',
+                '',
+                'Token値はこのIssueやActionsログへ出力しません。'
+              ].join('\n'));
+              return;
+            }
+
+            const { data: repository } = await github.rest.repos.get({ owner, repo });
+            const trafficUrl = `https://api.github.com/repos/${owner}/${repo}/traffic/clones`;
+            const response = await fetch(trafficUrl, {
+              headers: {
+                Accept: 'application/vnd.github+json',
+                Authorization: `Bearer ${trafficToken}`,
+                'X-GitHub-Api-Version': '2022-11-28'
+              }
+            });
+
+            if (!response.ok) {
+              const status = `${response.status} ${response.statusText}`;
+              await postComment([
+                '⚠️ Clone Traffic APIの取得に失敗しました。',
+                '',
+                `- HTTP: \`${status}\``,
+                '- `TRAFFIC_READ_TOKEN` が対象Repositoryを参照できるか確認してください。',
+                '- 必要権限は **Administration: Read-only** です。',
+                '',
+                'Token値は出力していません。'
+              ].join('\n'));
+              return;
+            }
+
+            const traffic = await response.json();
+            const daily = Array.isArray(traffic.clones) ? traffic.clones : [];
+            const rows = daily.length
+              ? daily.map((item) => {
+                  const date = String(item.timestamp ?? '').slice(0, 10) || '(unknown)';
+                  return `| ${date} | ${item.count ?? 0} | ${item.uniques ?? 0} |`;
+                }).join('\n')
+              : '| - | 0 | 0 |';
+
+            const networkCount = repository.network_count ?? '(not available)';
+            const checkedAt = new Date().toISOString();
+
+            await postComment([
+              '## Fork / Clone Traffic report',
+              '',
+              `- Repository: \`${owner}/${repo}\``,
+              `- Forks: **${repository.forks_count ?? 0}**`,
+              `- Network count: **${networkCount}**`,
+              `- Clones (14 days): **${traffic.count ?? 0}**`,
+              `- Unique cloners (14 days): **${traffic.uniques ?? 0}**`,
+              `- Checked at: \`${checkedAt}\``,
+              '',
+              '| Date | Clones | Unique cloners |',
+              '| --- | ---: | ---: |',
+              rows,
+              '',
+              '> GitHub Traffic APIが提供する直近14日分です。cloneしたユーザー個人は特定できません。'
+            ].join('\n'));
