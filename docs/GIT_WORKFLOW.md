@@ -68,18 +68,21 @@ Forkを検知した場合は、RepositoryのIssue作成権限だけを使い、`
 
 ## Fork / Clone Trafficのオンデマンド確認
 
-Public repositoryのFork累計と直近14日のClone統計は、専用Issue #57と `.github/workflows/traffic-check.yml` を使って必要な時だけ確認する。
+`TRAFFIC_READ_TOKEN` が参照できるRepositoryのうち、**実行時点でPublicなRepositoryだけ**のFork累計と直近14日のClone統計を、専用Issue #57と `.github/workflows/traffic-check.yml` を使って必要な時だけ確認する。
 
 標準操作：
 
 1. Issue #57へ `/traffic-check` とコメントする
 2. `ha-rookie` による #57 の完全一致コメントだけWorkflowが実行される
-3. GitHub Traffic APIからClone統計を取得する
-4. 同じIssueへFork累計、Network count、14日Clone総数、Unique cloners、日別履歴を返す
+3. Fine-grained PATから参照できるRepository一覧を取得し、Private repositoryを除外する
+4. Public repositoryごとにGitHub Traffic APIからClone統計を取得する
+5. 同じIssueへRepository別のFork累計、Network count、14日Clone総数、Unique cloners、日別履歴を返す
 
 手動の `workflow_dispatch` でもIssue #57へ結果を書き込める。
 
-Clone Traffic APIにはFine-grained PATの **Administration: Read-only** が必要。TokenはRepository Secret `TRAFFIC_READ_TOKEN` としてHumanが登録し、値をIssue・ログ・ドキュメントへ出力しない。
+Clone Traffic APIにはFine-grained PATの **Administration: Read-only** が必要。確認候補にしたいRepositoryだけをPATのRepository accessで選択する。TokenはCECIL側のRepository Secret `TRAFFIC_READ_TOKEN` としてHumanが登録し、値をIssue・ログ・ドキュメントへ出力しない。
+
+PublicなコンソールIssueへPrivate repository名やTraffic値を出力しない。PATが参照できても、`private=true` のRepositoryはレポート対象から除外する。
 
 定期 `schedule` は設定しない。
 
