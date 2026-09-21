@@ -86,6 +86,17 @@ jobs:
           done
           echo "Preview icon smoke succeeded."
 
+      - name: Upload generated icons for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cecil-icons-pr-${{ github.event.pull_request.number }}
+          path: |
+            public/icons/favicon-16x16.png
+            public/icons/favicon-32x32.png
+            public/icons/apple-touch-icon.png
+          if-no-files-found: error
+          retention-days: 7
+
   production:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
