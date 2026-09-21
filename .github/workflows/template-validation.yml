@@ -163,6 +163,12 @@ jobs:
           grep -q 'data-analytics-destination=' public/index.html
           grep -q 'source × destination' docs/ANALYTICS.md
 
+      - name: Test Cecil icon generation contract
+        shell: bash
+        run: |
+          set -eu
+          npm test
+
       - name: Confirm Security baseline exists
         shell: bash
         run: |
