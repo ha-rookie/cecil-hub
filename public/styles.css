@@ -321,3 +321,20 @@ a { color: inherit; text-decoration: none; }
 .arrow-external { transform: rotate(0deg); }
 .arrow-down { transform: rotate(135deg); margin-left: 7px; }
 .feature-meta .arrow { width: 10px; height: 10px; }
+
+/* CECIL directional icons — Lucide-style inline SVG geometry. */
+.icon-arrow {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  vertical-align: -0.18em;
+}
+.icon-arrow-down { margin-left: 7px; }
+.feature-meta .icon-arrow { width: 17px; height: 17px; }
+.links-grid .icon-arrow { width: 17px; height: 17px; color: var(--muted); }
