@@ -51,6 +51,21 @@ CIは品質ゲートであると同時に、月次利用枠を消費する有限
 - 残量とリセット日を確認し、期限のあるProduction Releaseに必要な実行枠を残す
 - 品質ゲート自体は外さず、実行回数・対象・順序を最適化する
 
+## Public repositoryのFork監視
+
+Public repositoryでは `.github/workflows/fork-monitor.yml` でGitHubの `fork` eventを監視する。
+
+Forkを検知した場合は、RepositoryのIssue作成権限だけを使い、`@ha-rookie` をメンションした通知Issueを自動作成する。IssueにはSource repository、Fork URL、Fork owner、作成時刻を記録する。
+
+このWorkflowはSecretを使用しない。Productionコード、Cloudflare、Analyticsには触れない。
+
+注意点：
+
+- Fork監視はFork eventの証跡であり、`git clone`、ZIP download、手動コピーは検知しない
+- PublicからPrivateへ戻した後にFork networkが切り離される場合があるため、Public中のeventをその時点で記録する用途として使う
+- Workflow失敗時は「Forkがなかった」とは判断しない。Actions実行履歴とFork数を別に確認する
+- RepositoryをPrivateへ戻した場合も監視Workflow自体は残してよい。再Public化した際に再び有効になる
+
 ## Branch保護が強制できない場合
 
 GitHub画面でRulesetが強制されないと表示される場合、設定済みと扱わない。
