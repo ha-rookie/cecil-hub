@@ -44,6 +44,7 @@ jobs:
             docs/adr/ADR-0000-template.md
             docs/GIT_WORKFLOW.md
             docs/ASSET_WORKFLOW.md
+            docs/HUMAN_AI_COLLABORATION.md
             docs/CLOUDFLARE_SETUP.md
             docs/TROUBLESHOOTING.md
             docs/RELEASE_CHECKLIST.md
@@ -136,7 +137,10 @@ jobs:
           grep -q "同一Blob再利用型" docs/ASSET_WORKFLOW.md
           grep -q "## OGP" docs/ASSET_WORKFLOW.md
           grep -q "## favicon / App Icon / PWA Icon" docs/ASSET_WORKFLOW.md
-          grep -q "Git Blob + Base64直接輸送" docs/ASSET_WORKFLOW.md
+          grep -q "Human Uploadを標準経路" docs/ASSET_WORKFLOW.md
+          grep -q "GR-001 GitHub URL presentation" docs/HUMAN_AI_COLLABORATION.md
+          grep -q "GR-002 Binary files use Human Upload by default" docs/HUMAN_AI_COLLABORATION.md
+          grep -q "GR-003 Image generation requires explicit approval" docs/HUMAN_AI_COLLABORATION.md
 
       - name: Confirm Cecil Cloudflare architecture
         shell: bash
@@ -158,6 +162,12 @@ jobs:
           grep -Fq '"/api/*"' wrangler.jsonc
           grep -q 'data-analytics-destination=' public/index.html
           grep -q 'source × destination' docs/ANALYTICS.md
+
+      - name: Test Cecil icon generation contract
+        shell: bash
+        run: |
+          set -eu
+          npm test
 
       - name: Confirm Security baseline exists
         shell: bash
