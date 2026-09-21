@@ -4,44 +4,235 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>CHANGE-ME Design Preview</title>
+  <meta name="color-scheme" content="light">
+  <title>CECIL Design Preview — Issue #45</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
-    body { margin: 0; padding: 24px; line-height: 1.6; }
-    main { max-width: 960px; margin: 0 auto; }
-    section { border: 1px solid currentColor; border-radius: 12px; padding: 20px; margin: 16px 0; }
-    code { overflow-wrap: anywhere; }
+    :root {
+      --bg:#F2EFE8;
+      --surface:#ECE7DD;
+      --surface-light:#F8F6F1;
+      --text:#2B2E2C;
+      --muted:#666A66;
+      --line:#D8D2C7;
+      --action:#3F514A;
+      --memory:#8A745D;
+      --future:#6C7F7C;
+      --max:1200px;
+      font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);line-height:1.78}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+
+    .preview-note{
+      position:fixed;right:18px;bottom:18px;z-index:30;
+      padding:7px 10px;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);
+      background:color-mix(in srgb,var(--surface-light) 88%,transparent);
+      backdrop-filter:blur(8px);font-size:10px;letter-spacing:.1em;color:var(--muted)
+    }
+
+    .site-header{
+      height:62px;display:flex;align-items:center;justify-content:space-between;
+      position:absolute;inset:0 0 auto;z-index:20;
+      width:min(calc(100% - 48px),var(--max));margin-inline:auto
+    }
+    .brand{
+      font-family:"Newsreader","Iowan Old Style","Palatino Linotype",serif;
+      font-size:20px;font-weight:400;letter-spacing:.12em
+    }
+    .nav{display:flex;align-items:center;gap:24px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+    .nav a:last-child{padding-right:2px}
+
+    .key-visual{
+      position:relative;min-height:clamp(650px,74vh,900px);overflow:hidden;
+      isolation:isolate;background:var(--bg)
+    }
+    .key-visual picture,.key-visual img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover
+    }
+    .key-visual img{object-position:center center}
+    .key-visual::after{
+      content:"";position:absolute;inset:auto 0 0;height:22%;
+      background:linear-gradient(to bottom,rgba(242,239,232,0),var(--bg) 88%);
+      z-index:2;pointer-events:none
+    }
+    .key-label{
+      position:absolute;z-index:3;left:max(24px,calc((100% - var(--max))/2));
+      top:21%;font-family:"Newsreader","Iowan Old Style","Palatino Linotype",serif;
+      font-size:clamp(52px,6.2vw,94px);font-weight:400;letter-spacing:.105em;
+      color:#303432;text-shadow:0 1px 16px rgba(248,246,241,.32)
+    }
+    .key-submark{
+      position:absolute;z-index:3;left:max(24px,calc((100% - var(--max))/2 + 4px));
+      top:calc(21% + clamp(70px,8vw,116px));
+      font-size:10px;letter-spacing:.18em;color:color-mix(in srgb,var(--muted) 74%,transparent)
+    }
+
+    .hero{
+      padding:48px 0 132px;
+      max-width:780px
+    }
+    .eyebrow{
+      margin:0 0 18px;font-size:10px;letter-spacing:.16em;color:var(--future);font-weight:500
+    }
+    .hero h1{
+      margin:0;font-weight:450;letter-spacing:-.035em;
+      font-size:clamp(34px,4.2vw,56px);line-height:1.38
+    }
+    .hero-copy{
+      margin:28px 0 0;color:var(--muted);font-size:16px;line-height:1.95;
+      max-width:650px
+    }
+
+    .featured{padding:0 0 164px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}
+    .section-head h2{
+      margin:0;font-weight:450;font-size:clamp(28px,3vw,38px);letter-spacing:-.025em
+    }
+    .section-head p{margin:0;color:var(--muted);font-size:12px}
+
+    .works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+    .work{
+      display:block;min-width:0;
+    }
+    .work-media{
+      position:relative;aspect-ratio:1.91/1;overflow:hidden;background:var(--surface);
+      border-radius:2px
+    }
+    .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease,filter .45s ease}
+    .work-media::after{
+      content:"";position:absolute;inset:0;background:rgba(242,239,232,.055);pointer-events:none
+    }
+    .work:hover .work-media img{transform:scale(1.012);filter:contrast(1.015)}
+    .work-copy{padding-top:16px;position:relative;padding-right:30px}
+    .work-kicker{margin:0 0 8px;font-size:9px;letter-spacing:.17em;color:var(--future)}
+    .work h3{margin:0;font-size:20px;line-height:1.5;font-weight:500;letter-spacing:-.02em}
+    .work-desc{margin:9px 0 0;color:var(--muted);font-size:13px;line-height:1.75}
+    .arrow{
+      position:absolute;right:0;top:17px;
+      font-family:"Newsreader","Iowan Old Style","Palatino Linotype",serif;
+      color:var(--action);font-size:25px;line-height:1;transition:transform .22s ease
+    }
+    .work:hover .arrow{transform:translate(2px,-2px)}
+
+    .review-boundary{
+      border-top:1px solid var(--line);padding:34px 0 100px;color:var(--muted);
+      font-size:11px;letter-spacing:.04em
+    }
+
+    @media (max-width:767px){
+      .wrap{width:min(calc(100% - 48px),var(--max))}
+      .site-header{height:58px;width:calc(100% - 48px)}
+      .nav a{display:none}
+      .nav::after{content:"LIGHT";font-size:9px;letter-spacing:.14em;color:var(--muted)}
+      .key-visual{min-height:clamp(560px,74svh,760px)}
+      .key-visual img{object-position:center center}
+      .key-label{left:24px;top:15%;font-size:48px;letter-spacing:.105em}
+      .key-submark{left:28px;top:calc(15% + 62px);font-size:9px}
+      .key-visual::after{height:18%}
+      .hero{padding:38px 0 106px}
+      .hero h1{font-size:clamp(31px,8.4vw,42px);line-height:1.46}
+      .hero-copy{font-size:15px;line-height:1.9}
+      .featured{padding-bottom:116px}
+      .section-head{align-items:start;flex-direction:column;margin-bottom:28px;gap:7px}
+      .works{grid-template-columns:1fr;gap:48px}
+      .work-media{aspect-ratio:1.91/1}
+      .work h3{font-size:21px}
+      .work-desc{font-size:14px}
+      .preview-note{display:none}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>CHANGE-ME Design Preview</h1>
-    <p>このページは視覚設計レビュー用です。Production Applicationではありません。</p>
+  <div class="preview-note">DESIGN PREVIEW · ISSUE #45</div>
 
-    <section>
-      <h2>Review Target</h2>
-      <ul>
-        <li>Design Issue: CHANGE-ME</li>
-        <li>Design IDs: CHANGE-ME</li>
-        <li>Non-goals: CHANGE-ME</li>
-      </ul>
+  <header class="site-header" aria-label="CECIL preview header">
+    <a class="brand" href="#top">CECIL</a>
+    <nav class="nav" aria-label="Preview navigation">
+      <a href="#featured">Works</a>
+      <a href="#featured">Writing</a>
+      <a href="#featured">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="key-visual" aria-label="CECIL key visual">
+      <picture>
+        <source media="(max-width:767px)" srcset="./assets/key-visual-mobile.svg">
+        <img src="./assets/key-visual-desktop.svg" alt="" aria-hidden="true">
+      </picture>
+      <div class="key-label">CECIL</div>
+      <div class="key-submark">EXPLORE · INQUIRE · CREATE</div>
     </section>
 
-    <section>
-      <h2>Screen / Interaction</h2>
-      <p>CHANGE-ME: ここに画面・状態・Interactionのレビュー対象を実装します。</p>
+    <section class="hero wrap">
+      <p class="eyebrow">SYSTEM ENGINEER / DEVELOPER / WRITER</p>
+      <h1>40代SEが、AI時代の違和感を、作り、書き、考える。</h1>
+      <p class="hero-copy">現場の引っかかりや、生活の小さな不便を、Webアプリと文章にして試しています。</p>
     </section>
 
-    <section>
-      <h2>Review Notes</h2>
-      <ul>
-        <li>Mobile viewport</li>
-        <li>Responsive behavior</li>
-        <li>Accessibility</li>
-        <li>Error / empty / loading state</li>
-        <li>Security / privacy note</li>
-      </ul>
+    <section class="featured wrap" id="featured">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">FEATURED WORKS</p>
+          <h2>作る。書く。歩く。</h2>
+        </div>
+        <p>CECILの活動を、3つの記録から。</p>
+      </div>
+
+      <div class="works">
+        <a class="work" href="https://weekend-morning-high-tide.pages.dev/" target="_blank" rel="noopener">
+          <div class="work-media">
+            <img src="./assets/featured-asamazume.svg" alt="朝マズメ潮ナビ">
+          </div>
+          <div class="work-copy">
+            <p class="work-kicker">WEB APP</p>
+            <h3>朝マズメ潮ナビ</h3>
+            <p class="work-desc">潮や天気など、釣りの前に見たい情報をひとつに整理したWebアプリです</p>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://note.com/cecil_gourmet/n/nef8880acf529" target="_blank" rel="noopener">
+          <div class="work-media">
+            <img src="./assets/featured-writing.svg" alt="違和感が残る文章を読みたい">
+          </div>
+          <div class="work-copy">
+            <p class="work-kicker">WRITING</p>
+            <h3>違和感が残る文章を読みたい</h3>
+            <p class="work-desc">気になったことを通り過ぎず、仕事や生活の引っかかりを言葉にして残しています</p>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://www.instagram.com/p/DDlzzEbzCBw/?img_index=2&stkn=YTJ3enVjb2tzMmJ5" target="_blank" rel="noopener">
+          <div class="work-media">
+            <img src="./assets/featured-local.svg" alt="名古屋ランチ">
+          </div>
+          <div class="work-copy">
+            <p class="work-kicker">LOCAL</p>
+            <h3>名古屋ランチ</h3>
+            <p class="work-desc">名古屋を歩いて、食べて、気になった店を記録しています</p>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </div>
     </section>
+
+    <div class="review-boundary wrap">
+      ISSUE #45 REVIEW BOUNDARY — 下半分は今回のレビュー対象外
+    </div>
   </main>
 </body>
 </html>
