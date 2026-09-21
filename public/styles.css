@@ -431,3 +431,24 @@ a { color: inherit; text-decoration: none; }
 
   .footer { min-height: 78px; }
 }
+
+/* Desktop Ways refinement — keep asymmetry, reduce the empty staircase. */
+@media (min-width: 901px) {
+  .ways-list { max-width: 980px; }
+  .way {
+    width: min(720px, 74%);
+    padding: 22px 0 24px;
+  }
+  .way:nth-child(2) { margin-left: 6%; }
+  .way:nth-child(3) { margin-left: 12%; }
+  .way-number {
+    top: 18px;
+    font-size: 32px;
+  }
+  .way h3 { font-size: 26px; }
+  .way > p:not(.way-role) {
+    max-width: 600px;
+    margin: 12px 0 14px;
+    line-height: 1.7;
+  }
+}
