@@ -247,7 +247,7 @@ Max content:
 - brandが文芸誌 / corporate / cyberへ寄りすぎないか
 - approved assetsを再生成していないか
 
-## Design Source of Truth
+## Design Preview\n\nDesign Previewは表示面であり、設計の正本はRepository内の `docs/design/` と関連設計書・Issue・PRにある。\n\n## Design Source of Truth
 
 - Approved latest design: GitHub `main`
 - Proposed design: Issue #45 branch / PR
