@@ -3,195 +3,147 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="40代SEの個人ポータル。AI時代の仕事を考えながら、小さなWebアプリを作り、現場や生活で感じた違和感を文章にしています。">
-  <title>Cecil — System Engineer / Developer / Writer</title>
+  <meta name="description" content="CECILは、40代SEが仕事・AI・暮らしの中で見つけた違和感や好奇心を、文章・Webアプリ・街の記録として形にする個人ポータルです。">
+  <title>CECIL — Explore. Inquire. Create.</title>
   <link rel="canonical" href="https://cecil-hub.ha-rookie.workers.dev/">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f3ea">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111315">
+  <meta name="theme-color" content="#F2EFE8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cecil-hub.ha-rookie.workers.dev/">
-  <meta property="og:title" content="Cecil — System Engineer / Developer / Writer">
-  <meta property="og:description" content="作ったもの、書いたもの、考えていることを、ひとつの場所に。">
+  <meta property="og:title" content="CECIL — Explore. Inquire. Create.">
+  <meta property="og:description" content="探索する。探求する。形にする。">
   <meta property="og:image" content="https://cecil-hub.ha-rookie.workers.dev/ogp.png">
-  <meta property="og:image:alt" content="Cecil — System Engineer / Developer / Writer">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://cecil-hub.ha-rookie.workers.dev/ogp.png">
-  <meta name="twitter:image:alt" content="Cecil — System Engineer / Developer / Writer">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="page-shell">
-    <div class="side-pattern" aria-hidden="true"></div>
-
-    <header class="site-header wrap">
-      <a class="brand" href="#top" aria-label="Cecil ホーム">Cecil</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="CECIL ホーム">CECIL</a>
       <nav class="nav" aria-label="主要メニュー">
-        <a href="#works">Works</a>
-        <a href="#writing">Writing</a>
-        <a href="#now">Now</a>
+        <a href="#featured">Featured</a>
+        <a href="#ways">Ways</a>
         <a href="#about">About</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="表示テーマを切り替える">
-          <span class="theme-icon" aria-hidden="true">◐</span>
-          <span class="theme-label">Auto</span>
-        </button>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      <section class="hero wrap">
-        <div class="hero-pattern" aria-hidden="true"></div>
-        <p class="eyebrow">SYSTEM ENGINEER / DEVELOPER / WRITER</p>
-        <h1><span>40代SEが、AI時代の</span><span>違和感を、</span><span>作り、書き、考える。</span></h1>
-        <p class="hero-copy">
-          現場の引っかかりや、生活の小さな不便を、<br class="desktop-only">
-          Webアプリと文章にして試しています。
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#works">Webアプリを見る</a>
-          <a class="button button-secondary" href="#writing">記事を読む</a>
-        </div>
-      </section>
+  <main id="top">
+    <section class="key-visual" aria-label="CECIL">
+      <picture class="key-visual-picture" aria-hidden="true">
+        <source media="(min-width: 768px)" srcset="./images/cecil-key-visual-desktop-light-v1.png">
+        <img src="./images/cecil-key-visual-mobile-light-v1.png" alt="" fetchpriority="high">
+      </picture>
+      <div class="kv-stars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="kv-wordmark wrap">CECIL</div>
+    </section>
 
-      <section class="section wrap" id="works">
-        <div class="section-corner" aria-hidden="true"></div>
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">FEATURED WORKS</p>
-            <h2>作ったもの</h2>
-          </div>
-          <a class="section-link" href="https://protopedia.net/prototyper/ha_rookie" target="_blank" rel="noopener" data-analytics-destination="protopedia" data-analytics-link-id="works-protopedia" data-analytics-section="works">ProtoPediaを見る ↗</a>
-        </div>
+    <section class="hero wrap">
+      <p class="eyebrow">SYSTEM ENGINEER / DEVELOPER / WRITER</p>
+      <h1>探索する。探求する。<br>形にする。</h1>
+      <p class="hero-copy">仕事やAI、暮らしの中で気になったことを、調べ、考え、作り、書く。CECILは、その途中に残ったものを集める個人ポータルです。</p>
+      <div class="hero-actions">
+        <a class="text-link" href="#featured">Featuredを見る <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
 
-        <div class="works-grid">
-          <article class="work-card">
-            <p class="card-kicker">DATA / FISHING</p>
-            <h3>朝マズメ潮ナビ</h3>
-            <p>週末の釣行前に、朝マズメと潮の重なりを何画面も見比べず確認したくて作ったWebアプリ。</p>
-            <div class="card-meta">
-              <span>Tide / Sunrise / PWA</span>
-              <a href="https://weekend-morning-high-tide.pages.dev/" target="_blank" rel="noopener" data-analytics-destination="asamazume" data-analytics-link-id="work-asamazume" data-analytics-section="works">Appを開く ↗</a>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <p class="card-kicker">WEB APP / UTILITY</p>
-            <h3>あと一杯ナビ</h3>
-            <p>飲み会の帰りに「あと一杯いけるか」を、終電・帰宅時間・睡眠時間から自分で判断するためのWebアプリ。</p>
-            <div class="card-meta">
-              <span>Web App</span>
-              <a href="https://ato-ippai.pages.dev/" target="_blank" rel="noopener" data-analytics-destination="ato_ippai" data-analytics-link-id="work-ato-ippai" data-analytics-section="works">Appを開く ↗</a>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <p class="card-kicker">LOCATION / WEB APP</p>
-            <h3>よう拝</h3>
-            <p>現地へ行けないときでも、今いる場所から遥拝先の方角を確認できるようにしたWebアプリ。</p>
-            <div class="card-meta">
-              <span>Location / Direction</span>
-              <a href="https://yohai-compass.pages.dev/" target="_blank" rel="noopener" data-analytics-destination="yohai" data-analytics-link-id="work-yohai" data-analytics-section="works">Appを開く ↗</a>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <p class="card-kicker">DEVICE / POC</p>
-            <h3>くるくるソムリエ</h3>
-            <p>スマホをワイングラスのように回した動きをセンサーで捉え、5秒の所作を遊びに変えたWebアプリ。</p>
-            <div class="card-meta">
-              <span>Device Motion</span>
-              <a href="https://kurukuru-sommelier-game.pages.dev/" target="_blank" rel="noopener" data-analytics-destination="kurukuru_sommelier" data-analytics-link-id="work-kurukuru-sommelier" data-analytics-section="works">Appを開く ↗</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section wrap writing-section" id="writing">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">FEATURED WRITING</p>
-            <h2>書いたもの</h2>
-          </div>
-          <a class="section-link" href="https://note.com/cecil_gourmet" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="writing-note-profile" data-analytics-section="writing">noteで読む ↗</a>
-        </div>
-
-        <div class="writing-list">
-          <a class="writing-item" href="https://note.com/cecil_gourmet/n/ne62b54c8e766" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="writing-ai-infra" data-analytics-section="writing">
-            <div>
-              <p class="card-kicker">AI / インフラ</p>
-              <h3>AIの話をしていたら、いつの間にか電力と半導体の話になっていた</h3>
-              <p>AIの競争をモデル性能だけでなく、電力・半導体・データセンターまで広げて考えた。</p>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </a>
-
-          <a class="writing-item" href="https://note.com/cecil_gourmet/n/nb55ac65e3d32" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="writing-rose" data-analytics-section="writing">
-            <div>
-              <p class="card-kicker">仕事 / SE / 提案</p>
-              <h3>10本のバラに15本で返す人は、たぶん負けている</h3>
-              <p>機能や価格を足す競争から離れ、「選ばれる理由」をどう変えるかをSEの提案仕事に置き換えた。</p>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </a>
-
-          <a class="writing-item" href="https://note.com/cecil_gourmet/n/n52ab02cc62d8" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="writing-hatenko-onko" data-analytics-section="writing">
-            <div>
-              <p class="card-kicker">40代 / 仕事観</p>
-              <h3>破天荒と温故知新。小さい頃から好きだった言葉が、40代になって少し違って響いた</h3>
-              <p>新しい道を作ることと、古い知恵を今に使える形で渡すことを、40代の仕事観から考えた。</p>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section wrap" id="now">
-        <div class="section-heading compact">
-          <div>
-            <p class="eyebrow">NOW</p>
-            <h2>いま考えていること</h2>
-          </div>
-        </div>
-
-        <div class="now-panel">
-          <p>AIが仕事の流れそのものに入ったとき、どこまで任せ、どこで人が判断を取り戻すか。</p>
-          <p>AIがコードを書く時代に、若手SEはどこでプログラミングの基礎を身につけるのか。</p>
-          <p>日常の小さな不便や違和感を、文章とWebアプリのどちらで形にするか。</p>
-        </div>
-      </section>
-
-      <section class="section about wrap" id="about">
+    <section class="section wrap" id="featured">
+      <div class="section-heading">
         <div>
-          <p class="eyebrow">ABOUT</p>
-          <h2>40代の会社員SEとして、<br>現場と生活の間にある違和感を拾っています。</h2>
+          <p class="eyebrow">FEATURED</p>
+          <h2>3つの形</h2>
         </div>
-        <div class="about-copy">
-          <p>本業ではシステム開発の現場に立ちながら、個人ではWebアプリを作り、noteで仕事・AI・暮らしについて書いています。大きな正解を言い切るより、現場で使える問いに置き換え、小さく試すことを大事にしています。</p>
-          <p class="note">個人活動として運営しています。勤務先・顧客・案件を特定できる情報は掲載しません。</p>
-        </div>
-      </section>
+        <p class="section-intro">作る、書く、歩く。<br>入口は違っても、始まりは小さな引っかかりです。</p>
+      </div>
 
-      <section class="elsewhere wrap">
-        <h2>ほかの場所</h2>
-        <div class="elsewhere-links">
-          <a href="https://note.com/cecil_gourmet" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="elsewhere-note" data-analytics-section="elsewhere">note ↗</a>
-          <a href="https://protopedia.net/prototyper/ha_rookie" target="_blank" rel="noopener" data-analytics-destination="protopedia" data-analytics-link-id="elsewhere-protopedia" data-analytics-section="elsewhere">ProtoPedia ↗</a>
-          <a href="https://x.com/cecil_gourmet" target="_blank" rel="noopener" data-analytics-destination="x" data-analytics-link-id="elsewhere-x" data-analytics-section="elsewhere">X ↗</a>
-          <a href="https://www.instagram.com/_cecil_harvey" target="_blank" rel="noopener" data-analytics-destination="instagram" data-analytics-link-id="elsewhere-instagram" data-analytics-section="elsewhere">Instagram ↗</a>
-          <a href="https://room.rakuten.co.jp/room_cecil_gourmet/items" target="_blank" rel="noopener" data-analytics-destination="rakuten_room" data-analytics-link-id="elsewhere-rakuten-room" data-analytics-section="elsewhere">楽天ROOM ↗</a>
-          <a href="https://line.me/R/ti/p/@863uwzun?oat_content=url&ts=12151920" target="_blank" rel="noopener" data-analytics-destination="line" data-analytics-link-id="elsewhere-line" data-analytics-section="elsewhere">公式LINE ↗</a>
-          <a href="https://marshmallow-qa.com/507p6fvv8b294n6?t=9iTUuh&utm_medium=url_text&utm_source=promotion" target="_blank" rel="noopener" data-analytics-destination="marshmallow" data-analytics-link-id="elsewhere-marshmallow" data-analytics-section="elsewhere">マシュマロ ↗</a>
-        </div>
-      </section>
-    </main>
+      <div class="featured-grid">
+        <a class="feature-card" href="https://weekend-morning-high-tide.pages.dev/" target="_blank" rel="noopener" data-analytics-destination="asamazume" data-analytics-link-id="featured-asamazume" data-analytics-section="featured">
+          <figure class="feature-media"><img src="./images/asamazume-ogp.jpg" alt="朝マズメ潮ナビ" loading="lazy"></figure>
+          <div class="feature-meta"><span>WEB APP</span><span aria-hidden="true">↗</span></div>
+          <h3>朝マズメ潮ナビ</h3>
+          <p>週末の釣行前に、朝マズメと潮の重なりをひと目で確認するために作ったWebアプリ。</p>
+        </a>
 
-    <footer class="footer wrap">
-      <p>© Cecil — 作って、書いて、考える個人ポータル。</p>
-      <a href="./privacy.html">Privacy</a>
-    </footer>
-  </div>
+        <a class="feature-card" href="https://note.com/cecil_gourmet/n/nef8880acf529" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="featured-writing" data-analytics-section="featured">
+          <figure class="feature-media"><img src="./images/cecil-writing-feature.png" alt="" loading="lazy"></figure>
+          <div class="feature-meta"><span>WRITING</span><span aria-hidden="true">↗</span></div>
+          <h3>うまい文章より、違和感が残る文章を読みたい</h3>
+          <p>整った文章より、書いた人が何に引っかかったのかが残る文章について考えた記録。</p>
+        </a>
+
+        <a class="feature-card" href="https://www.instagram.com/p/DDlzzEbzCBw/?img_index=2&stkn=YTJ3enVjb2tzMmJ5" target="_blank" rel="noopener" data-analytics-destination="instagram" data-analytics-link-id="featured-nagoya-lunch" data-analytics-section="featured">
+          <figure class="feature-media"><img src="./images/nagoya-lunch-feature-misokatsu.png" alt="名古屋ランチ 味噌カツ" loading="lazy"></figure>
+          <div class="feature-meta"><span>LOCAL</span><span aria-hidden="true">↗</span></div>
+          <h3>名古屋ランチ</h3>
+          <p>名古屋を歩いて、食べて、気になった店を記録しています。</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section ways wrap" id="ways">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">WAYS OF EXPLORING</p>
+          <h2>CECILの3つの動き方</h2>
+        </div>
+      </div>
+      <div class="ways-list">
+        <article class="way way-writing">
+          <span class="way-number">01</span>
+          <p class="way-role">WRITER</p>
+          <h3>言葉で探る</h3>
+          <p>仕事、AI、40代の暮らし。まだうまく言い切れない感覚を、文章にしながら確かめていく。</p>
+          <a href="https://note.com/cecil_gourmet" target="_blank" rel="noopener" data-analytics-destination="note" data-analytics-link-id="ways-note" data-analytics-section="ways">note ↗</a>
+        </article>
+        <article class="way way-developer">
+          <span class="way-number">02</span>
+          <p class="way-role">DEVELOPER / HA-ROOKIE</p>
+          <h3>作って探る</h3>
+          <p>生活の小さな不便や思いつきを、まず動くものにする。新しい技術では、何度でもルーキーになる。</p>
+          <a href="https://github.com/ha-rookie" target="_blank" rel="noopener" data-analytics-destination="github" data-analytics-link-id="ways-github" data-analytics-section="ways">GitHub ↗</a>
+        </article>
+        <article class="way way-local">
+          <span class="way-number">03</span>
+          <p class="way-role">LOCAL EXPLORER</p>
+          <h3>歩いて探る</h3>
+          <p>名古屋の店や街を、自分で歩き、自分で食べて残す。評価するより、見つけたものを記録する。</p>
+          <a href="https://www.instagram.com/_cecil_harvey" target="_blank" rel="noopener" data-analytics-destination="instagram" data-analytics-link-id="ways-instagram" data-analytics-section="ways">Instagram ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section about wrap" id="about">
+      <div class="about-heading">
+        <p class="eyebrow">ABOUT CECIL</p>
+        <h2>完成した答えではなく、<br>途中の軌跡を残す。</h2>
+      </div>
+      <div class="about-copy">
+        <p>CECILは、ひとつの肩書きではありません。会社員SEとして働きながら、文章を書き、Webアプリを作り、街を歩く。その全部をつなぐのは、知らないものへ向かうことと、気になったものをそのまま流さず確かめることです。</p>
+        <p>探索して、掘り下げて、形にして、外へ出す。そこでまた次に気になるものが見つかる。その循環そのものを残していきます。</p>
+        <p class="privacy-note">個人活動として運営しています。勤務先・顧客・案件を特定できる情報は掲載しません。</p>
+      </div>
+    </section>
+
+    <section class="links-section wrap" aria-labelledby="links-title">
+      <p class="eyebrow">ELSEWHERE</p>
+      <h2 id="links-title">外へつながる場所</h2>
+      <div class="links-grid">
+        <a href="https://note.com/cecil_gourmet" target="_blank" rel="noopener"><span>note</span><span>↗</span></a>
+        <a href="https://github.com/ha-rookie" target="_blank" rel="noopener"><span>GitHub</span><span>↗</span></a>
+        <a href="https://protopedia.net/prototyper/ha_rookie" target="_blank" rel="noopener"><span>ProtoPedia</span><span>↗</span></a>
+        <a href="https://www.instagram.com/_cecil_harvey" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
+        <a href="https://x.com/cecil_gourmet" target="_blank" rel="noopener"><span>X</span><span>↗</span></a>
+        <a href="https://room.rakuten.co.jp/room_cecil_gourmet/items" target="_blank" rel="noopener"><span>楽天ROOM</span><span>↗</span></a>
+        <a href="https://line.me/R/ti/p/@863uwzun?oat_content=url&ts=12151920" target="_blank" rel="noopener"><span>公式LINE</span><span>↗</span></a>
+        <a href="https://marshmallow-qa.com/507p6fvv8b294n6?t=9iTUuh&utm_medium=url_text&utm_source=promotion" target="_blank" rel="noopener"><span>マシュマロ</span><span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>© CECIL — Explore. Inquire. Create.</p>
+    <a href="./privacy.html">Privacy</a>
+  </footer>
 
   <script src="./analytics.js" defer></script>
-  <script src="./script.js" defer></script>
 </body>
 </html>
