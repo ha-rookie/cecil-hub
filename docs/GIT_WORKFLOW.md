@@ -66,21 +66,21 @@ Forkを検知した場合は、RepositoryのIssue作成権限だけを使い、`
 - Workflow失敗時は「Forkがなかった」とは判断しない。Actions実行履歴とFork数を別に確認する
 - RepositoryをPrivateへ戻した場合も監視Workflow自体は残してよい。再Public化した際に再び有効になる
 
-## Fork / Clone Trafficのオンデマンド確認
+## Repository Trafficのオンデマンド確認
 
-`TRAFFIC_READ_TOKEN` が参照できるRepositoryのうち、**実行時点でPublicなRepositoryだけ**のFork累計と直近14日のClone統計を、専用Issue #57と `.github/workflows/traffic-check.yml` を使って必要な時だけ確認する。
+`TRAFFIC_READ_TOKEN` が参照できるRepositoryのうち、**実行時点でPublicなRepositoryだけ**のForkとRepository Trafficを、専用Issue #57と `.github/workflows/traffic-check.yml` を使って必要な時だけ確認する。
 
 標準操作：
 
 1. Issue #57へ `/traffic-check` とコメントする
 2. `ha-rookie` による #57 の完全一致コメントだけWorkflowが実行される
 3. Fine-grained PATから参照できるRepository一覧を取得し、Private repositoryを除外する
-4. Public repositoryごとにGitHub Traffic APIからClone統計を取得する
-5. 同じIssueへRepository別のFork累計、Network count、14日Clone総数、Unique cloners、日別履歴を返す
+4. Public repositoryごとにGitHub Traffic APIからClone / View / Top referrers / Popular pathsを取得する
+5. 同じIssueへRepository別のFork、14日Clone総数、Unique cloners、14日View総数、Unique visitors、日別履歴、Referrers、Popular pathsを返す
 
 手動の `workflow_dispatch` でもIssue #57へ結果を書き込める。
 
-Clone Traffic APIにはFine-grained PATの **Administration: Read-only** が必要。確認候補にしたいRepositoryだけをPATのRepository accessで選択する。TokenはCECIL側のRepository Secret `TRAFFIC_READ_TOKEN` としてHumanが登録し、値をIssue・ログ・ドキュメントへ出力しない。
+Repository Traffic API（Clones / Views / Top referrers / Popular paths）にはFine-grained PATの **Administration: Read-only** が必要。確認候補にしたいRepositoryだけをPATのRepository accessで選択する。TokenはCECIL側のRepository Secret `TRAFFIC_READ_TOKEN` としてHumanが登録し、値をIssue・ログ・ドキュメントへ出力しない。
 
 PublicなコンソールIssueへPrivate repository名やTraffic値を出力しない。PATが参照できても、`private=true` のRepositoryはレポート対象から除外する。
 
@@ -89,17 +89,27 @@ PublicなコンソールIssueへPrivate repository名やTraffic値を出力し�
 取得できるもの：
 
 - Fork累計
-- Network count（APIが返す場合）
-- 過去14日のClone総数
-- 過去14日のUnique cloners
-- 過去14日の日別Clone / Unique cloners
+- 過去14日のClone総数 / Unique cloners
+- 過去14日のView総数 / Unique visitors
+- 過去14日の日別Clone / View履歴
+- Top referrers（最大10件）
+- Popular paths（最大10件）
+
+GitHub Trafficの注意：
+
+- CloneはGitHub公式上の **full clones** でありfetchは含まれない
+- Clone / Viewの日付はUTC基準
+- Clone / Viewは概ね時間単位で更新される
+- Referrers / Popular contentは日次更新
+- Unique cloners / Unique visitorsは人間だけを意味しない。個人特定やbot判定には使わない
 
 取得できないもの：
 
 - cloneしたユーザー個人の特定
 - Source code ZIP download数
 - ブラウザ上の手動コピー
-- 14日より前のClone履歴（別途保存していない場合）
+- 14日より前のTraffic履歴（別途保存していない場合）
+- Human / botの厳密な内訳
 
 `TRAFFIC_READ_TOKEN` が未設定・権限不足の場合は、Workflowは秘密値を出さずにIssueへ設定不足を返す。
 
