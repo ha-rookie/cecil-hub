@@ -3,72 +3,85 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Cecilのアクセス解析とプライバシーに関する方針です。">
+  <meta name="description" content="当サイトのアクセス解析とプライバシーに関する方針です。">
   <meta name="robots" content="noindex,follow">
-  <title>Privacy — Cecil</title>
+  <title>Privacy — CECIL</title>
   <link rel="canonical" href="https://cecil-hub.ha-rookie.workers.dev/privacy.html">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f3ea">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111315">
+  <meta name="theme-color" content="#F2EFE8">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header wrap">
-      <a class="brand" href="./" aria-label="Cecil ホーム">Cecil</a>
+<body class="privacy-body">
+  <header class="site-header privacy-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="CECIL ホーム">CECIL</a>
       <nav class="nav" aria-label="Privacyページメニュー">
-        <a href="./">Home</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="表示テーマを切り替える">
-          <span class="theme-icon" aria-hidden="true">◐</span>
-          <span class="theme-label">Auto</span>
-        </button>
+        <a class="privacy-home-link" href="./"><svg class="icon-arrow icon-arrow-back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Home</span></a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="section wrap privacy-page">
+  <main class="privacy-main">
+    <article class="privacy-page wrap">
+      <header class="privacy-hero">
         <p class="eyebrow">PRIVACY</p>
-        <h1>アクセス解析とプライバシー</h1>
-        <p class="privacy-updated">更新日：2026年9月21日</p>
+        <h1>アクセス解析と<br class="privacy-mobile-break">プライバシー</h1>
+        <div class="privacy-meta">
+          <p>このサイトで扱うアクセスデータと、その利用範囲について記載しています。</p>
+          <time datetime="2026-09-21">更新日：2026年9月21日</time>
+        </div>
+      </header>
 
-        <h2>このサイトで計測していること</h2>
-        <p>Cecilでは、サイトへの流入元や、サイト内のリンクからどこへ移動したかを把握するため、Cloudflare Workers Analytics Engineを使った匿名のアクセス解析を行っています。</p>
-        <p>主に、ページ表示と外部リンクのクリックについて、流入元、参照元のホスト名、ページのパス、クリック先の種類などを記録します。</p>
+      <div class="privacy-sections">
+        <section class="privacy-item">
+          <span class="privacy-number">01</span>
+          <div><h2>このサイトで計測していること</h2>
+          <p>当サイトでは、サイトへの流入元や、サイト内のリンクからどこへ移動したかを把握するため、Cloudflare Workers Analytics Engineを使った匿名のアクセス解析を行っています。</p>
+          <p>主に、ページ表示と外部リンクのクリックについて、流入元、参照元のホスト名、ページのパス、クリック先の種類などを記録します。</p></div>
+        </section>
 
-        <h2>保存しない情報</h2>
-        <p>Cecil独自のAnalytics Engineには、次の情報を保存しません。</p>
-        <ul>
-          <li>IPアドレス</li>
-          <li>User-Agent</li>
-          <li>Cookie ID</li>
-          <li>localStorageによるユーザーID</li>
-          <li>ブラウザ指紋（fingerprint）</li>
-          <li>氏名・メールアドレス</li>
-          <li>参照元URLの全文</li>
-        </ul>
-        <p>Cecil独自の計測では、Cookieや個別ユーザーを識別するIDを使用していません。</p>
+        <section class="privacy-item">
+          <span class="privacy-number">02</span>
+          <div><h2>保存しない情報</h2>
+          <p>当サイト独自のAnalytics Engineには、次の情報を保存しません。</p>
+          <ul>
+            <li>IPアドレス</li><li>User-Agent</li><li>Cookie ID</li>
+            <li>localStorageによるユーザーID</li><li>ブラウザ指紋（fingerprint）</li>
+            <li>氏名・メールアドレス</li><li>参照元URLの全文</li>
+          </ul>
+          <p>当サイト独自の計測では、Cookieや個別ユーザーを識別するIDを使用していません。</p></div>
+        </section>
 
-        <h2>利用目的</h2>
-        <p>集計データは、どの場所からCecilへ来たか、Cecilからどのコンテンツへ進んだかを把握し、サイト内の導線や掲載内容を改善するために利用します。</p>
+        <section class="privacy-item">
+          <span class="privacy-number">03</span>
+          <div><h2>利用目的</h2>
+          <p>集計データは、どこから当サイトへ来たか、当サイトからどのコンテンツへ進んだかを把握し、サイト内の導線や掲載内容を改善するために利用します。</p></div>
+        </section>
 
-        <h2>データの保持</h2>
-        <p>CloudflareのWorkers Analytics Engineに書き込まれたデータは、Cloudflare公式仕様では3か月保存されます。</p>
-        <p><a class="section-link" href="https://developers.cloudflare.com/analytics/analytics-engine/limits/#data-retention" target="_blank" rel="noopener">Cloudflare公式ドキュメントを見る ↗</a></p>
+        <section class="privacy-item">
+          <span class="privacy-number">04</span>
+          <div><h2>データの保持</h2>
+          <p>CloudflareのWorkers Analytics Engineに書き込まれたデータは、Cloudflare公式仕様では3か月保存されます。</p>
+          <p><a class="privacy-external" href="https://developers.cloudflare.com/analytics/analytics-engine/limits/#data-retention" target="_blank" rel="noopener"><span>Cloudflare公式ドキュメントを見る</span><svg class="icon-arrow icon-arrow-up-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></p></div>
+        </section>
 
-        <h2>Cloudflareについて</h2>
-        <p>このサイトはCloudflareのインフラを利用して配信されています。アクセス時の通信はCloudflareのサービスを経由します。上記の「保存しない情報」は、Cecilが独自にWorkers Analytics Engineへ保存する計測データについての説明です。</p>
+        <section class="privacy-item">
+          <span class="privacy-number">05</span>
+          <div><h2>Cloudflareについて</h2>
+          <p>このサイトはCloudflareのインフラを利用して配信されています。アクセス時の通信はCloudflareのサービスを経由します。上記の「保存しない情報」は、当サイトが独自にWorkers Analytics Engineへ保存する計測データについての説明です。</p></div>
+        </section>
 
-        <h2>連絡先</h2>
-        <p>このサイトに関する連絡は、Cecilトップページに掲載しているマシュマロまたは公式LINE等の公開窓口をご利用ください。</p>
-      </section>
-    </main>
+        <section class="privacy-item">
+          <span class="privacy-number">06</span>
+          <div><h2>連絡先</h2>
+          <p>このサイトに関する連絡は、トップページに掲載しているマシュマロまたは公式LINE等の公開窓口をご利用ください。</p></div>
+        </section>
+      </div>
+    </article>
+  </main>
 
-    <footer class="footer wrap">
-      <p>© Cecil — 作って、書いて、考える個人ポータル。</p>
-      <a href="./">Home</a>
-    </footer>
-  </div>
-
-  <script src="./script.js" defer></script>
+  <footer class="footer wrap">
+    <p>© CECIL — Explore. Inquire. Create.</p>
+    <a href="./">Home</a>
+  </footer>
 </body>
 </html>
