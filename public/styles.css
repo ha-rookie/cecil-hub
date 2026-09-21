@@ -400,3 +400,34 @@ a { color: inherit; text-decoration: none; }
 
   .footer { min-height: 88px; }
 }
+
+/* Final rhythm pass for the top page: reduce empty travel between sections. */
+.hero { padding: 68px 0 60px; }
+.section { padding: 64px 0; }
+.links-section { padding: 64px 0 52px; }
+.section-heading { margin-bottom: 30px; }
+
+@media (max-width: 767px) {
+  .hero { padding: 42px 0 36px; }
+  .hero-copy { margin-top: 18px; }
+  .hero-actions { margin-top: 20px; }
+
+  .section { padding: 34px 0; }
+  .section-heading { margin-bottom: 18px; }
+
+  .featured-grid { gap: 22px; }
+  .feature-media { margin-bottom: 14px; }
+
+  .ways .section-heading { margin-bottom: 14px; }
+  .way { padding: 17px 0 18px; }
+
+  .about { gap: 16px; }
+  .about-copy p { margin-bottom: 14px; }
+  .about-copy .privacy-note { margin-top: 14px; }
+
+  .links-section { padding: 36px 0 34px; }
+  .links-section h2 { margin-bottom: 20px; }
+  .links-grid a { min-height: 54px; }
+
+  .footer { min-height: 78px; }
+}
