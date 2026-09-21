@@ -65,16 +65,17 @@ function decodeRgbaPng(buffer) {
     }
   }
 
-  if (bitDepth !== 8 || colorType !== 6 || interlace !== 0) {
+  const supportedColorType = colorType === 2 || colorType === 6;
+  if (bitDepth !== 8 || !supportedColorType || interlace !== 0) {
     throw new Error(
-      `Source icon must be non-interlaced 8-bit RGBA PNG; got bitDepth=${bitDepth}, colorType=${colorType}, interlace=${interlace}`
+      `Source icon must be non-interlaced 8-bit RGB/RGBA PNG; got bitDepth=${bitDepth}, colorType=${colorType}, interlace=${interlace}`
     );
   }
 
   const packed = zlib.inflateSync(Buffer.concat(idat));
-  const bytesPerPixel = 4;
-  const stride = width * bytesPerPixel;
-  const pixels = Buffer.alloc(width * height * bytesPerPixel);
+  const sourceBytesPerPixel = colorType === 6 ? 4 : 3;
+  const stride = width * sourceBytesPerPixel;
+  const decoded = Buffer.alloc(width * height * sourceBytesPerPixel);
   let src = 0;
 
   for (let y = 0; y < height; y += 1) {
@@ -84,10 +85,12 @@ function decodeRgbaPng(buffer) {
 
     for (let x = 0; x < stride; x += 1) {
       const raw = packed[src++];
-      const left = x >= bytesPerPixel ? pixels[rowStart + x - bytesPerPixel] : 0;
-      const up = y > 0 ? pixels[prevStart + x] : 0;
-      const upLeft = y > 0 && x >= bytesPerPixel
-        ? pixels[prevStart + x - bytesPerPixel]
+      const left = x >= sourceBytesPerPixel
+        ? decoded[rowStart + x - sourceBytesPerPixel]
+        : 0;
+      const up = y > 0 ? decoded[prevStart + x] : 0;
+      const upLeft = y > 0 && x >= sourceBytesPerPixel
+        ? decoded[prevStart + x - sourceBytesPerPixel]
         : 0;
       let value;
 
@@ -111,8 +114,22 @@ function decodeRgbaPng(buffer) {
           throw new Error(`Unsupported PNG filter ${filter}`);
       }
 
-      pixels[rowStart + x] = value & 0xff;
+      decoded[rowStart + x] = value & 0xff;
     }
+  }
+
+  if (colorType === 6) {
+    return { width, height, pixels: decoded };
+  }
+
+  const pixels = Buffer.alloc(width * height * 4);
+  for (let i = 0; i < width * height; i += 1) {
+    const source = i * 3;
+    const target = i * 4;
+    pixels[target] = decoded[source];
+    pixels[target + 1] = decoded[source + 1];
+    pixels[target + 2] = decoded[source + 2];
+    pixels[target + 3] = 255;
   }
 
   return { width, height, pixels };
