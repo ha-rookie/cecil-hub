@@ -65,6 +65,8 @@ GitHub公開が必要になった場合はPublic Mirrorを別Issueで検討す�
 ## Asset Placement
 
 - Human review / upload staging: `docs/design/assets/`
-- 配信用favicon / Apple Touch Icon等の生成物: `public/icons/`
-- Source Assetの恒久的な正本配置は、Asset分類と生成方式を確定してからIssue/設計で明記する
+- Issue #41の承認済みMaster Source Asset: `docs/design/assets/issue-41-icons/`
+- Issue #41の配信用favicon / Apple Touch Icon等の生成物: `public/icons/`
+- Issue #41では承認済みPNG MasterをSource Assetとして固定し、派生サイズは生成処理から作る。派生PNG / ICOを個別に手編集しない
+- 別IssueのSource Asset配置は、そのAsset分類と生成方式を確定してからIssue/設計で明記する
 - Human/AI間のUpload手順は `docs/HUMAN_AI_COLLABORATION.md`、Asset lifecycleは `docs/ASSET_WORKFLOW.md` を正本とする
