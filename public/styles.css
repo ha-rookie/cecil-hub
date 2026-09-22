@@ -1473,3 +1473,35 @@ html[lang="en"] .privacy-item li {
     color: #414B49;
   }
 }
+
+
+/* Refine light-mode utility backdrop — keep the contrast aid nearly invisible. */
+[data-theme="light"] .header-utilities::before {
+  inset: -3px -5px;
+  border-radius: 10px;
+  background: rgba(248, 246, 241, .42);
+  filter: blur(2px);
+}
+
+[data-theme="light"] .header-utilities .language-switch,
+[data-theme="light"] .header-utilities .language-switch a,
+[data-theme="light"] .header-utilities .language-current,
+[data-theme="light"] .header-utilities .theme-toggle {
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    inset: -3px -5px;
+    border-radius: 10px;
+    background: rgba(248, 246, 241, .42);
+    filter: blur(2px);
+  }
+
+  :root:not([data-theme]) .header-utilities .language-switch,
+  :root:not([data-theme]) .header-utilities .language-switch a,
+  :root:not([data-theme]) .header-utilities .language-current,
+  :root:not([data-theme]) .header-utilities .theme-toggle {
+    font-weight: 500;
+  }
+}
