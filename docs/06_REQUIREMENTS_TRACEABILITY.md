@@ -4,8 +4,8 @@
 |---|---|---|
 | REQ-001 Home | `public/index.html` Hero | Mobile / Desktop visual review |
 | REQ-002 Featured | `#featured` | Representative-content / link review |
-| REQ-003 Featured Writing | `#writing` | Article link review |
-| REQ-004 Activity | `#activity` | Content review |
+| REQ-003 Writing | `#writing` | 3 representative article links / note profile link |
+| REQ-004 Local | `#local` | 3 representative Instagram post links / profile link |
 | REQ-005 About | `#about` | Privacy review |
 | REQ-006 Elsewhere | `#elsewhere` | External link check |
 | REQ-007 Theme | `public/script.js`, CSS variables | Auto / Dark / Light |
