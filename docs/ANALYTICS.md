@@ -1,7 +1,7 @@
 # Cecil Analytics design
 
-更新日: 2026-09-20
-関連Issue: #20
+更新日: 2026-09-21
+関連Issue: #20 / #53
 
 ## 目的
 
@@ -10,6 +10,8 @@ Cecilを「アクセス観測拠点」として使い、個人を識別せずに
 - どこからCecilへ来たか
 - Cecilからどこへ移動したか
 - 流入元ごとに、どの遷移先が選ばれたか
+- 日ごとのアクセス推移
+- どの導線・セクションがクリックされたか
 
 ## 採用構成
 
@@ -20,7 +22,40 @@ Cecilを「アクセス観測拠点」として使い、個人を識別せずに
 
 朝マズメ潮ナビで採用済みの「Cloudflare内で完結する匿名custom event」の考え方をCecil向けに簡素化して再利用する。
 
-Cloudflare公式仕様では、Workers Static Assetsは `run_worker_first` をAPIパスだけに限定でき、Analytics Engine bindingはWrangler設定から利用できる。datasetは最初のwriteで自動作成される。
+## 分析の正本
+
+取得時点の「前回 / 今回」比較を正本にしない。
+
+アクセスが発生した日を正本とし、Cloudflare Analytics Engineの `timestamp` をJST日付へ変換して日次集計する。
+
+通常分析の基礎データ:
+
+- 日次PV
+- 日次Outbound click
+- 日次 source / medium別PV
+- 日次 path別PV
+- 日次 destination / link_id / section別click
+- 日次 source × destination（source → destination）
+
+前週比、7日移動合計、月次推移、最新比較等は日次データから派生させる。
+
+現行計測は匿名でuser/session IDを持たないため、次は算出しない。
+
+- UU
+- session
+- retention
+- user単位の回遊
+
+## 通常分析から除外するトラフィック
+
+生データは削除せず、集計クエリ側で除外する。
+
+- `source = outbound_test`
+- `medium = qa`
+- `source = chatgpt.com`
+- `source = chatgpt`
+
+ChatGPT流入は、開発・確認作業由来のアクセスが混在するため、CECILの通常アクセス分析には含めない。
 
 ## イベント
 
@@ -42,8 +77,6 @@ Cloudflare公式仕様では、Workers Static Assetsは `run_worker_first` をAP
 - destination
 - link_id
 - section
-
-これにより、ユーザーIDを持たなくても「source × destination」の集計ができる。
 
 ### deployment_smoke_test
 
@@ -150,50 +183,33 @@ dataset:
 
 - `cecil_hub_events`
 
-## 可視化クエリ
+## レポート
 
-### 流入元
+`.github/workflows/analytics-report.yml` を手動実行し、7 / 30 / 90日分の日次データを取得できる。
 
-```sql
-SELECT
-  blob2 AS source,
-  blob3 AS medium,
-  SUM(_sample_interval) AS views
-FROM cecil_hub_events
-WHERE timestamp > NOW() - INTERVAL '30' DAY
-  AND blob1 = 'page_view'
-GROUP BY source, medium
-ORDER BY views DESC
-```
+通常は30日を基準とする。
 
-### Cecilからの遷移先
+レポート出力:
 
-```sql
-SELECT
-  blob7 AS destination,
-  SUM(_sample_interval) AS clicks
-FROM cecil_hub_events
-WHERE timestamp > NOW() - INTERVAL '30' DAY
-  AND blob1 = 'outbound_click'
-GROUP BY destination
-ORDER BY clicks DESC
-```
+- `DailyOverview`
+- `DailyInbound`
+- `DailyPaths`
+- `DailyOutbound`
+- `DailyJourneys`
 
-### 流入元 × 遷移先
+## 保存先と役割分担
 
-```sql
-SELECT
-  blob2 AS source,
-  blob7 AS destination,
-  SUM(_sample_interval) AS clicks
-FROM cecil_hub_events
-WHERE timestamp > NOW() - INTERVAL '30' DAY
-  AND blob1 = 'outbound_click'
-GROUP BY source, destination
-ORDER BY clicks DESC
-```
+Google Sheets:
+- 日次実績の正本
+- source / medium / path / destination / link_id / section等の分析元データ
+- 時系列グラフ、週次/月次集計の計算元
 
-## 次段階
+Notion:
+- データが一定量たまった後の分析結果
+- 何が増減したか
+- その背景にある施策や公開記事
+- 次に試す変更
+- 変更後の検証結果
+- 長期的な判断履歴
 
-Issue #20ではまず「正しく収集できる」ことを完成させる。
-可視化画面をCecil本体へ公開はしない。Cloudflare SQL API / private dashboard化が必要になった時点で別Issueとする。
+数値そのものの正本はSheets、解釈と意思決定の正本はNotionとする。
