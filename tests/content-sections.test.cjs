@@ -146,3 +146,18 @@ test("Hero category shortcuts render as one inline index", () => {
   assert.ok(hero.includes('>WRITING</a>'));
   assert.ok(hero.includes('>LOCAL</a>'));
 });
+
+
+test("About copy stays conversational", () => {
+  const about = section("about", null);
+  assert.ok(about.includes("会社員SEの、"));
+  assert.ok(about.includes("もう少し外側。"));
+  assert.ok(about.includes("ふだんは会社員SEとして働いています"));
+  assert.ok(!about.includes("途中の軌跡"));
+});
+
+test("Apps descriptions avoid formal planning jargon", () => {
+  const apps = section("apps", "writing");
+  assert.ok(apps.includes("週末の朝、釣りに行くなら何時ごろがよさそうか。"));
+  assert.ok(!apps.includes("釣行計画ツール"));
+});
