@@ -20,8 +20,8 @@ Instagramの代表投稿を3本程度表示し、名古屋を中心に歩いて�
 ### REQ-006 Elsewhere
 公開している外部サービスへの導線を、用途ごとに整理して提供する。
 
-- CREATE / PUBLISH: note / GitHub / ProtoPedia / Instagram
-- CONNECT: X / 公式LINE / マシュマロ
+- CREATE / PUBLISH: note / GitHub / ProtoPedia / Instagram / X
+- CONTACT: 公式LINE / マシュマロ
 - PICKS: 楽天ROOM / Amazon
 
 サービス固有の公式カラーや大量のブランドアイコンには依存せず、CECIL側の視覚階層を優先する。
@@ -47,6 +47,18 @@ CECILを自作Webアプリの横断入口とし、公開中・開発中を含む
 ProtoPedia / GitHubはアプリ一覧の正本にせず、公開済みの場合だけ補助導線として扱う。
 Private Repositoryへのリンクは掲載しない。
 
+### REQ-010 Localization
+CECIL本体を日本語・英語の2言語で提供する。
+
+- `/`: 日本語Home
+- `/en/`: English Home
+- `/privacy`: 日本語Privacy
+- `/en/privacy`: English Privacy
+
+言語切替は `JA / EN` の明示的なリンクで行い、ブラウザ言語による強制リダイレクトは行わない。
+英語版から日本語のみの外部コンテンツへ遷移する場合は、必要に応じて `Japanese UI` / `Japanese article` 等を明示する。
+Light / Dark / Auto のtheme stateは同一originのlocalStorageを共有し、言語を切り替えても維持する。
+
 ## Non Functional Requirements
 
 ### NFR-001 Privacy
@@ -68,7 +80,7 @@ v1は静的HTML/CSS/JavaScriptを基本とし、不要なFrameworkやRuntimeを�
 Static AssetsにSecurity Headerを付与し、不要なcamera / microphone / geolocation権限を許可しない。
 
 ### NFR-007 SEO
-title / description / OGPの初期情報を持つ。canonical / og:url / sitemap は本番URL確定後に追加する。
+title / description / OGP / canonical / og:url / sitemap を本番URLと整合させる。多言語ページはself canonicalと ja / en / x-default の hreflang を持ち、index対象の日本語・英語Homeをsitemapへ含める。
 
 ### NFR-008 Maintainability
 v1はコンテンツ量が小さいため静的ファイルを正本とする。CMSは必要性が発生した時点で再評価する。
@@ -84,6 +96,10 @@ v1はコンテンツ量が小さいため静的ファイルを正本とする。
 - Localで代表3投稿を確認し、Instagramの個別投稿へ遷移できる
 - Featured / Apps / Writing / Local の役割が重複せず分離されている
 - 外部リンクが意図したURLへ遷移する
-- Theme切替がlocalStorageに保持される
+- Theme切替がlocalStorageに保持され、日英ページ間でも同じtheme stateが維持される
+- 日本語Homeと英語Homeを `JA / EN` で相互に移動できる
+- 日本語 / 英語Homeのcanonical / hreflangが正しい
+- 日本語 / 英語Privacyを相互に移動でき、canonicalがCloudflareの正規URLと一致する
+- `/en/` 配下では英語404が使用される
 - 404が独自ページになる
 - Private開発情報がStatic Assetsへ混入しない
