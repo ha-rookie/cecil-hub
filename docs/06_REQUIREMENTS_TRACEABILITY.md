@@ -3,13 +3,14 @@
 | Requirement | Design / Implementation | Verification |
 |---|---|---|
 | REQ-001 Home | `public/index.html` Hero | Mobile / Desktop visual review |
-| REQ-002 Featured Works | `#works` | Link / copy review |
+| REQ-002 Featured | `#featured` | Representative-content / link review |
 | REQ-003 Featured Writing | `#writing` | Article link review |
 | REQ-004 Activity | `#activity` | Content review |
 | REQ-005 About | `#about` | Privacy review |
 | REQ-006 Elsewhere | `#elsewhere` | External link check |
 | REQ-007 Theme | `public/script.js`, CSS variables | Auto / Dark / Light |
 | REQ-008 Responsive | `public/styles.css` | Smartphone visual review |
+| REQ-009 Apps Index | `#apps` | All-app visibility / public-link / status review |
 | NFR-001 Privacy | Public content review | Pre-release review |
 | NFR-002 Repository Confidentiality | `public/` boundary | Deploy artifact review |
 | NFR-003 Performance | Static architecture | Browser / Lighthouse later |
