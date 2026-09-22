@@ -3,7 +3,7 @@
 ## Functional Requirements
 
 ### REQ-001 Home
-Cecil の立ち位置と主要導線を10秒程度で理解できるHeroを表示する。
+Cecil の立ち位置と主要導線を10秒程度で理解できるHeroを表示する。Hero下部には Apps / Writing / Local の3カテゴリへのページ内ショートカットを設け、Featuredだけを特別な導線として扱わない。
 
 ### REQ-002 Featured
 CECILの活動を象徴する代表コンテンツを厳選して表示する。全作品一覧の役割は持たせず、Web App / Writing / Localなど異なる活動の入口として扱う。
@@ -70,6 +70,7 @@ v1はコンテンツ量が小さいため静的ファイルを正本とする。
 ## Acceptance
 
 - Light / Dark / mobileで表示崩れがない
+- Heroから Apps / Writing / Local の各カテゴリへ直接移動できる
 - 公開中4アプリすべてをApps一覧から確認し、正式な公開アプリへ遷移できる
 - 開発中の想いの方角がApps一覧で状態付きで確認できる
 - FeaturedとApps一覧の役割が分離されている
