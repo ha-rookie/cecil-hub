@@ -1273,3 +1273,26 @@ a.app-row:hover {
   color: var(--line);
   font-size: 11px;
 }
+
+
+/* Privacy contact links — deliberately understated. */
+.privacy-contact-links {
+  gap: 8px;
+  margin-top: 8px;
+}
+.privacy-contact-links a {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.privacy-contact-links a:hover {
+  color: var(--text);
+  opacity: 1;
+}
+.privacy-contact-links span {
+  color: var(--line);
+  font-size: 10px;
+}
