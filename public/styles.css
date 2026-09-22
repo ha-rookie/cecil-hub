@@ -965,3 +965,27 @@ a.app-row:hover {
   color: var(--muted);
   opacity: .8;
 }
+
+
+/* Unified index action placement — Apps / Writing / Local share one mobile rhythm. */
+@media (max-width: 767px) {
+  .app-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .app-row > p {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .app-action {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: end;
+    align-self: auto;
+    margin-top: 2px;
+  }
+
+  .content-action {
+    justify-self: end;
+    margin-top: 2px;
+  }
+}
