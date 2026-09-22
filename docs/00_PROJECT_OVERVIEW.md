@@ -45,10 +45,10 @@ Cecil をそれらの上位ブランドとして扱う。
 ## v1 Scope
 
 - Home 1ページ
-- Featured（代表コンテンツ）
+- Featured（App / Writing / Localの代表ショーケース）
 - Apps Index（公開中・開発中の自作アプリ一覧）
-- Featured Writing
-- Activity
+- Writing（代表note記事）
+- Local（代表Instagram投稿）
 - About
 - Elsewhere
 - Light / Dark
