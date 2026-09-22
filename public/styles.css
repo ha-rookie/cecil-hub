@@ -1367,3 +1367,45 @@ html[lang="en"] .privacy-item p,
 html[lang="en"] .privacy-item li {
   text-wrap: pretty;
 }
+
+
+/* Light-mode header utilities — stronger contrast over the illustrated key visual. */
+[data-theme="light"] .language-switch,
+[data-theme="light"] .language-switch a,
+[data-theme="light"] .language-current,
+[data-theme="light"] .theme-toggle {
+  color: #3F4747;
+}
+
+[data-theme="light"] .language-separator {
+  color: #697171;
+}
+
+[data-theme="light"] .theme-icon {
+  color: #596161;
+}
+
+[data-theme="light"] .theme-toggle {
+  text-shadow: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .language-switch,
+  :root:not([data-theme]) .language-switch a,
+  :root:not([data-theme]) .language-current,
+  :root:not([data-theme]) .theme-toggle {
+    color: #3F4747;
+  }
+
+  :root:not([data-theme]) .language-separator {
+    color: #697171;
+  }
+
+  :root:not([data-theme]) .theme-icon {
+    color: #596161;
+  }
+
+  :root:not([data-theme]) .theme-toggle {
+    text-shadow: none;
+  }
+}
