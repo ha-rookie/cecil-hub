@@ -989,3 +989,74 @@ a.app-row:hover {
     margin-top: 2px;
   }
 }
+
+
+/* Hero category shortcuts — the three real content entrances. */
+.hero-category-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 38px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.hero-category-nav a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "en arrow"
+    "ja arrow";
+  gap: 4px 16px;
+  align-items: center;
+  min-height: 82px;
+  padding: 16px 20px;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.hero-category-nav a + a {
+  border-left: 1px solid var(--line);
+}
+.hero-category-nav a:hover {
+  opacity: .68;
+  transform: translateY(2px);
+}
+.hero-category-en {
+  grid-area: en;
+  color: var(--future);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .16em;
+}
+.hero-category-ja {
+  grid-area: ja;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.hero-category-nav .icon-arrow {
+  grid-area: arrow;
+  width: 15px;
+  height: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .hero-category-nav {
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+  }
+  .hero-category-nav a {
+    min-height: 66px;
+    padding: 13px 0;
+  }
+  .hero-category-nav a + a {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .hero-category-en {
+    font-size: 9px;
+  }
+  .hero-category-ja {
+    font-size: 13px;
+  }
+}
