@@ -7,10 +7,17 @@ Frameworkを使用しない静的Webアプリケーション。
 ```text
 public/
   index.html
+  privacy.html
+  404.html
+  en/
+    index.html
+    privacy.html
+    404.html
   styles.css
   script.js
-  404.html
+  analytics.js
   robots.txt
+  sitemap.xml
   _headers
   patterns/
 ```
@@ -31,11 +38,12 @@ public/
 - Accessibility-oriented visual states
 
 ### script.js
-- Theme mode switching only
+- Theme mode switching
 - Auto / Dark / Light
 - localStorage persistence
+- ページの `lang` に合わせたTheme切替のaccessibility label
 
-v1では業務ロジックをJavaScriptへ持たせない。
+v1では翻訳本文をJavaScriptで差し替えない。言語ごとに静的HTMLを持ち、URLを言語の正本とする。
 
 ### patterns/
 装飾用SVG。
@@ -50,6 +58,21 @@ v1では業務ロジックをJavaScriptへ持たせない。
 使用しない:
 - compass
 - direction / 方位を直接表すモチーフ
+
+## Localization
+
+v1はURL分離型の静的多言語構成とする。
+
+```text
+/                 Japanese Home
+/en/              English Home
+/privacy          Japanese Privacy
+/en/privacy       English Privacy
+```
+
+CSS / JavaScript / Imagesは共通Assetを使用する。英語配下からの共通Asset参照はroot absolute pathを基本とする。
+ブラウザ言語による強制リダイレクト、runtime翻訳、言語Cookieは採用しない。
+本格i18nへの移行条件はIssue #66を正本とする。
 
 ## State
 
