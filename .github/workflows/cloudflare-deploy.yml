@@ -68,6 +68,50 @@ jobs:
 
           exit "$status"
 
+      - name: Preview localized routes smoke
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -eu
+          base="https://pr-${PR_NUMBER}-cecil-hub.ha-rookie.workers.dev"
+
+          check_page() {
+            path="$1"
+            expected="$2"
+            body="$(mktemp)"
+            status="$(curl --silent --show-error --output "$body" --write-out '%{http_code}' "${base}${path}")"
+            if [ "$status" != "200" ]; then
+              echo "::error::Unexpected HTTP $status for ${path}"
+              cat "$body"
+              rm -f "$body"
+              exit 1
+            fi
+            if ! grep -Fq "$expected" "$body"; then
+              echo "::error::Expected marker not found for ${path}: $expected"
+              rm -f "$body"
+              exit 1
+            fi
+            rm -f "$body"
+          }
+
+          check_page "/" 'lang="ja"'
+          check_page "/en/" 'lang="en"'
+          check_page "/privacy" 'lang="ja"'
+          check_page "/en/privacy" 'lang="en"'
+
+          body="$(mktemp)"
+          status="$(curl --silent --show-error --output "$body" --write-out '%{http_code}' "${base}/en/not-a-real-page")"
+          if [ "$status" != "404" ] || ! grep -Fq "Page not found." "$body"; then
+            echo "::error::English nested 404 route did not return the English 404 page"
+            cat "$body"
+            rm -f "$body"
+            exit 1
+          fi
+          rm -f "$body"
+
+          echo "Preview localized routes smoke succeeded."
+
       - name: Preview icon smoke
         shell: bash
         env:
@@ -128,6 +172,53 @@ jobs:
             exit 0
           fi
           npx --yes wrangler@4 deploy
+
+      - name: Production localized routes smoke
+        shell: bash
+        run: |
+          set -eu
+          base="https://cecil-hub.ha-rookie.workers.dev"
+
+          check_page() {
+            path="$1"
+            expected="$2"
+            body="$(mktemp)"
+            status="000"
+
+            for attempt in 1 2 3 4 5 6; do
+              status="$(curl --silent --show-error --output "$body" --write-out '%{http_code}' "${base}${path}" || true)"
+              if [ "$status" = "200" ] && grep -Fq "$expected" "$body"; then
+                rm -f "$body"
+                return 0
+              fi
+              echo "Localized route smoke attempt $attempt for ${path}: HTTP $status"
+              if [ "$attempt" -lt 6 ]; then
+                sleep 5
+              fi
+            done
+
+            echo "::error::Localized route smoke failed for ${path}"
+            cat "$body"
+            rm -f "$body"
+            exit 1
+          }
+
+          check_page "/" 'lang="ja"'
+          check_page "/en/" 'lang="en"'
+          check_page "/privacy" 'lang="ja"'
+          check_page "/en/privacy" 'lang="en"'
+
+          body="$(mktemp)"
+          status="$(curl --silent --show-error --output "$body" --write-out '%{http_code}' "${base}/en/not-a-real-page")"
+          if [ "$status" != "404" ] || ! grep -Fq "Page not found." "$body"; then
+            echo "::error::English nested 404 route did not return the English 404 page"
+            cat "$body"
+            rm -f "$body"
+            exit 1
+          fi
+          rm -f "$body"
+
+          echo "Production localized routes smoke succeeded."
 
       - name: Production icon smoke
         shell: bash
