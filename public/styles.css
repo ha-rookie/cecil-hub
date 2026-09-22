@@ -1309,3 +1309,35 @@ a.app-row:hover {
   color: var(--muted);
   font-size: 9px;
 }
+
+
+/* Language switch — quiet utility navigation shared by Japanese and English pages. */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+.language-switch a {
+  color: var(--muted);
+  transition: color .2s ease, opacity .2s ease;
+}
+.language-switch a:hover {
+  color: var(--text);
+}
+.language-current {
+  color: var(--text);
+  font-weight: 500;
+}
+.language-separator {
+  color: var(--line);
+}
+@media (max-width: 767px) {
+  .header-actions { gap: 12px; }
+  .language-switch { font-size: 9px; gap: 5px; }
+  .theme-toggle { padding-left: 0; }
+}
