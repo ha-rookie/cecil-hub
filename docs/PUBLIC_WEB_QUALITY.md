@@ -141,6 +141,18 @@ Design Previewも同様に検索対象へしない。
 
 多言語対応では画面翻訳だけでなく、canonical / hreflang / locale / URL設計を別途判断する。
 
+### 多言語公開の基本
+
+CECIL v1では言語ごとにURLを分離し、日本語 `/` と英語 `/en/` を相互リンクする。
+
+- 各言語ページはself canonicalを持つ
+- ja / en / x-default のhreflangを相互指定する
+- ブラウザ言語による強制リダイレクトは行わない
+- index対象の言語別Homeをsitemapへ含める
+- noindexページはsitemapへ含めない
+- 外部リンク先が日本語のみの場合は、英語ページ側で必要に応じて言語を明示する
+- 多言語化のためだけに個人識別・位置・Accept-Language等の追加Analyticsデータを収集しない
+
 ## 6. OGP
 
 OGP Assetの管理は `ASSET_WORKFLOW.md` を正本とする。
