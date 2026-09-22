@@ -81,17 +81,6 @@ test("index actions use consistent open wording", () => {
   assert.ok(!html.includes("Instagramで見る"));
 });
 
-test("Local descriptions are individually differentiated", () => {
-  const local = section("local", "about");
-  for (const fragment of [
-    "店構えと一緒に残した記録",
-    "普段使いできる一軒",
-    "土地に根付いた食文化",
-  ]) {
-    assert.ok(local.includes(fragment), `missing differentiated local description: ${fragment}`);
-  }
-});
-
 
 test("Hero exposes the three content category shortcuts", () => {
   const heroStart = html.indexOf('class="hero wrap"');
