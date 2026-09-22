@@ -51,3 +51,17 @@ test("hero and brand statements use the current copy", () => {
   assert.ok(html.includes("形にする。"));
   assert.ok(!html.includes("<span>探索する。</span><span>探求する。</span><span>形にする。</span>"));
 });
+
+
+test("Writing uses concise display titles without changing destination URLs", () => {
+  for (const title of [
+    "違和感が残る文章を読みたい",
+    "AI時代、若手SEはどこで学ぶのか",
+    "仕事のキャパは、根性ではなく設計する",
+  ]) {
+    assert.ok(html.includes(title), `missing concise display title: ${title}`);
+  }
+  assert.ok(!html.includes("うまい文章より、違和感が残る文章を読みたい"));
+  assert.ok(!html.includes("AIがコードを書く時代、若手SEはどこでプログラミングを覚えるのか"));
+  assert.ok(!html.includes("仕事のキャパは、根性ではなく設計するものなのかもしれない"));
+});
