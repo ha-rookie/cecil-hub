@@ -1505,3 +1505,21 @@ html[lang="en"] .privacy-item li {
     font-weight: 500;
   }
 }
+
+
+/* Final light-mode utility backdrop trim — reduce vertical footprint further. */
+[data-theme="light"] .header-utilities::before {
+  inset: -1px -4px;
+  border-radius: 8px;
+  background: rgba(248, 246, 241, .36);
+  filter: blur(1px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    inset: -1px -4px;
+    border-radius: 8px;
+    background: rgba(248, 246, 241, .36);
+    filter: blur(1px);
+  }
+}
