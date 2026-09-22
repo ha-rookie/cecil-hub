@@ -798,3 +798,38 @@ a.app-row:hover {
     font-size: 9px;
   }
 }
+
+
+/* Brand statement — keep Explore / Inquire as a quiet Cecil signature. */
+.kv-brand {
+  position: absolute;
+  z-index: 3;
+  left: max(24px, calc((100% - min(1200px, calc(100% - 48px))) / 2));
+  top: 18%;
+}
+.kv-brand .kv-wordmark {
+  position: static;
+  left: auto;
+  top: auto;
+}
+.kv-tagline {
+  margin-top: 12px;
+  color: var(--future);
+  font-size: 10px;
+  letter-spacing: .18em;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .kv-brand {
+    left: 24px;
+    top: 14%;
+  }
+  .kv-brand .kv-wordmark {
+    font-size: clamp(46px, 15vw, 64px);
+  }
+  .kv-tagline {
+    margin-top: 10px;
+    font-size: 9px;
+  }
+}
