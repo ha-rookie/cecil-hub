@@ -118,3 +118,16 @@ test("Elsewhere is grouped into three semantic destination groups", () => {
   }
   assert.ok(!html.includes('class="links-grid"'));
 });
+
+
+test("Local descriptions avoid repetitive closing phrasing", () => {
+  const local = section("local", "about");
+  assert.ok(!local.includes("残しています"));
+  for (const fragment of [
+    "名古屋らしさが印象に残ります",
+    "日常使いの一軒です",
+    "食文化として見てみたくなる店です",
+  ]) {
+    assert.ok(local.includes(fragment), `missing revised Local description: ${fragment}`);
+  }
+});
