@@ -1523,3 +1523,10 @@ html[lang="en"] .privacy-item li {
     filter: blur(1px);
   }
 }
+
+
+/* Keep the top-right utility group physically compact. */
+.header-utilities .theme-toggle {
+  padding-top: 0;
+  padding-bottom: 0;
+}
