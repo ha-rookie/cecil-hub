@@ -162,3 +162,15 @@ test("Apps descriptions avoid formal planning jargon", () => {
   assert.ok(apps.includes("週末の朝、釣りに行くなら何時ごろがよさそうか。"));
   assert.ok(!apps.includes("釣行計画ツール"));
 });
+
+
+test("Visible copy avoids repeated archival wording", () => {
+  const visibleStart = html.indexOf("<body>");
+  const visible = html.slice(visibleStart);
+  assert.ok(!visible.includes("釣行計画ツール"));
+  assert.ok(!visible.includes("気になった店を記録"));
+  assert.ok(!visible.includes("考え直した記録"));
+  assert.ok(!visible.includes("キャパを考えた記録"));
+  assert.ok(visible.includes("その途中でできたものを集めています"));
+  assert.ok(visible.includes("ここから見られます"));
+});
