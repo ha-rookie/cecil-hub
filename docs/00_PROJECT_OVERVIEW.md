@@ -45,7 +45,8 @@ Cecil をそれらの上位ブランドとして扱う。
 ## v1 Scope
 
 - Home 1ページ
-- Featured Works
+- Featured（代表コンテンツ）
+- Apps Index（公開中・開発中の自作アプリ一覧）
 - Featured Writing
 - Activity
 - About
