@@ -1309,3 +1309,236 @@ a.app-row:hover {
   color: var(--muted);
   font-size: 9px;
 }
+
+
+/* Language switch — quiet utility navigation shared by Japanese and English pages. */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+.language-switch a {
+  color: var(--muted);
+  transition: color .2s ease, opacity .2s ease;
+}
+.language-switch a:hover {
+  color: var(--text);
+}
+.language-current {
+  color: var(--text);
+  font-weight: 500;
+}
+.language-separator {
+  color: var(--line);
+}
+@media (max-width: 767px) {
+  .header-actions { gap: 12px; }
+  .language-switch { font-size: 9px; gap: 5px; }
+  .theme-toggle { padding-left: 0; }
+}
+
+
+/* English typography — avoid Japanese-specific forced line breaks and improve wrapping. */
+html[lang="en"] .hero h1,
+html[lang="en"] .section-heading h2,
+html[lang="en"] .feature-card h3,
+html[lang="en"] .app-heading h3,
+html[lang="en"] .content-heading h3,
+html[lang="en"] .about h2,
+html[lang="en"] .links-section h2,
+html[lang="en"] .privacy-hero h1,
+html[lang="en"] .privacy-item h2 {
+  text-wrap: balance;
+}
+
+html[lang="en"] .hero-copy,
+html[lang="en"] .section-intro,
+html[lang="en"] .feature-card p,
+html[lang="en"] .app-row > p,
+html[lang="en"] .content-row > p,
+html[lang="en"] .about-copy p,
+html[lang="en"] .privacy-meta p,
+html[lang="en"] .privacy-item p,
+html[lang="en"] .privacy-item li {
+  text-wrap: pretty;
+}
+
+
+/* Light-mode header utilities — stronger contrast over the illustrated key visual. */
+[data-theme="light"] .language-switch,
+[data-theme="light"] .language-switch a,
+[data-theme="light"] .language-current,
+[data-theme="light"] .theme-toggle {
+  color: #3F4747;
+}
+
+[data-theme="light"] .language-separator {
+  color: #697171;
+}
+
+[data-theme="light"] .theme-icon {
+  color: #596161;
+}
+
+[data-theme="light"] .theme-toggle {
+  text-shadow: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .language-switch,
+  :root:not([data-theme]) .language-switch a,
+  :root:not([data-theme]) .language-current,
+  :root:not([data-theme]) .theme-toggle {
+    color: #3F4747;
+  }
+
+  :root:not([data-theme]) .language-separator {
+    color: #697171;
+  }
+
+  :root:not([data-theme]) .theme-icon {
+    color: #596161;
+  }
+
+  :root:not([data-theme]) .theme-toggle {
+    text-shadow: none;
+  }
+}
+
+
+/* Light-mode key-visual utilities — soft backdrop for mixed photographic backgrounds. */
+.header-utilities {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  isolation: isolate;
+}
+
+[data-theme="light"] .header-utilities::before {
+  content: "";
+  position: absolute;
+  inset: -7px -10px;
+  z-index: -1;
+  border-radius: 999px;
+  background: rgba(248, 246, 241, .72);
+  filter: blur(5px);
+}
+
+[data-theme="light"] .header-utilities .language-switch,
+[data-theme="light"] .header-utilities .language-switch a,
+[data-theme="light"] .header-utilities .language-current,
+[data-theme="light"] .header-utilities .theme-toggle {
+  color: #252C2B;
+  font-weight: 600;
+}
+
+[data-theme="light"] .header-utilities .language-separator {
+  color: #56605E;
+}
+
+[data-theme="light"] .header-utilities .theme-icon {
+  color: #414B49;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    content: "";
+    position: absolute;
+    inset: -7px -10px;
+    z-index: -1;
+    border-radius: 999px;
+    background: rgba(248, 246, 241, .72);
+    filter: blur(5px);
+  }
+
+  :root:not([data-theme]) .header-utilities .language-switch,
+  :root:not([data-theme]) .header-utilities .language-switch a,
+  :root:not([data-theme]) .header-utilities .language-current,
+  :root:not([data-theme]) .header-utilities .theme-toggle {
+    color: #252C2B;
+    font-weight: 600;
+  }
+
+  :root:not([data-theme]) .header-utilities .language-separator {
+    color: #56605E;
+  }
+
+  :root:not([data-theme]) .header-utilities .theme-icon {
+    color: #414B49;
+  }
+}
+
+
+/* Refine light-mode utility backdrop — keep the contrast aid nearly invisible. */
+[data-theme="light"] .header-utilities::before {
+  inset: -3px -5px;
+  border-radius: 10px;
+  background: rgba(248, 246, 241, .42);
+  filter: blur(2px);
+}
+
+[data-theme="light"] .header-utilities .language-switch,
+[data-theme="light"] .header-utilities .language-switch a,
+[data-theme="light"] .header-utilities .language-current,
+[data-theme="light"] .header-utilities .theme-toggle {
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    inset: -3px -5px;
+    border-radius: 10px;
+    background: rgba(248, 246, 241, .42);
+    filter: blur(2px);
+  }
+
+  :root:not([data-theme]) .header-utilities .language-switch,
+  :root:not([data-theme]) .header-utilities .language-switch a,
+  :root:not([data-theme]) .header-utilities .language-current,
+  :root:not([data-theme]) .header-utilities .theme-toggle {
+    font-weight: 500;
+  }
+}
+
+
+/* Final light-mode utility backdrop trim — reduce vertical footprint further. */
+[data-theme="light"] .header-utilities::before {
+  inset: -1px -4px;
+  border-radius: 8px;
+  background: rgba(248, 246, 241, .36);
+  filter: blur(1px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    inset: -1px -4px;
+    border-radius: 8px;
+    background: rgba(248, 246, 241, .36);
+    filter: blur(1px);
+  }
+}
+
+
+/* Keep the top-right utility group physically compact. */
+.header-utilities .theme-toggle {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+/* Light-mode utility backdrop — final subtle opacity adjustment. */
+[data-theme="light"] .header-utilities::before {
+  background: rgba(248, 246, 241, .28);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .header-utilities::before {
+    background: rgba(248, 246, 241, .28);
+  }
+}

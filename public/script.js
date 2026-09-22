@@ -1,5 +1,7 @@
 (() => {
   const btn = document.getElementById('themeToggle');
+  const pageLang = document.documentElement.lang || 'ja';
+  const isEnglish = pageLang.toLowerCase().startsWith('en');
   const label = btn?.querySelector('.theme-label');
   const icon = btn?.querySelector('.theme-icon');
   const themeColor = document.getElementById('themeColor');
@@ -24,7 +26,10 @@
     if (!btn) return;
     if (label) label.textContent = labels[mode];
     if (icon) icon.textContent = icons[mode];
-    btn.setAttribute('aria-label', `表示テーマ: ${labels[mode]}。切り替える`);
+    btn.setAttribute(
+      'aria-label',
+      isEnglish ? `Display theme: ${labels[mode]}. Change theme` : `表示テーマ: ${labels[mode]}。切り替える`
+    );
     btn.setAttribute('title', `Theme: ${labels[mode]}`);
   }
 

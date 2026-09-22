@@ -11,6 +11,7 @@
 | REQ-007 Theme | `public/script.js`, CSS variables | Auto / Dark / Light |
 | REQ-008 Responsive | `public/styles.css` | Smartphone visual review |
 | REQ-009 Apps Index | `#apps` | All-app visibility / public-link / status review |
+| REQ-010 Localization | `public/index.html`, `public/en/index.html`, Privacy counterparts, `sitemap.xml` | `tests/i18n.test.cjs` / Mobile / Desktop / JA-EN switch / canonical-hreflang review |
 | NFR-001 Privacy | Public content review | Pre-release review |
 | NFR-002 Repository Confidentiality | `public/` boundary | Deploy artifact review |
 | NFR-003 Performance | Static architecture | Browser / Lighthouse later |
