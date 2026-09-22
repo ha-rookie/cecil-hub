@@ -766,3 +766,9 @@ a.app-row:hover {
     font-size: 11px;
   }
 }
+
+
+/* Keep only the section boundary after the Apps list. */
+.apps-list .app-row:last-child {
+  border-bottom: 0;
+}
