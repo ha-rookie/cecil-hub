@@ -98,13 +98,17 @@ test("Hero exposes the three content category shortcuts", () => {
   const heroEnd = html.indexOf('id="featured"', heroStart);
   const hero = html.slice(heroStart, heroEnd);
   for (const [href, label] of [
-    ['#apps', '作ったもの'],
-    ['#writing', '書いたもの'],
-    ['#local', '歩いて見つけたもの'],
+    ['#apps', 'APPS'],
+    ['#writing', 'WRITING'],
+    ['#local', 'LOCAL'],
   ]) {
     assert.ok(hero.includes(`href="${href}"`), `missing hero shortcut: ${href}`);
-    assert.ok(hero.includes(label), `missing hero shortcut label: ${label}`);
+    assert.ok(hero.includes(`>${label}</a>`), `missing hero shortcut label: ${label}`);
   }
+  assert.ok(!hero.includes('作ったもの'));
+  assert.ok(!hero.includes('書いたもの'));
+  assert.ok(!hero.includes('歩いて見つけたもの'));
+  assert.ok(!hero.includes('icon-arrow-down'));
   assert.ok(!hero.includes('href="#featured"'));
 });
 
