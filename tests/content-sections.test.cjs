@@ -114,7 +114,7 @@ test("Hero exposes the three content category shortcuts", () => {
 
 
 test("Elsewhere is grouped into three semantic destination groups", () => {
-  for (const label of ["CREATE / PUBLISH", "CONNECT", "PICKS"]) {
+  for (const label of ["CREATE / PUBLISH", "CONTACT", "PICKS"]) {
     assert.ok(html.includes(label), `missing Elsewhere group: ${label}`);
   }
   for (const service of ["note", "GitHub", "ProtoPedia", "Instagram", "X", "公式LINE", "マシュマロ", "楽天ROOM", "Amazon"]) {
