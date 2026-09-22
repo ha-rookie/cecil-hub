@@ -1341,3 +1341,29 @@ a.app-row:hover {
   .language-switch { font-size: 9px; gap: 5px; }
   .theme-toggle { padding-left: 0; }
 }
+
+
+/* English typography — avoid Japanese-specific forced line breaks and improve wrapping. */
+html[lang="en"] .hero h1,
+html[lang="en"] .section-heading h2,
+html[lang="en"] .feature-card h3,
+html[lang="en"] .app-heading h3,
+html[lang="en"] .content-heading h3,
+html[lang="en"] .about h2,
+html[lang="en"] .links-section h2,
+html[lang="en"] .privacy-hero h1,
+html[lang="en"] .privacy-item h2 {
+  text-wrap: balance;
+}
+
+html[lang="en"] .hero-copy,
+html[lang="en"] .section-intro,
+html[lang="en"] .feature-card p,
+html[lang="en"] .app-row > p,
+html[lang="en"] .content-row > p,
+html[lang="en"] .about-copy p,
+html[lang="en"] .privacy-meta p,
+html[lang="en"] .privacy-item p,
+html[lang="en"] .privacy-item li {
+  text-wrap: pretty;
+}
