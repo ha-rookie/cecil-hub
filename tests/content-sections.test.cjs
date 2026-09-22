@@ -91,3 +91,19 @@ test("Local descriptions are individually differentiated", () => {
     assert.ok(local.includes(fragment), `missing differentiated local description: ${fragment}`);
   }
 });
+
+
+test("Hero exposes the three content category shortcuts", () => {
+  const heroStart = html.indexOf('class="hero wrap"');
+  const heroEnd = html.indexOf('id="featured"', heroStart);
+  const hero = html.slice(heroStart, heroEnd);
+  for (const [href, label] of [
+    ['#apps', '作ったもの'],
+    ['#writing', '書いたもの'],
+    ['#local', '歩いて見つけたもの'],
+  ]) {
+    assert.ok(hero.includes(`href="${href}"`), `missing hero shortcut: ${href}`);
+    assert.ok(hero.includes(label), `missing hero shortcut label: ${label}`);
+  }
+  assert.ok(!hero.includes('href="#featured"'));
+});
