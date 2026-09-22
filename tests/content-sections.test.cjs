@@ -150,10 +150,11 @@ test("Hero category shortcuts render as one inline index", () => {
 
 test("About copy stays conversational", () => {
   const about = section("about", null);
-  assert.ok(about.includes("会社員SEの、"));
-  assert.ok(about.includes("もう少し外側。"));
-  assert.ok(about.includes("ふだんは会社員SEとして働いています"));
+  assert.ok(about.includes("仕事だけでは、"));
+  assert.ok(about.includes("たぶん収まらない。"));
+  assert.ok(about.includes("ふだんはSEとして働いています"));
   assert.ok(!about.includes("途中の軌跡"));
+  assert.ok(!about.includes("会社員SE"));
 });
 
 test("Apps descriptions avoid formal planning jargon", () => {
