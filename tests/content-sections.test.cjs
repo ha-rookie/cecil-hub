@@ -174,3 +174,13 @@ test("Visible copy avoids repeated archival wording", () => {
   assert.ok(visible.includes("その途中でできたものを集めています"));
   assert.ok(visible.includes("ここから見られます"));
 });
+
+
+test("Writing descriptions use varied endings", () => {
+  const writing = section("writing", "local");
+  assert.ok(!writing.includes("書いた記事。"));
+  assert.ok(!writing.includes("考えた記事。"));
+  assert.ok(writing.includes("自分で書きながら考えたもの。"));
+  assert.ok(writing.includes("育成する側の目線も交えて考えています。"));
+  assert.ok(writing.includes("無理なく走り続けられる速度から見直しました。"));
+});
