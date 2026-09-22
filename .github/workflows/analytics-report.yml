@@ -6,11 +6,12 @@ on:
       days:
         description: "集計期間"
         required: true
-        default: "7"
+        default: "30"
         type: choice
         options:
           - "7"
           - "30"
+          - "90"
   pull_request:
     paths:
       - ".github/workflows/analytics-report.yml"
@@ -27,7 +28,7 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_ANALYTICS_READ_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_READ_TOKEN }}
-      DAYS: ${{ inputs.days || '7' }}
+      DAYS: ${{ inputs.days || '30' }}
     steps:
       - uses: actions/checkout@v6
 
