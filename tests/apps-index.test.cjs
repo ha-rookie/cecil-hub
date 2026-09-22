@@ -44,3 +44,18 @@ test("developing app is visible without pretending a production URL exists", () 
 test("analytics backend accepts the future omoi destination", () => {
   assert.ok(worker.includes('"omoi_no_hougaku"'));
 });
+
+
+test("CECIL exposes a text attribute for each app", () => {
+  for (const attribute of [
+    "FISHING / TIDE",
+    "NIGHT / TRANSIT",
+    "DIRECTION / SHRINE",
+    "WINE / SENSOR",
+    "MEMORY / PLACE",
+  ]) {
+    assert.ok(html.includes(attribute), `missing app attribute: ${attribute}`);
+  }
+
+  assert.ok(html.includes('class="app-attribute"'));
+});
