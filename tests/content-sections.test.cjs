@@ -184,3 +184,20 @@ test("Writing descriptions use varied endings", () => {
   assert.ok(writing.includes("育成する側の目線も交えて考えています。"));
   assert.ok(writing.includes("無理なく走り続けられる速度から見直しました。"));
 });
+
+
+test("Elsewhere separates publishing from contact", () => {
+  const start = html.indexOf('class="links-section wrap"');
+  const end = html.indexOf("</main>", start);
+  const elsewhere = html.slice(start, end);
+  const publishStart = elsewhere.indexOf("CREATE / PUBLISH");
+  const contactStart = elsewhere.indexOf("CONTACT");
+  const picksStart = elsewhere.indexOf("PICKS");
+  const publish = elsewhere.slice(publishStart, contactStart);
+  const contact = elsewhere.slice(contactStart, picksStart);
+  assert.ok(publish.includes(">X</span>"));
+  assert.ok(contact.includes(">公式LINE</span>"));
+  assert.ok(contact.includes(">マシュマロ</span>"));
+  assert.ok(!contact.includes(">X</span>"));
+  assert.ok(!elsewhere.includes(">CONNECT<"));
+});
