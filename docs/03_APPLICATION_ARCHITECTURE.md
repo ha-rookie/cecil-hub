@@ -63,7 +63,7 @@ localStorageを利用する。
 
 ## Data
 
-v1の作品・記事・Activityは静的HTMLとして管理する。
+v1のFeatured・Apps一覧・記事・About等の公開コンテンツは静的HTMLとして管理する。
 
 コンテンツ更新頻度が増え、更新コストが明確になった場合のみJSON化やCMS化を検討する。
 

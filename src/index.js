@@ -6,6 +6,7 @@ const DESTINATIONS = new Set([
   "ato_ippai",
   "yohai",
   "kurukuru_sommelier",
+  "omoi_no_hougaku",
   "note",
   "github",
   "protopedia",
