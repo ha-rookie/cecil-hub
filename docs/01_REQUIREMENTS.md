@@ -18,7 +18,13 @@ Instagramの代表投稿を3本程度表示し、名古屋を中心に歩いて�
 匿名のSEとしての活動方針を説明する。
 
 ### REQ-006 Elsewhere
-note / ProtoPedia / X / Instagram / 楽天ROOM / LINE / マシュマロ等、公開しているサービスへの外部リンクを提供する。GitHubはv1の公開導線に含めない。
+公開している外部サービスへの導線を、用途ごとに整理して提供する。
+
+- CREATE / PUBLISH: note / GitHub / ProtoPedia / Instagram
+- CONNECT: X / 公式LINE / マシュマロ
+- PICKS: 楽天ROOM / Amazon
+
+サービス固有の公式カラーや大量のブランドアイコンには依存せず、CECIL側の視覚階層を優先する。
 
 ### REQ-007 Theme
 OS設定へ自動追従し、Auto / Dark / Light を手動で切り替えられる。
