@@ -1121,3 +1121,38 @@ a.app-row:hover {
     font-size: 13px;
   }
 }
+
+
+/* Mobile hero shortcuts stay horizontal: three equal category entrances. */
+@media (max-width: 767px) {
+  .hero-category-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hero-category-nav a {
+    min-height: 82px;
+    padding: 12px 10px;
+    text-align: left;
+  }
+  .hero-category-nav a + a {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+  .hero-category-ja {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .hero-category-nav .icon-arrow {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+/* Elsewhere hierarchy: group heading is parent, services are visibly nested. */
+.link-group-list a {
+  padding-left: 12px;
+}
+@media (max-width: 767px) {
+  .link-group-list a {
+    padding-left: 14px;
+  }
+}
