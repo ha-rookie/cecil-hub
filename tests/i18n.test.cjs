@@ -68,3 +68,9 @@ test('sitemap contains only indexable Japanese and English home URLs', () => {
   assert.doesNotMatch(sitemap, /privacy/);
   assert.doesNotMatch(sitemap, /pr-\d+/);
 });
+
+
+test('English headings do not carry Japanese forced line breaks', () => {
+  assert.doesNotMatch(enHome, /Work isn’t<br>/);
+  assert.doesNotMatch(enPrivacy, /Analytics &amp;<br/);
+});
