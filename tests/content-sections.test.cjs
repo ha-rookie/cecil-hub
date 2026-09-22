@@ -65,3 +65,29 @@ test("Writing uses concise display titles without changing destination URLs", ()
   assert.ok(!html.includes("AIがコードを書く時代、若手SEはどこでプログラミングを覚えるのか"));
   assert.ok(!html.includes("仕事のキャパは、根性ではなく設計するものなのかもしれない"));
 });
+
+
+test("Featured uses APP as the item type label while APPS remains the section name", () => {
+  assert.ok(html.includes("<span>APP</span>"));
+  assert.ok(!html.includes("<span>WEB APP</span>"));
+  assert.ok(html.includes("<p class=\"eyebrow\">APPS</p>"));
+});
+
+test("index actions use consistent open wording", () => {
+  assert.ok(html.includes("アプリを開く"));
+  assert.ok(html.includes("noteを開く"));
+  assert.ok(html.includes("Instagramを開く"));
+  assert.ok(!html.includes("noteで読む"));
+  assert.ok(!html.includes("Instagramで見る"));
+});
+
+test("Local descriptions are individually differentiated", () => {
+  const local = section("local", "about");
+  for (const fragment of [
+    "店構えと一緒に残した記録",
+    "普段使いできる一軒",
+    "土地に根付いた食文化",
+  ]) {
+    assert.ok(local.includes(fragment), `missing differentiated local description: ${fragment}`);
+  }
+});
