@@ -135,3 +135,14 @@ test("Local descriptions avoid repetitive closing phrasing", () => {
     assert.ok(local.includes(fragment), `missing revised Local description: ${fragment}`);
   }
 });
+
+
+test("Hero category shortcuts render as one inline index", () => {
+  const heroStart = html.indexOf('class="hero wrap"');
+  const heroEnd = html.indexOf('id="featured"', heroStart);
+  const hero = html.slice(heroStart, heroEnd);
+  assert.equal((hero.match(/hero-category-separator/g) || []).length, 2);
+  assert.ok(hero.includes('>APPS</a>'));
+  assert.ok(hero.includes('>WRITING</a>'));
+  assert.ok(hero.includes('>LOCAL</a>'));
+});
