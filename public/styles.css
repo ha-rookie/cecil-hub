@@ -930,3 +930,38 @@ a.app-row:hover {
   .section-more { padding-top: 14px; }
   .section-more a { font-size: 11px; }
 }
+
+
+/* Theme switch must remain legible over the illustrated key visual. */
+.theme-toggle {
+  color: var(--text);
+  font-weight: 500;
+}
+[data-theme="light"] .theme-toggle {
+  text-shadow: 0 1px 7px rgba(248, 246, 241, .98), 0 0 2px rgba(248, 246, 241, .95);
+}
+[data-theme="dark"] .theme-toggle {
+  text-shadow: 0 1px 6px rgba(15, 24, 33, .92);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-toggle {
+    text-shadow: 0 1px 7px rgba(248, 246, 241, .98), 0 0 2px rgba(248, 246, 241, .95);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle {
+    text-shadow: 0 1px 6px rgba(15, 24, 33, .92);
+  }
+}
+
+/* Featured item type is subordinate metadata, not a section eyebrow. */
+.feature-meta {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .12em;
+}
+.feature-meta .icon-arrow {
+  color: var(--muted);
+  opacity: .8;
+}
