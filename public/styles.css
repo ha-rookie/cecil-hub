@@ -1249,3 +1249,27 @@ a.app-row:hover {
     font-size: 9px;
   }
 }
+
+
+/* Privacy contact links — quiet inline links, unlike document CTA links. */
+.privacy-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.privacy-contact-links a {
+  color: var(--text);
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+.privacy-contact-links a:hover {
+  opacity: .62;
+}
+.privacy-contact-links span {
+  color: var(--line);
+  font-size: 11px;
+}
