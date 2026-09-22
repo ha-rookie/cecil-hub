@@ -6,7 +6,9 @@
   <meta name="description" content="当サイトのアクセス解析とプライバシーに関する方針です。">
   <meta name="robots" content="noindex,follow">
   <title>Privacy — CECIL</title>
-  <link rel="canonical" href="https://cecil-hub.ha-rookie.workers.dev/privacy.html">
+  <link rel="canonical" href="https://cecil-hub.ha-rookie.workers.dev/privacy">
+  <link rel="alternate" hreflang="ja" href="https://cecil-hub.ha-rookie.workers.dev/privacy">
+  <link rel="alternate" hreflang="en" href="https://cecil-hub.ha-rookie.workers.dev/en/privacy">
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -14,9 +16,16 @@
   <header class="site-header privacy-header">
     <div class="header-inner">
       <a class="brand" href="./" aria-label="CECIL ホーム">CECIL</a>
-      <nav class="nav" aria-label="Privacyページメニュー">
-        <a class="privacy-home-link" href="./"><svg class="icon-arrow icon-arrow-back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Home</span></a>
-      </nav>
+      <div class="header-actions">
+        <nav class="nav privacy-nav" aria-label="Privacyページメニュー">
+        <a class="privacy-home-link" href="/"><svg class="icon-arrow icon-arrow-back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Home</span></a>
+        </nav>
+        <nav class="language-switch" aria-label="言語切替">
+          <span class="language-current" aria-current="page">JA</span>
+          <span class="language-separator" aria-hidden="true">/</span>
+          <a href="/en/privacy" lang="en" hreflang="en">EN</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -82,7 +91,7 @@
 
   <footer class="footer wrap">
     <p>© CECIL — Explore. Inquire. Create.</p>
-    <a href="./">Home</a>
+    <a href="/">Home</a>
   </footer>
   <script src="./script.js" defer></script>
 </body>
