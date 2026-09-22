@@ -74,3 +74,9 @@ test('English headings do not carry Japanese forced line breaks', () => {
   assert.doesNotMatch(enHome, /Work isn’t<br>/);
   assert.doesNotMatch(enPrivacy, /Analytics &amp;<br/);
 });
+
+
+test('Japanese and English homes group language and theme controls for readable key-visual utilities', () => {
+  assert.match(jaHome, /class="header-utilities"/);
+  assert.match(enHome, /class="header-utilities"/);
+});
