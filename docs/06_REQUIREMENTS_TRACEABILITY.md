@@ -2,7 +2,7 @@
 
 | Requirement | Design / Implementation | Verification |
 |---|---|---|
-| REQ-001 Home | `public/index.html` Hero | Mobile / Desktop visual review |
+| REQ-001 Home | `public/index.html` Hero / `.hero-category-nav` | Mobile / Desktop visual review / category anchor check |
 | REQ-002 Featured | `#featured` | Representative-content / link review |
 | REQ-003 Writing | `#writing` | 3 representative article links / note profile link |
 | REQ-004 Local | `#local` | 3 representative Instagram post links / profile link |
