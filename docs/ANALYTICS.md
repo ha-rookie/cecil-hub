@@ -1,7 +1,7 @@
 # Cecil Analytics design
 
-更新日: 2026-09-21
-関連Issue: #20 / #53
+更新日: 2026-09-26
+関連Issue: #20 / #53 / #70
 
 ## 目的
 
@@ -37,7 +37,9 @@ Cecilを「アクセス観測拠点」として使い、個人を識別せずに
 - 日次 destination / link_id / section別click
 - 日次 source × destination（source → destination）
 
-前週比、7日移動合計、月次推移、最新比較等は日次データから派生させる。
+前週比、7日移動合計、30日集計、90日集計、月次推移、最新比較等はGoogle Sheetsの日次データから派生させる。
+
+**7 / 30 / 90日は分析期間であり、Cloudflareからのデータ取得期間を人が選ぶためのものではない。**
 
 現行計測は匿名でuser/session IDを持たないため、次は算出しない。
 
@@ -45,6 +47,45 @@ Cecilを「アクセス観測拠点」として使い、個人を識別せずに
 - session
 - retention
 - user単位の回遊
+
+## 日次データ更新の標準ルール
+
+CECILアクセス分析を実行するときは、次の順序を標準とする。
+
+1. GitHub Actions `Cecil analytics report` を実行する
+2. Cloudflare Analytics Engineから、保持期間内の補完用データを取得する
+3. Google Sheetsの既存日付と照合する
+4. 未取得日を補完する
+5. 同じ日付は重複追加しない
+6. 既存日付の値と再集計値が異なる場合は最新の再集計値へ更新する
+7. 日次正本の更新後に7日 / 30日 / 90日 / 全期間などの分析を行う
+
+標準操作では利用者に取得期間を選ばせない。
+
+### 補完窓
+
+Workers Analytics Engineの保持期間が3か月のため、GitHub Actionsは90日を補完窓として固定する。
+
+- 取得窓: 直近90日相当
+- 確定対象: JSTの昨日まで
+- JSTの当日は途中値なので正本更新対象外
+- Analytics計測開始日: 2026-09-20
+
+90日を超えて実行しなかった場合、Cloudflare側の保持期間を超えた未取得データは復元できない可能性がある。
+
+### 0件日の扱い
+
+日次サマリーでは、アクセスが0件の日も日付行を持つ。
+
+例:
+
+- 2026-09-23: 7 PV
+- 2026-09-24: 0 PV
+- 2026-09-25: 2 PV
+
+これにより「未取得」と「実アクセス0件」を区別する。
+
+source / medium / path / destination等の明細シートは、実データが0件の日にダミー明細行を作らない。
 
 ## 通常分析から除外するトラフィック
 
@@ -183,26 +224,32 @@ dataset:
 
 - `cecil_hub_events`
 
-## レポート
+## GitHub Actionsレポート
 
-`.github/workflows/analytics-report.yml` を手動実行し、7 / 30 / 90日分の日次データを取得できる。
+`.github/workflows/analytics-report.yml` を手動実行する。
 
-通常は30日を基準とする。
+取得期間の選択は行わない。`scripts/analytics-report.mjs` が90日の補完窓を固定で取得する。
 
 レポート出力:
 
+- `ReportMeta`
 - `DailyOverview`
 - `DailyInbound`
 - `DailyPaths`
 - `DailyOutbound`
 - `DailyJourneys`
 
+`DailyOverview` はAnalytics計測開始日以降について、アクセス0件の日も0で補完する。
+
+GitHub Actions自体はGoogle Sheetsへ直接書き込まない。Actionsログの機械可読配列を使い、ChatGPT側でGoogle Sheetsの日次正本と照合してupsertする。
+
 ## 保存先と役割分担
 
 Google Sheets:
 - 日次実績の正本
 - source / medium / path / destination / link_id / section等の分析元データ
-- 時系列グラフ、週次/月次集計の計算元
+- 0PV日を含む連続した日付軸
+- 時系列グラフ、週次/月次、7日/30日/90日集計の計算元
 
 Notion:
 - データが一定量たまった後の分析結果
