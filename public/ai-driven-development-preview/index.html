@@ -108,7 +108,7 @@
           <p class="skeleton-lead">人の確認を増やせば安全になるわけでもありません。今は、目的や利用者への影響が変わるところ、本番反映、認証や権限、実際の画面などを中心に人が確認しています。</p>
           <div class="statement-row"><span>本番反映</span><span>重要な変更は、人が内容を確認してから進める</span></div>
           <div class="statement-row"><span>仕様変更</span><span>目的や利用者への影響が変わる時は、人が判断する</span></div>
-          <div class="statement-row"><span>認証・権限</span><span>APIキーなどの秘密情報、認証、データ操作は確認点を増やす</span></div>
+          <div class="statement-row"><span>認証・権限</span><span>Secret、認証、データ操作は確認点を増やす</span></div>
           <div class="statement-row"><span>実際の画面</span><span>CIが通っていても、本番や実機で見る</span></div>
         </div>
       </section>
@@ -147,21 +147,21 @@
         <div class="skeleton-body">
           <h2 id="actual-title">何を確認したか、あとから追えるようにしています。</h2>
           <p class="skeleton-lead">AIを使っているかどうかに関係なく、何を見て確認したのかが分からない状態は避けたいと考えています。必要なところではIssue、PR、CI、本番確認を残し、公開できる設計書やルールは実物へつなぎます。</p>
-          <p class="term-guide-hint"><a href="#terms">IssueやPRなど、このページで使っている言葉は末尾に簡単な説明があります。</a></p>
           <div class="assurance-table">
-            <div class="assurance-row"><span>品質</span><div><span>見るもの</span><p>CI / テスト / レビュー</p></div><div><span>残るもの</span><p>テスト結果・PR・本番確認</p></div><div><span>目的</span><p>AIが作ったコードをそのまま使わない</p></div></div>
-            <div class="assurance-row"><span>変更履歴</span><div><span>見るもの</span><p>Issue / Branch / PR</p></div><div><span>残るもの</span><p>差分・Commit・判断記録</p></div><div><span>目的</span><p>何を変えたか追えるようにする</p></div></div>
-            <div class="assurance-row"><span>本番</span><div><span>見るもの</span><p>Preview / 本番確認</p></div><div><span>残るもの</span><p>デプロイ履歴・実画面確認</p></div><div><span>目的</span><p>CIが通っただけで終わらせない</p></div></div>
-            <div class="assurance-row"><span>Security</span><div><span>見るもの</span><p>認証・権限・秘密情報・設定</p></div><div><span>残るもの</span><p>設計書・設定方針・設定</p></div><div><span>目的</span><p>権限や情報を広く渡しすぎない</p></div></div>
+            <div class="assurance-row"><span>品質</span><div><span>見るもの</span><p>CI / テスト / Review</p></div><div><span>残るもの</span><p>テスト結果・PR・本番確認</p></div><div><span>目的</span><p>AIが作ったコードをそのまま使わない</p></div></div>
+            <div class="assurance-row"><span>変更履歴</span><div><span>見るもの</span><p>Issue / Branch / PR</p></div><div><span>残るもの</span><p>Diff・Commit・Decision</p></div><div><span>目的</span><p>何を変えたか追えるようにする</p></div></div>
+            <div class="assurance-row"><span>本番</span><div><span>見るもの</span><p>Preview / 本番確認</p></div><div><span>残るもの</span><p>Deploy履歴・実画面確認</p></div><div><span>目的</span><p>CIが通っただけで終わらせない</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>見るもの</span><p>認証・権限・Secret・設定</p></div><div><span>残るもの</span><p>設計・Policy・設定</p></div><div><span>目的</span><p>権限や情報を広く渡しすぎない</p></div></div>
           </div>
           <div class="artifact-grid-v2">
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>今使っている開発のひな型。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>このページ自体の実装と変更履歴。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/HUMAN_AI_COLLABORATION.md" target="_blank" rel="noopener noreferrer"><span>開発ルール</span><strong>Human / AI Collaboration</strong><p>共同作業で起きた問題から追加してきたルール。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/GIT_WORKFLOW.md" target="_blank" rel="noopener noreferrer"><span>Git</span><strong>Git Workflow</strong><p>Issue、Branch、PR、CIをどう使っているか。</p></a>
-            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>本番確認</span><strong>Production Verification</strong><p>デプロイ成功と、本番で正しく動くことを分けて確認する。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>本番確認</span><strong>Production Verification</strong><p>Deploy成功と、本番で正しく動くことを分けて確認する。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/SECURITY_BASELINE.md" target="_blank" rel="noopener noreferrer"><span>Security</span><strong>Security Baseline</strong><p>公開Webアプリで確認しているSecurityの基準。</p></a>
           </div>
+          <p class="term-guide-hint"><a href="#terms">IssueやPRなど、このページで使っている言葉は末尾に簡単な説明があります。</a></p>
         </div>
       </section>
 
