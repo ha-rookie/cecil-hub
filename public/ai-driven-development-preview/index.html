@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="AI駆動開発を実際に試しながら、使っているところ、人が確認しているところ、失敗して変えたところを残すCECIL Previewです。">
+  <meta name="description" content="AI駆動開発を実際に試しながら、AIを使っているところ、人が確認しているところ、失敗して変えたところを残すCECIL Previewです。">
   <title>AI駆動開発 実践記録 — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
@@ -54,7 +54,7 @@
       <div class="ai-preview-copy wrap">
         <p class="eyebrow">AI駆動開発 実践記録</p>
         <h1 id="ai-preview-title">AIとアプリを作るたびに、<br>開発のやり方そのものが<br>変わっていった。</h1>
-        <p class="ai-preview-lead">最初は、AIを開発のどこまで使っていいのか分からなかった。何個かアプリを作るうちに、AIで進めやすいところ、人が確認した方がいいところ、逆にやりすぎだったルールが少しずつ見えてきた。その変化を残しています。</p>
+        <p class="ai-preview-lead">最初は、AIを開発のどこで使えばいいのか分からなかった。何個かアプリを作るうちに、AIで進めやすいところ、人が確認した方がいいところ、確認しすぎていたところが少しずつ見えてきた。その変化を残しています。</p>
         <p class="ai-preview-flow">作る → 確かめる → 振り返る → 次で変える</p>
       </div>
     </section>
@@ -63,20 +63,18 @@
       <div class="skeleton-heading">
         <div>
           <p class="eyebrow">このページに書いていること</p>
-          <h2 id="agenda-title">完成したやり方ではなく、<br>今まで変えてきたこと。</h2>
+          <h2 id="agenda-title">実際に作って、<br>変えてきたこと。</h2>
         </div>
-        <p>AI駆動開発の一般論をまとめるのではなく、実際に作って、困って、変えたことを中心にしています。管理する側や依頼する側が気になるところも、同じ流れの中で確認できるようにします。</p>
+        <p>AI駆動開発の一般論ではなく、実際のアプリ開発で使った方法、うまくいかなかったこと、その後に変えたことをまとめています。</p>
       </div>
       <nav class="agenda-list" aria-label="このページの目次">
         <a href="#about"><span>01</span><strong>このページについて</strong><em>なぜ残しているのか</em><b aria-hidden="true">↘</b></a>
-        <a href="#where-ai"><span>02</span><strong>AIを使っているところ</strong><em>今の開発の進め方</em><b aria-hidden="true">↘</b></a>
-        <a href="#human-check"><span>03</span><strong>人が確認しているところ</strong><em>自動で進めない場所</em><b aria-hidden="true">↘</b></a>
+        <a href="#where-ai"><span>02</span><strong>AIをどこで使っているか</strong><em>今の開発の進め方</em><b aria-hidden="true">↘</b></a>
+        <a href="#human-check"><span>03</span><strong>人が確認しているところ</strong><em>自動だけでは進めない場所</em><b aria-hidden="true">↘</b></a>
         <a href="#failed"><span>04</span><strong>うまくいかなかったこと</strong><em>確認しすぎた、厳しくしすぎた、途中でずれた</em><b aria-hidden="true">↘</b></a>
-        <a href="#changed"><span>05</span><strong>そこから変えたこと</strong><em>開発のやり方がどう変わったか</em><b aria-hidden="true">↘</b></a>
-        <a href="#rules"><span>06</span><strong>増やしたルール、減らしたルール</strong><em>残す・緩める・やめる</em><b aria-hidden="true">↘</b></a>
-        <a href="#checking"><span>07</span><strong>どう確認しているか</strong><em>品質、変更履歴、本番、Security</em><b aria-hidden="true">↘</b></a>
-        <a href="#overseas"><span>08</span><strong>海外を見て気になったこと</strong><em>流行ではなく、自分たちのやり方を見直す材料</em><b aria-hidden="true">↘</b></a>
-        <a href="#actual"><span>09</span><strong>実際に使っているもの</strong><em>GitHub、設計書、CI、Preview</em><b aria-hidden="true">↘</b></a>
+        <a href="#changed"><span>05</span><strong>そこから変えたこと</strong><em>増やしたもの、減らしたもの</em><b aria-hidden="true">↘</b></a>
+        <a href="#actual"><span>06</span><strong>確認した記録と実物</strong><em>Issue、PR、CI、本番確認、設計書</em><b aria-hidden="true">↘</b></a>
+        <a href="#overseas"><span>07</span><strong>海外を見て気になったこと</strong><em>自分たちのやり方を見直す材料</em><b aria-hidden="true">↘</b></a>
       </nav>
     </section>
 
@@ -84,19 +82,16 @@
       <section class="skeleton-section" id="about" aria-labelledby="about-title">
         <div class="skeleton-number">01 / このページについて</div>
         <div class="skeleton-body">
-          <h2 id="about-title">最初は、AIを開発のどこまで<br>使っていいのか分からなかった。</h2>
-          <p class="skeleton-lead">コードを書いてもらうところから始めて、設計、Issue、テスト、ドキュメントまで使う範囲が広がりました。その一方で、「ここは人が見た方がいい」「これは確認を増やしすぎた」ということも出てきました。このページでは、その途中経過をそのまま残します。</p>
-          <div class="statement-row"><span>開発する人</span><span>どこでAIを使うと進めやすいかが分かる</span></div>
-          <div class="statement-row"><span>管理する人</span><span>どこで人が確認しているか、変更履歴が残っているかを見られる</span></div>
-          <div class="statement-row"><span>依頼する人</span><span>AIを使っていても、何を確認してから本番へ出しているかが分かる</span></div>
+          <h2 id="about-title">AIを使い始めてから、<br>開発の進め方も変わりました。</h2>
+          <p class="skeleton-lead">コードを書いてもらうところから始めて、設計、Issue、テスト、ドキュメントまで使う範囲が広がりました。一方で、AIを使う範囲を広げるほど、人が確認した方がいいところや、逆に確認しすぎていたところも見えるようになりました。このページでは、その途中経過を残します。</p>
         </div>
       </section>
 
       <section class="skeleton-section" id="where-ai" aria-labelledby="where-ai-title">
-        <div class="skeleton-number">02 / AIを使っているところ</div>
+        <div class="skeleton-number">02 / AIをどこで使っているか</div>
         <div class="skeleton-body">
-          <h2 id="where-ai-title">今は、コードを書くところだけでは<br>なくなっています。</h2>
-          <p class="skeleton-lead">要件を整理する、設計案を出す、Issueへ分ける、実装する、テストを書く、変更内容をまとめる。AIを使う場所は少しずつ増えました。ただし、全部を同じように扱ってはいません。</p>
+          <h2 id="where-ai-title">今は、コードを書く以外にも使っています。</h2>
+          <p class="skeleton-lead">要件を整理する、設計案を出す、Issueへ分ける、実装する、テストを書く、変更内容をまとめる。使う場所は少しずつ増えました。ただし、全部を同じように扱っているわけではありません。</p>
           <div class="golden-path-grid">
             <article><span>01</span><h3>考える</h3><p>利用場面、やりたいこと、やらないことを整理する。</p></article>
             <article><span>02</span><h3>作る</h3><p>Requirements、Architecture、Issue、Branch、実装。</p></article>
@@ -109,11 +104,11 @@
       <section class="skeleton-section" id="human-check" aria-labelledby="human-check-title">
         <div class="skeleton-number">03 / 人が確認しているところ</div>
         <div class="skeleton-body">
-          <h2 id="human-check-title">自動で進めた方が楽なところと、<br>人が見た方がいいところを分けています。</h2>
-          <p class="skeleton-lead">人の確認を増やせば安全になるわけでもありません。今は、影響が大きいところを中心に人が確認し、それ以外はできるだけ機械的に確かめるようにしています。</p>
+          <h2 id="human-check-title">影響が大きいところは、人が確認しています。</h2>
+          <p class="skeleton-lead">人の確認を増やせば安全になるわけでもありません。今は、目的や利用者への影響が変わるところ、本番反映、認証や権限、実際の画面などを中心に人が確認しています。</p>
           <div class="statement-row"><span>本番反映</span><span>重要な変更は、人が内容を確認してから進める</span></div>
-          <div class="statement-row"><span>大きな仕様変更</span><span>目的や利用者への影響が変わる時は、人が判断する</span></div>
-          <div class="statement-row"><span>権限・Security</span><span>Secret、認証、Data操作は確認点を増やす</span></div>
+          <div class="statement-row"><span>仕様変更</span><span>目的や利用者への影響が変わる時は、人が判断する</span></div>
+          <div class="statement-row"><span>認証・権限</span><span>Secret、認証、データ操作は確認点を増やす</span></div>
           <div class="statement-row"><span>実際の画面</span><span>CIが通っていても、本番や実機で見る</span></div>
         </div>
       </section>
@@ -121,12 +116,12 @@
       <section class="skeleton-section" id="failed" aria-labelledby="failed-title">
         <div class="skeleton-number">04 / うまくいかなかったこと</div>
         <div class="skeleton-body">
-          <h2 id="failed-title">うまくいかなかったのは、<br>AIの性能だけが理由ではなかった。</h2>
+          <h2 id="failed-title">AI以外のところでも、何度かつまずきました。</h2>
           <p class="skeleton-lead">人の確認を増やしすぎたり、テスト条件を厳しくしすぎたり、途中から会話を再開した時に状態がずれたりしました。AIを使うほど、仕事の渡し方や確認方法の雑さも見えやすくなりました。</p>
           <div class="skeleton-grid skeleton-grid-2">
-            <article><p class="eyebrow">確認しすぎた</p><h3>人が止める場所が多すぎた</h3><p>安全ではあるが、毎回止まって開発が重くなった。</p></article>
+            <article><p class="eyebrow">確認しすぎた</p><h3>人が止める場所が多すぎた</h3><p>毎回止まるので、安全性以上に開発の重さが目立った。</p></article>
             <article><p class="eyebrow">厳しくしすぎた</p><h3>テスト条件を増やしすぎた</h3><p>小さなアプリに必要以上の確認を持ち込んだ。</p></article>
-            <article><p class="eyebrow">分担が曖昧だった</p><h3>画像やFileの扱いで手戻りした</h3><p>AIがやること、人がやることを先に決める必要があった。</p></article>
+            <article><p class="eyebrow">分担が曖昧だった</p><h3>画像やファイルの扱いで手戻りした</h3><p>AIが行うこと、人が行うことを先に決める必要があった。</p></article>
             <article><p class="eyebrow">途中でずれた</p><h3>会話をまたぐと状態が分からなくなった</h3><p>Issue、Branch、PR、mainを見て再開するように変えた。</p></article>
           </div>
         </div>
@@ -135,71 +130,51 @@
       <section class="skeleton-section" id="changed" aria-labelledby="changed-title">
         <div class="skeleton-number">05 / そこから変えたこと</div>
         <div class="skeleton-body">
-          <h2 id="changed-title">アプリを作るたびに、<br>開発のやり方も変えてきました。</h2>
-          <p class="skeleton-lead">最初から今の形だったわけではありません。必要になった時にIssue、PR、設計書、CI、本番確認を足してきました。三麻スコアでは認証やDBまで入り、業務システムに近い確認も増えています。</p>
+          <h2 id="changed-title">必要になったものを足し、重すぎたものは減らしています。</h2>
+          <p class="skeleton-lead">最初から今の形だったわけではありません。Issue、PR、設計書、CI、本番確認は、必要になった時に足してきました。一度増やした確認でも、アプリの大きさや使うAIが変われば、軽くしたりやめたりします。</p>
           <div class="evolution-timeline">
             <article class="evolution-item"><span>最初</span><h3>AIにコードを書いてもらう</h3><p>まずは、どこまで作れるかを試した。</p></article>
             <article class="evolution-item"><span>次</span><h3>Issue / PR / 設計へ広げる</h3><p>変更単位と、何を作っているかを残すようにした。</p></article>
             <article class="evolution-item"><span>その後</span><h3>CIと本番確認を増やす</h3><p>「作れた」だけで終わらず、確認した記録を残すようにした。</p></article>
+            <article class="evolution-item"><span>見直し</span><h3>確認を増やしすぎたところは減らす</h3><p>Projectの大きさやRiskに合わせて、必要な確認だけ残す。</p></article>
             <article class="evolution-item"><span>今</span><h3>三麻スコアで認証・DBまで試す</h3><p>Auth、D1、API、排他、Logging、Performanceを確認中。</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="rules" aria-labelledby="rules-title">
-        <div class="skeleton-number">06 / 増やしたルール、減らしたルール</div>
+      <section class="skeleton-section" id="actual" aria-labelledby="actual-title">
+        <div class="skeleton-number">06 / 確認した記録と実物</div>
         <div class="skeleton-body">
-          <h2 id="rules-title">失敗したらルールを増やす。<br>でも、増やしたままにはしない。</h2>
-          <p class="skeleton-lead">一度必要だった確認でも、AIやTool、Projectの大きさが変われば不要になることがあります。残す、軽くする、やめるを定期的に見直します。</p>
-          <div class="lifecycle-flow" aria-label="ルールを見直す流れ">
-            <span>気になること</span><i>→</i><span>仮のルール</span><i>→</i><span>実際に使う</span><i>→</i><span>結果を見る</span><i>→</i><span>残す / 軽くする / やめる</span><i>→</i><span>次の開発</span>
-          </div>
-          <p class="skeleton-note">例：Human checkpoint過多 / Test条件過多 / Upload分担 / Context復帰 / Quota制約。</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="checking" aria-labelledby="checking-title">
-        <div class="skeleton-number">07 / どう確認しているか</div>
-        <div class="skeleton-body">
-          <h2 id="checking-title">「大丈夫です」ではなく、<br>確認できるものを残す。</h2>
-          <p class="skeleton-lead">AIを使っているかどうかに関係なく、何を見て確認したのかが分からない状態は避けたいと考えています。必要なところではIssue、PR、CI、本番確認などを残します。</p>
+          <h2 id="actual-title">何を確認したか、あとから追えるようにしています。</h2>
+          <p class="skeleton-lead">AIを使っているかどうかに関係なく、何を見て確認したのかが分からない状態は避けたいと考えています。必要なところではIssue、PR、CI、本番確認を残し、公開できる設計書やルールは実物へつなぎます。</p>
           <div class="assurance-table">
-            <div class="assurance-row"><span>品質</span><div><span>気になること</span><p>AIが作ったコードをそのまま使っていないか</p></div><div><span>いまのやり方</span><p>CI / Test / Review</p></div><div><span>確認できるもの</span><p>Test結果・PR・本番確認</p></div></div>
-            <div class="assurance-row"><span>変更履歴</span><div><span>気になること</span><p>何を変えたか追えるか</p></div><div><span>いまのやり方</span><p>Issue / Branch / PR</p></div><div><span>確認できるもの</span><p>Diff・Commit・Decision</p></div></div>
-            <div class="assurance-row"><span>本番</span><div><span>気になること</span><p>CIが通っただけで終わっていないか</p></div><div><span>いまのやり方</span><p>Preview / 本番確認</p></div><div><span>確認できるもの</span><p>Deploy履歴・実画面確認</p></div></div>
-            <div class="assurance-row"><span>Security</span><div><span>気になること</span><p>権限や情報を広く渡しすぎていないか</p></div><div><span>いまのやり方</span><p>権限を分ける / Secretを外へ出さない</p></div><div><span>確認できるもの</span><p>Architecture・設定・Policy</p></div></div>
-            <div class="assurance-row"><span>引継ぎ</span><div><span>気になること</span><p>会話が変わったら続けられないのではないか</p></div><div><span>いまのやり方</span><p>Docs / Issue / PR / mainを見る</p></div><div><span>確認できるもの</span><p>現在地をRepositoryから復元できる</p></div></div>
+            <div class="assurance-row"><span>品質</span><div><span>見るもの</span><p>CI / Test / Review</p></div><div><span>残るもの</span><p>Test結果・PR・本番確認</p></div><div><span>目的</span><p>AIが作ったコードをそのまま使わない</p></div></div>
+            <div class="assurance-row"><span>変更履歴</span><div><span>見るもの</span><p>Issue / Branch / PR</p></div><div><span>残るもの</span><p>Diff・Commit・Decision</p></div><div><span>目的</span><p>何を変えたか追えるようにする</p></div></div>
+            <div class="assurance-row"><span>本番</span><div><span>見るもの</span><p>Preview / 本番確認</p></div><div><span>残るもの</span><p>Deploy履歴・実画面確認</p></div><div><span>目的</span><p>CIが通っただけで終わらせない</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>見るもの</span><p>認証・権限・Secret・設定</p></div><div><span>残るもの</span><p>Architecture・Policy・設定</p></div><div><span>目的</span><p>権限や情報を広く渡しすぎない</p></div></div>
+          </div>
+          <div class="artifact-grid-v2">
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>今使っている開発のひな型。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>このページ自体の実装と変更履歴。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/HUMAN_AI_COLLABORATION.md" target="_blank" rel="noopener noreferrer"><span>開発ルール</span><strong>Human / AI Collaboration</strong><p>共同作業で起きた問題から追加してきたルール。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/GIT_WORKFLOW.md" target="_blank" rel="noopener noreferrer"><span>Git</span><strong>Git Workflow</strong><p>Issue、Branch、PR、CIをどう使っているか。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>本番確認</span><strong>Production Verification</strong><p>Deploy成功と、本番で正しく動くことを分けて確認する。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/SECURITY_BASELINE.md" target="_blank" rel="noopener noreferrer"><span>Security</span><strong>Security Baseline</strong><p>公開Webアプリで確認しているSecurityの基準。</p></a>
           </div>
         </div>
       </section>
 
       <section class="skeleton-section" id="overseas" aria-labelledby="overseas-title">
-        <div class="skeleton-number">08 / 海外を見て気になったこと</div>
+        <div class="skeleton-number">07 / 海外を見て気になったこと</div>
         <div class="skeleton-body">
-          <h2 id="overseas-title">新しいToolより、<br>自分たちのやり方が変わるかを見る。</h2>
-          <p class="skeleton-lead">海外の一次情報は追いますが、名前を並べるためではありません。自分たちのルールや確認方法を見直すきっかけになるものだけを残します。</p>
+          <h2 id="overseas-title">海外の情報も見ますが、載せるのは開発のやり方に関係するものだけです。</h2>
+          <p class="skeleton-lead">新しいツールや名前を並べるためではありません。一次情報を確認できて、CECILのやり方を実際に変えた、または見直す理由になったものだけを載せます。</p>
           <div class="signal-grid">
-            <article class="signal-card"><span>確認中</span><h3>長い作業でも途中から続けられるか</h3><p>会話が変わっても、IssueやPRから現在地を戻せる形が必要かを見る。</p><p class="source-line">Anthropic / OpenAI / GitHub</p></article>
-            <article class="signal-card"><span>確認中</span><h3>ルールを増やしすぎていないか</h3><p>AIやToolが変わった時、昔の制約を残し続ける必要があるか見直す。</p><p class="source-line">Anthropic / AWS / Microsoft</p></article>
-            <article class="signal-card"><span>確認中</span><h3>本番で正しいかまで見ているか</h3><p>コードが生成できたことより、実際の利用環境で正しく動くかを重視する。</p><p class="source-line">GitHub / OpenAI / Google</p></article>
+            <article class="signal-card"><span>確認中</span><h3>長い作業でも途中から続けられるか</h3><p>会話が変わっても、IssueやPRから現在地を戻せる形が必要かを見る。</p></article>
+            <article class="signal-card"><span>確認中</span><h3>ルールを増やしすぎていないか</h3><p>AIやツールが変わった時、昔の制約を残し続ける必要があるか見直す。</p></article>
+            <article class="signal-card"><span>確認中</span><h3>本番で正しいかまで見ているか</h3><p>コードが生成できたことより、実際の利用環境で正しく動くかを見る。</p></article>
           </div>
-          <p class="skeleton-note">公開版では、確認した一次情報、確認日、CECIL側で実際に変えたことをセットで記録する予定。</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="actual" aria-labelledby="actual-title">
-        <div class="skeleton-number">09 / 実際に使っているもの</div>
-        <div class="skeleton-body">
-          <h2 id="actual-title">説明だけで終わらず、<br>実物を見られるようにする。</h2>
-          <p class="skeleton-lead">このページに書いた内容は、できるだけ実際のRepositoryや設計書へつなぎます。専門用語を隠すのではなく、必要な場所ではIssue、PR、CIなど実際に使っている名前をそのまま使います。</p>
-          <div class="artifact-grid-v2">
-            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>今使っている開発のひな型。</p></a>
-            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>このページ自体の実装と変更履歴。</p></a>
-            <div class="artifact-card"><span>設計書</span><strong>Requirements / Architecture / ADR</strong><p>何を作るか、どう作るか、なぜそうしたかを残す。</p></div>
-            <div class="artifact-card"><span>開発ルール</span><strong>Human / AI Collaboration</strong><p>変更範囲、止める条件、途中から再開する時の確認方法。</p></div>
-            <div class="artifact-card"><span>確認</span><strong>CI / Preview / Production</strong><p>どこまで確認したかを残す。</p></div>
-            <div class="artifact-card"><span>文章</span><strong>Related note articles</strong><p>背景や考えたことはnoteで補足する。</p></div>
-          </div>
+          <p class="skeleton-note">公開版では、一次情報・確認日・CECIL側で実際に変えたことが揃ったものだけ掲載します。</p>
         </div>
       </section>
     </div>
