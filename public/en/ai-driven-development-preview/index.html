@@ -147,6 +147,7 @@
         <div class="skeleton-body">
           <h2 id="actual-title">I try to leave enough evidence to see what was checked.</h2>
           <p class="skeleton-lead">Whether AI is involved or not, I do not want “checked” to mean something vague. Issues, PRs, CI results, and production checks are kept where needed, and public design or process documents link to the actual files.</p>
+          <p class="term-guide-hint"><a href="#terms">A short explanation of Issue, PR, CI, and other terms is available at the end of the page.</a></p>
           <div class="assurance-table">
             <div class="assurance-row"><span>Quality</span><div><span>Check</span><p>CI / Test / Review</p></div><div><span>Record</span><p>Test results / PR / production check</p></div><div><span>Why</span><p>Avoid using generated code without review</p></div></div>
             <div class="assurance-row"><span>Changes</span><div><span>Check</span><p>Issue / Branch / PR</p></div><div><span>Record</span><p>Diff / Commit / Decision</p></div><div><span>Why</span><p>Keep changes traceable</p></div></div>
@@ -176,6 +177,22 @@
           </div>
           <p class="skeleton-note">The public version will only keep items that have a primary source, a review date, and a concrete CECIL change or review attached.</p>
         </div>
+      </section>
+
+      <section class="term-guide-section" id="terms" aria-label="Terms used on this page">
+        <details class="term-guide">
+          <summary><span>Terms used on this page</span><small>Open only if useful</small></summary>
+          <dl class="term-guide-list">
+            <div><dt>Issue</dt><dd>A unit for recording what will change, why, and within what scope.</dd></div>
+            <div><dt>Branch</dt><dd>A place to work on changes separately from main.</dd></div>
+            <div><dt>PR</dt><dd>Pull Request. A unit for reviewing changes before bringing them into main.</dd></div>
+            <div><dt>CI</dt><dd>Automated checks such as tests and builds.</dd></div>
+            <div><dt>Preview</dt><dd>An environment used to inspect the real screen and behavior before production.</dd></div>
+            <div><dt>Repository</dt><dd>The place where code, design documents, and change history are kept together.</dd></div>
+            <div><dt>main</dt><dd>The baseline branch that holds reviewed and accepted changes.</dd></div>
+            <div><dt>Commit</dt><dd>A recorded set of related changes in the repository history.</dd></div>
+          </dl>
+        </details>
       </section>
     </div>
   </main>
