@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Developer・Manager・Customerの3視点でAI駆動開発のTrust Designを確認するCECIL Previewです。">
-  <title>AI駆動開発 Trust Design — Structure Preview | CECIL</title>
+  <meta name="description" content="AI駆動開発を実際に試しながら、使っているところ、人が確認しているところ、失敗して変えたところを残すCECIL Previewです。">
+  <title>AI駆動開発 実践記録 — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -54,188 +54,151 @@
       <div class="ai-preview-copy wrap">
         <p class="eyebrow">AI駆動開発 実践記録</p>
         <h1 id="ai-preview-title">AIとアプリを作るたびに、<br>開発のやり方そのものが<br>変わっていった。</h1>
-        <p class="ai-preview-lead">複数のWebアプリをAIと作りながら、失敗をルールに変え、設計やテンプレートへ残してきた。これは、今も更新を続けているAI駆動開発の実践記録です。</p>
-        <p class="ai-preview-trust">AIにどう作らせるかだけでなく、Developerが実行でき、Managerが管理でき、Customerが説明を受けて納得できる状態まで設計する。</p>
-        <p class="ai-preview-flow">PROJECT → FRICTION / EVIDENCE<span class="ai-preview-flow-break"><br></span> → CONTROL → RULE → NEXT PROJECT</p>
+        <p class="ai-preview-lead">最初は、AIを開発のどこまで使っていいのか分からなかった。何個かアプリを作るうちに、AIで進めやすいところ、人が確認した方がいいところ、逆にやりすぎだったルールが少しずつ見えてきた。その変化を残しています。</p>
+        <p class="ai-preview-flow">作る → 確かめる → 振り返る → 次で変える</p>
       </div>
     </section>
 
     <section class="ai-preview-agenda wrap" id="agenda" aria-labelledby="agenda-title">
       <div class="skeleton-heading">
         <div>
-          <p class="eyebrow">AGENDA / ON THIS PAGE</p>
-          <h2 id="agenda-title">速く作るだけではなく、<br>安心して任せられるところまで。</h2>
+          <p class="eyebrow">このページに書いていること</p>
+          <h2 id="agenda-title">完成したやり方ではなく、<br>今まで変えてきたこと。</h2>
         </div>
-        <p>AI駆動開発をDeveloperだけの手法にしない。実ProjectのControl・Evidence・Artifactから、ManagerとCustomerにも説明できる形を作ります。</p>
+        <p>AI駆動開発の一般論をまとめるのではなく、実際に作って、困って、変えたことを中心にしています。管理する側や依頼する側が気になるところも、同じ流れの中で確認できるようにします。</p>
       </div>
       <nav class="agenda-list" aria-label="このページの目次">
-        <a href="#why"><span>01</span><strong>WHY THIS EXISTS</strong><em>なぜ、もう一つAI駆動開発のページを作るのか</em><b aria-hidden="true">↘</b></a>
-        <a href="#fear-control"><span>02</span><strong>FROM FEAR TO CONTROL</strong><em>不安をControlとEvidenceへ変える</em><b aria-hidden="true">↘</b></a>
-        <a href="#global-signals"><span>03</span><strong>GLOBAL SIGNALS</strong><em>海外のAgentic Developmentから何を取り込むか</em><b aria-hidden="true">↘</b></a>
-        <a href="#golden-path"><span>04</span><strong>GOLDEN PATH</strong><em>思いつく → 作る → 確かめる → 育てる</em><b aria-hidden="true">↘</b></a>
-        <a href="#autonomy"><span>05</span><strong>AUTONOMY & HUMAN GATES</strong><em>AIにどこまで任せ、どこで止めるか</em><b aria-hidden="true">↘</b></a>
-        <a href="#rule-lifecycle"><span>06</span><strong>RULE LIFECYCLE</strong><em>Ruleを増やすだけでなく、緩和・廃止する</em><b aria-hidden="true">↘</b></a>
-        <a href="#assurance"><span>07</span><strong>ASSURANCE</strong><em>品質・Security・追跡性・責任を説明可能にする</em><b aria-hidden="true">↘</b></a>
-        <a href="#project-evolution"><span>08</span><strong>PROJECT EVOLUTION</strong><em>Projectごとに開発方法がどう変わったか</em><b aria-hidden="true">↘</b></a>
-        <a href="#artifacts"><span>09</span><strong>ARTIFACTS</strong><em>実物の設計書・Template・Repository</em><b aria-hidden="true">↘</b></a>
+        <a href="#about"><span>01</span><strong>このページについて</strong><em>なぜ残しているのか</em><b aria-hidden="true">↘</b></a>
+        <a href="#where-ai"><span>02</span><strong>AIを使っているところ</strong><em>今の開発の進め方</em><b aria-hidden="true">↘</b></a>
+        <a href="#human-check"><span>03</span><strong>人が確認しているところ</strong><em>自動で進めない場所</em><b aria-hidden="true">↘</b></a>
+        <a href="#failed"><span>04</span><strong>うまくいかなかったこと</strong><em>確認しすぎた、厳しくしすぎた、途中でずれた</em><b aria-hidden="true">↘</b></a>
+        <a href="#changed"><span>05</span><strong>そこから変えたこと</strong><em>開発のやり方がどう変わったか</em><b aria-hidden="true">↘</b></a>
+        <a href="#rules"><span>06</span><strong>増やしたルール、減らしたルール</strong><em>残す・緩める・やめる</em><b aria-hidden="true">↘</b></a>
+        <a href="#checking"><span>07</span><strong>どう確認しているか</strong><em>品質、変更履歴、本番、Security</em><b aria-hidden="true">↘</b></a>
+        <a href="#overseas"><span>08</span><strong>海外を見て気になったこと</strong><em>流行ではなく、自分たちのやり方を見直す材料</em><b aria-hidden="true">↘</b></a>
+        <a href="#actual"><span>09</span><strong>実際に使っているもの</strong><em>GitHub、設計書、CI、Preview</em><b aria-hidden="true">↘</b></a>
       </nav>
     </section>
 
     <div class="ai-preview-sections wrap">
-      <section class="skeleton-section" id="why" aria-labelledby="why-title">
-        <div class="skeleton-number">01 / WHY THIS EXISTS</div>
+      <section class="skeleton-section" id="about" aria-labelledby="about-title">
+        <div class="skeleton-number">01 / このページについて</div>
         <div class="skeleton-body">
-          <p class="section-kicker">THREE LENSES / ONE DEVELOPMENT SYSTEM</p>
-          <h2 id="why-title">AI駆動開発を、<br>開発者だけのものにしない。</h2>
-          <p class="skeleton-lead">AIに何をさせるかだけなら、すでに多くの情報があります。ここでは、同じ開発プロセスをDeveloper・Manager・Customerの3者から見て、実務として成立する条件を残します。</p>
-          <div class="lens-strip">
-            <article class="lens-card"><span>DEVELOPER</span><h3>どう作るか</h3><p>AIへ役割を渡し、設計・実装・検証をどう進めるか。</p></article>
-            <article class="lens-card"><span>MANAGER</span><h3>どう管理するか</h3><p>権限、品質、Cost、責任、Human Gateをどう制御するか。</p></article>
-            <article class="lens-card"><span>CUSTOMER</span><h3>なぜ任せられるか</h3><p>変更・品質・責任を、どんなEvidenceで説明できるか。</p></article>
-          </div>
-          <div class="not-this-grid" aria-label="このページでやらないこと">
-            <div class="not-this"><span>NOT THIS / 01</span><p>Tool比較やPrompt集だけで終わらない。</p></div>
-            <div class="not-this"><span>NOT THIS / 02</span><p>「AIなら全部できる」という導入煽りをしない。</p></div>
-            <div class="not-this"><span>NOT THIS / 03</span><p>Spec駆動開発の一般論だけをまとめない。</p></div>
-            <div class="not-this"><span>NOT THIS / 04</span><p>完成したBest Practiceだけを見せない。</p></div>
-          </div>
+          <h2 id="about-title">最初は、AIを開発のどこまで<br>使っていいのか分からなかった。</h2>
+          <p class="skeleton-lead">コードを書いてもらうところから始めて、設計、Issue、テスト、ドキュメントまで使う範囲が広がりました。その一方で、「ここは人が見た方がいい」「これは確認を増やしすぎた」ということも出てきました。このページでは、その途中経過をそのまま残します。</p>
+          <div class="statement-row"><span>開発する人</span><span>どこでAIを使うと進めやすいかが分かる</span></div>
+          <div class="statement-row"><span>管理する人</span><span>どこで人が確認しているか、変更履歴が残っているかを見られる</span></div>
+          <div class="statement-row"><span>依頼する人</span><span>AIを使っていても、何を確認してから本番へ出しているかが分かる</span></div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="fear-control" aria-labelledby="fear-control-title">
-        <div class="skeleton-number">02 / FROM FEAR TO CONTROL</div>
+      <section class="skeleton-section" id="where-ai" aria-labelledby="where-ai-title">
+        <div class="skeleton-number">02 / AIを使っているところ</div>
         <div class="skeleton-body">
-          <p class="section-kicker">FEAR → CONTROL → EVIDENCE</p>
-          <h2 id="fear-control-title">不安を否定せず、<br>確認できる仕組みに変える。</h2>
-          <p class="skeleton-lead">クラウド導入やAI拡張開発の時にも障壁はありました。AI駆動開発でも、不安そのものを消すのではなく、ControlとEvidenceへ分解します。</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span class="is-primary">CUSTOMER</span></div>
-          <div class="fear-control">
-            <div class="fear-row"><div><span>FEAR</span><p>AIが勝手に変更しないか</p></div><div><span>CONTROL</span><p>Scope Lock / Planned Files</p></div><div><span>EVIDENCE</span><p>Issue・Diff・PRで変更範囲を確認</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>勝手に本番へ出ないか</p></div><div><span>CONTROL</span><p>Human Gate / Merge / Release control</p></div><div><span>EVIDENCE</span><p>承認履歴・Deploy履歴</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>品質を誰が保証するのか</p></div><div><span>CONTROL</span><p>CI / Preview / Human Review</p></div><div><span>EVIDENCE</span><p>Test結果・Preview・本番確認</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>何をしたか追えなくならないか</p></div><div><span>CONTROL</span><p>1 Issue / 1 Branch / 1 PR</p></div><div><span>EVIDENCE</span><p>履歴・Decision・Artifactを残す</p></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="global-signals" aria-labelledby="global-signals-title">
-        <div class="skeleton-number">03 / GLOBAL SIGNALS</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">PRIMARY SOURCES / NOT TREND CHASING</p>
-          <h2 id="global-signals-title">海外の変化を追う。<br>ただし、流行としては追わない。</h2>
-          <p class="skeleton-lead">一次情報から、開発方式を見直すSignalだけを拾います。新しいToolを並べるのではなく、CECILのRule・Gate・Templateを変える必要があるかで評価します。</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="signal-grid">
-            <article class="signal-card"><span>SIGNAL 01</span><h3>CodingからAgent Operationsへ</h3><p>長い作業、権限、状態継承、Observationまで含めて開発環境を考える。</p><p class="source-line">WATCH: Anthropic / OpenAI / GitHub</p></article>
-            <article class="signal-card"><span>SIGNAL 02</span><h3>固定RuleからAdaptive Harnessへ</h3><p>ModelやToolが変わった時、古いGuardrailを残し続けない。</p><p class="source-line">WATCH: Anthropic / AWS / Microsoft</p></article>
-            <article class="signal-card"><span>SIGNAL 03</span><h3>速度からProduction Correctnessへ</h3><p>「生成できた」より、本番で正しく動き説明可能かを重視する。</p><p class="source-line">WATCH: GitHub / OpenAI / Google</p></article>
-          </div>
-          <p class="skeleton-note">公開版では各Signalに一次情報・確認日・CECIL側の変更内容を紐づける予定。</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="golden-path" aria-labelledby="golden-path-title">
-        <div class="skeleton-number">04 / GOLDEN PATH</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">IDEA → BUILD → VERIFY → EVOLVE</p>
-          <h2 id="golden-path-title">思いつく。作る。<br>確かめる。育てる。</h2>
-          <p class="skeleton-lead">工程を増やすことが目的ではありません。どこでAIが進め、どこでHumanに戻し、何を次Projectへ残すかを見える形にします。</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span>MANAGER</span><span>CUSTOMER</span></div>
+          <h2 id="where-ai-title">今は、コードを書くところだけでは<br>なくなっています。</h2>
+          <p class="skeleton-lead">要件を整理する、設計案を出す、Issueへ分ける、実装する、テストを書く、変更内容をまとめる。AIを使う場所は少しずつ増えました。ただし、全部を同じように扱ってはいません。</p>
           <div class="golden-path-grid">
-            <article><span>01</span><h3>思いつく</h3><p>違和感、Idea、利用場面、MVP、やらないこと。</p></article>
-            <article><span>02</span><h3>作る</h3><p>Requirements、Architecture、Issue、Branch、Implementation。</p></article>
-            <article><span>03</span><h3>確かめる</h3><p>CI、Preview、Human Review、Production Verification。</p></article>
-            <article><span>04</span><h3>育てる</h3><p>振り返り、Knowledge、Template還流、次Projectで再利用。</p></article>
-          </div>
-          <div class="gate-summary">
-            <div class="statement-row"><span>HUMAN GATE</span><span>目的・価値・優先順位・重要なDesign採用・Merge・Release・最終責任</span></div>
-            <div class="statement-row"><span>AI</span><span>整理・提案・分解・実装・Test・文書更新・Evidence整理</span></div>
-            <div class="statement-row"><span>AUTOMATION</span><span>lint / test / build / repository validation / preview / deploy</span></div>
+            <article><span>01</span><h3>考える</h3><p>利用場面、やりたいこと、やらないことを整理する。</p></article>
+            <article><span>02</span><h3>作る</h3><p>Requirements、Architecture、Issue、Branch、実装。</p></article>
+            <article><span>03</span><h3>確かめる</h3><p>CI、Test、Preview、実機確認。</p></article>
+            <article><span>04</span><h3>振り返る</h3><p>うまくいかなかったところを、次の開発へ残す。</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="autonomy" aria-labelledby="autonomy-title">
-        <div class="skeleton-number">05 / AUTONOMY & HUMAN GATES</div>
+      <section class="skeleton-section" id="human-check" aria-labelledby="human-check-title">
+        <div class="skeleton-number">03 / 人が確認しているところ</div>
         <div class="skeleton-body">
-          <p class="section-kicker">NOT USE / DON'T USE — DESIGN THE AUTHORITY</p>
-          <h2 id="autonomy-title">AIを使うかではなく、<br>どこまで任せるかを決める。</h2>
-          <p class="skeleton-lead">AI駆動開発を「全部AIに任せること」と捉えない。操作ごとにAutonomyを設定し、Riskが高いところだけHuman Gateを残します。</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="autonomy-scale">
-            <div class="autonomy-row"><span>LEVEL 0</span><strong>Human only</strong><p>AIを使わず、人が実行する。</p></div>
-            <div class="autonomy-row"><span>LEVEL 1</span><strong>AI proposes</strong><p>AIは提案のみ。実行はHuman。</p></div>
-            <div class="autonomy-row"><span>LEVEL 2</span><strong>AI changes</strong><p>定義済みScope内で変更し、Humanが確認する。</p></div>
-            <div class="autonomy-row"><span>LEVEL 3</span><strong>AI changes + tests + PR</strong><p>実装・Test・PRまで進め、MergeはHuman Gate。</p></div>
-            <div class="autonomy-row"><span>LEVEL 4</span><strong>Defined autonomous scope</strong><p>低Risk領域は条件内で自律実行し、例外だけHumanへ戻す。</p></div>
-            <div class="autonomy-row"><span>LEVEL 5</span><strong>Higher autonomy</strong><p>強いPolicy・Audit・Rollbackを前提に、より広い実行権限を渡す。</p></div>
-          </div>
-          <p class="skeleton-note">CECILではProduction release、Secret、破壊的Data操作などは高いHuman Gate候補として扱う。</p>
+          <h2 id="human-check-title">自動で進めた方が楽なところと、<br>人が見た方がいいところを分けています。</h2>
+          <p class="skeleton-lead">人の確認を増やせば安全になるわけでもありません。今は、影響が大きいところを中心に人が確認し、それ以外はできるだけ機械的に確かめるようにしています。</p>
+          <div class="statement-row"><span>本番反映</span><span>重要な変更は、人が内容を確認してから進める</span></div>
+          <div class="statement-row"><span>大きな仕様変更</span><span>目的や利用者への影響が変わる時は、人が判断する</span></div>
+          <div class="statement-row"><span>権限・Security</span><span>Secret、認証、Data操作は確認点を増やす</span></div>
+          <div class="statement-row"><span>実際の画面</span><span>CIが通っていても、本番や実機で見る</span></div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="rule-lifecycle" aria-labelledby="rule-lifecycle-title">
-        <div class="skeleton-number">06 / RULE LIFECYCLE</div>
+      <section class="skeleton-section" id="failed" aria-labelledby="failed-title">
+        <div class="skeleton-number">04 / うまくいかなかったこと</div>
         <div class="skeleton-body">
-          <p class="section-kicker">GUARDRAILS SHOULD ALSO EVOLVE</p>
-          <h2 id="rule-lifecycle-title">Ruleは増やすだけではない。<br>緩めるし、捨てる。</h2>
-          <p class="skeleton-lead">失敗のたびにRuleを足すだけでは、Processが重くなります。Evidenceを見ながら、標準化した後もKeep / Relax / Retireを判断します。</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="lifecycle-flow" aria-label="Rule lifecycle">
-            <span>FRICTION</span><i>→</i><span>TEMPORARY<br>GUARDRAIL</span><i>→</i><span>EVIDENCE</span><i>→</i><span>STANDARDIZE</span><i>→</i><span>REUSE</span><i>→</i><span>MEASURE</span><i>→</i><span>KEEP / RELAX<br>/ RETIRE</span><i>→</i><span>NEXT PROJECT</span>
-          </div>
-          <p class="skeleton-note">Sample: Human checkpoint過多 / Test条件過多 / Upload分担 / Context復帰 / Quota制約。</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="assurance" aria-labelledby="assurance-title">
-        <div class="skeleton-number">07 / ASSURANCE</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">CONCERN → CONTROL → EVIDENCE</p>
-          <h2 id="assurance-title">「大丈夫です」ではなく、<br>何を見れば確認できるか。</h2>
-          <p class="skeleton-lead">管理者や顧客が安心できる材料は、精神論ではなく確認可能なEvidenceです。公開版では実RepositoryのArtifactまでつなぎます。</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span class="is-primary">CUSTOMER</span></div>
-          <div class="assurance-table">
-            <div class="assurance-row"><span>QUALITY</span><div><span>CONCERN</span><p>AI生成コードを信用してよいか</p></div><div><span>CONTROL</span><p>CI / Test / Human Review</p></div><div><span>EVIDENCE</span><p>Check結果・Review履歴・Production Verification</p></div></div>
-            <div class="assurance-row"><span>SECURITY</span><div><span>CONCERN</span><p>権限や情報を過剰に渡さないか</p></div><div><span>CONTROL</span><p>Trust Boundary / Least Privilege / Stop Conditions</p></div><div><span>EVIDENCE</span><p>Architecture / Policy / Secret管理</p></div></div>
-            <div class="assurance-row"><span>TRACEABILITY</span><div><span>CONCERN</span><p>誰が何を変えたか追えるか</p></div><div><span>CONTROL</span><p>Issue / Branch / PR / ADR</p></div><div><span>EVIDENCE</span><p>Diff・Decision・Commit履歴</p></div></div>
-            <div class="assurance-row"><span>RESPONSIBILITY</span><div><span>CONCERN</span><p>最終判断者が曖昧にならないか</p></div><div><span>CONTROL</span><p>Human Gate / Approval ownership</p></div><div><span>EVIDENCE</span><p>Merge / Release / Reviewの責任境界</p></div></div>
-            <div class="assurance-row"><span>RECOVERY</span><div><span>CONCERN</span><p>失敗時に止めて戻せるか</p></div><div><span>CONTROL</span><p>Stop / Rollback / Environment separation</p></div><div><span>EVIDENCE</span><p>Deploy履歴・復旧手順・Version</p></div></div>
-            <div class="assurance-row"><span>CONTINUITY</span><div><span>CONCERN</span><p>担当AIや会話が変わっても続けられるか</p></div><div><span>CONTROL</span><p>Docs / Issue / PR / main / Knowledge sync</p></div><div><span>EVIDENCE</span><p>Evidence-based resumption</p></div></div>
+          <h2 id="failed-title">うまくいかなかったのは、<br>AIの性能だけが理由ではなかった。</h2>
+          <p class="skeleton-lead">人の確認を増やしすぎたり、テスト条件を厳しくしすぎたり、途中から会話を再開した時に状態がずれたりしました。AIを使うほど、仕事の渡し方や確認方法の雑さも見えやすくなりました。</p>
+          <div class="skeleton-grid skeleton-grid-2">
+            <article><p class="eyebrow">確認しすぎた</p><h3>人が止める場所が多すぎた</h3><p>安全ではあるが、毎回止まって開発が重くなった。</p></article>
+            <article><p class="eyebrow">厳しくしすぎた</p><h3>テスト条件を増やしすぎた</h3><p>小さなアプリに必要以上の確認を持ち込んだ。</p></article>
+            <article><p class="eyebrow">分担が曖昧だった</p><h3>画像やFileの扱いで手戻りした</h3><p>AIがやること、人がやることを先に決める必要があった。</p></article>
+            <article><p class="eyebrow">途中でずれた</p><h3>会話をまたぐと状態が分からなくなった</h3><p>Issue、Branch、PR、mainを見て再開するように変えた。</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="project-evolution" aria-labelledby="project-evolution-title">
-        <div class="skeleton-number">08 / PROJECT EVOLUTION</div>
+      <section class="skeleton-section" id="changed" aria-labelledby="changed-title">
+        <div class="skeleton-number">05 / そこから変えたこと</div>
         <div class="skeleton-body">
-          <p class="section-kicker">THE METHOD CHANGES WITH THE PROJECT</p>
-          <h2 id="project-evolution-title">アプリ一覧ではなく、<br>開発方法の変化を残す。</h2>
-          <p class="skeleton-lead">Projectごとに「何を試したか → 何が摩擦になったか → どのControlを追加・緩和したか」を同じ形式で並べます。</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
+          <h2 id="changed-title">アプリを作るたびに、<br>開発のやり方も変えてきました。</h2>
+          <p class="skeleton-lead">最初から今の形だったわけではありません。必要になった時にIssue、PR、設計書、CI、本番確認を足してきました。三麻スコアでは認証やDBまで入り、業務システムに近い確認も増えています。</p>
           <div class="evolution-timeline">
-            <article class="evolution-item"><span>PHASE 01</span><h3>AIにコードを書かせる</h3><p>まず速度と実装可能性を確認。Process自体はまだHuman中心。</p></article>
-            <article class="evolution-item"><span>PHASE 02</span><h3>Issue / PR / Designへ広げる</h3><p>AIへ作業ではなく役割を渡し始め、変更単位を管理。</p></article>
-            <article class="evolution-item"><span>PHASE 03</span><h3>Guardrail / Evidenceを追加</h3><p>Human Gate、Production Verification、復帰Protocolを整備。</p></article>
-            <article class="evolution-item"><span>CURRENT</span><h3>三麻スコアでFull-stack領域へ</h3><p>Auth / DB / API / 排他 / Logging / Performance / D1 query設計を検証中。</p></article>
-            <article class="evolution-item"><span>NEXT</span><h3>Ruleを減らせるか確認する</h3><p>安全性を残しながら、Human作業とProcess重量を下げる。</p></article>
+            <article class="evolution-item"><span>最初</span><h3>AIにコードを書いてもらう</h3><p>まずは、どこまで作れるかを試した。</p></article>
+            <article class="evolution-item"><span>次</span><h3>Issue / PR / 設計へ広げる</h3><p>変更単位と、何を作っているかを残すようにした。</p></article>
+            <article class="evolution-item"><span>その後</span><h3>CIと本番確認を増やす</h3><p>「作れた」だけで終わらず、確認した記録を残すようにした。</p></article>
+            <article class="evolution-item"><span>今</span><h3>三麻スコアで認証・DBまで試す</h3><p>Auth、D1、API、排他、Logging、Performanceを確認中。</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="artifacts" aria-labelledby="artifacts-title">
-        <div class="skeleton-number">09 / ARTIFACTS</div>
+      <section class="skeleton-section" id="rules" aria-labelledby="rules-title">
+        <div class="skeleton-number">06 / 増やしたルール、減らしたルール</div>
         <div class="skeleton-body">
-          <p class="section-kicker">SHOW THE WORK</p>
-          <h2 id="artifacts-title">最後は、説明ではなく<br>実物へつなぐ。</h2>
-          <p class="skeleton-lead">CECIL上の説明だけで完結させず、Template・Repository・設計書・Guardrailへ移動できる構造にします。</p>
+          <h2 id="rules-title">失敗したらルールを増やす。<br>でも、増やしたままにはしない。</h2>
+          <p class="skeleton-lead">一度必要だった確認でも、AIやTool、Projectの大きさが変われば不要になることがあります。残す、軽くする、やめるを定期的に見直します。</p>
+          <div class="lifecycle-flow" aria-label="ルールを見直す流れ">
+            <span>気になること</span><i>→</i><span>仮のルール</span><i>→</i><span>実際に使う</span><i>→</i><span>結果を見る</span><i>→</i><span>残す / 軽くする / やめる</span><i>→</i><span>次の開発</span>
+          </div>
+          <p class="skeleton-note">例：Human checkpoint過多 / Test条件過多 / Upload分担 / Context復帰 / Quota制約。</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="checking" aria-labelledby="checking-title">
+        <div class="skeleton-number">07 / どう確認しているか</div>
+        <div class="skeleton-body">
+          <h2 id="checking-title">「大丈夫です」ではなく、<br>確認できるものを残す。</h2>
+          <p class="skeleton-lead">AIを使っているかどうかに関係なく、何を見て確認したのかが分からない状態は避けたいと考えています。必要なところではIssue、PR、CI、本番確認などを残します。</p>
+          <div class="assurance-table">
+            <div class="assurance-row"><span>品質</span><div><span>気になること</span><p>AIが作ったコードをそのまま使っていないか</p></div><div><span>いまのやり方</span><p>CI / Test / Review</p></div><div><span>確認できるもの</span><p>Test結果・PR・本番確認</p></div></div>
+            <div class="assurance-row"><span>変更履歴</span><div><span>気になること</span><p>何を変えたか追えるか</p></div><div><span>いまのやり方</span><p>Issue / Branch / PR</p></div><div><span>確認できるもの</span><p>Diff・Commit・Decision</p></div></div>
+            <div class="assurance-row"><span>本番</span><div><span>気になること</span><p>CIが通っただけで終わっていないか</p></div><div><span>いまのやり方</span><p>Preview / 本番確認</p></div><div><span>確認できるもの</span><p>Deploy履歴・実画面確認</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>気になること</span><p>権限や情報を広く渡しすぎていないか</p></div><div><span>いまのやり方</span><p>権限を分ける / Secretを外へ出さない</p></div><div><span>確認できるもの</span><p>Architecture・設定・Policy</p></div></div>
+            <div class="assurance-row"><span>引継ぎ</span><div><span>気になること</span><p>会話が変わったら続けられないのではないか</p></div><div><span>いまのやり方</span><p>Docs / Issue / PR / mainを見る</p></div><div><span>確認できるもの</span><p>現在地をRepositoryから復元できる</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="overseas" aria-labelledby="overseas-title">
+        <div class="skeleton-number">08 / 海外を見て気になったこと</div>
+        <div class="skeleton-body">
+          <h2 id="overseas-title">新しいToolより、<br>自分たちのやり方が変わるかを見る。</h2>
+          <p class="skeleton-lead">海外の一次情報は追いますが、名前を並べるためではありません。自分たちのルールや確認方法を見直すきっかけになるものだけを残します。</p>
+          <div class="signal-grid">
+            <article class="signal-card"><span>確認中</span><h3>長い作業でも途中から続けられるか</h3><p>会話が変わっても、IssueやPRから現在地を戻せる形が必要かを見る。</p><p class="source-line">Anthropic / OpenAI / GitHub</p></article>
+            <article class="signal-card"><span>確認中</span><h3>ルールを増やしすぎていないか</h3><p>AIやToolが変わった時、昔の制約を残し続ける必要があるか見直す。</p><p class="source-line">Anthropic / AWS / Microsoft</p></article>
+            <article class="signal-card"><span>確認中</span><h3>本番で正しいかまで見ているか</h3><p>コードが生成できたことより、実際の利用環境で正しく動くかを重視する。</p><p class="source-line">GitHub / OpenAI / Google</p></article>
+          </div>
+          <p class="skeleton-note">公開版では、確認した一次情報、確認日、CECIL側で実際に変えたことをセットで記録する予定。</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="actual" aria-labelledby="actual-title">
+        <div class="skeleton-number">09 / 実際に使っているもの</div>
+        <div class="skeleton-body">
+          <h2 id="actual-title">説明だけで終わらず、<br>実物を見られるようにする。</h2>
+          <p class="skeleton-lead">このページに書いた内容は、できるだけ実際のRepositoryや設計書へつなぎます。専門用語を隠すのではなく、必要な場所ではIssue、PR、CIなど実際に使っている名前をそのまま使います。</p>
           <div class="artifact-grid-v2">
-            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>AI-driven Web App Template</strong><p>Golden Pathと再利用可能な開発基盤。</p></a>
-            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>CECIL Repository</strong><p>この公開ページ自体の実装と変更履歴。</p></a>
-            <div class="artifact-card"><span>DESIGN DOCS</span><strong>Requirements / Architecture / ADR</strong><p>設計判断と責任境界を残す文書群。</p></div>
-            <div class="artifact-card"><span>GUARDRAILS</span><strong>Human / AI Collaboration</strong><p>Scope・Stop Conditions・復帰ルール。</p></div>
-            <div class="artifact-card"><span>VALIDATION</span><strong>CI / Preview / Production</strong><p>「確認済み」をEvidenceで支える仕組み。</p></div>
-            <div class="artifact-card"><span>WRITING</span><strong>Related note articles</strong><p>背景や経験を文章で深掘りする補助導線。</p></div>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>今使っている開発のひな型。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>このページ自体の実装と変更履歴。</p></a>
+            <div class="artifact-card"><span>設計書</span><strong>Requirements / Architecture / ADR</strong><p>何を作るか、どう作るか、なぜそうしたかを残す。</p></div>
+            <div class="artifact-card"><span>開発ルール</span><strong>Human / AI Collaboration</strong><p>変更範囲、止める条件、途中から再開する時の確認方法。</p></div>
+            <div class="artifact-card"><span>確認</span><strong>CI / Preview / Production</strong><p>どこまで確認したかを残す。</p></div>
+            <div class="artifact-card"><span>文章</span><strong>Related note articles</strong><p>背景や考えたことはnoteで補足する。</p></div>
           </div>
         </div>
       </section>
