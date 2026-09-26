@@ -349,6 +349,11 @@
     font-size: 11px;
   }
 
+  .skeleton-body h2 {
+    font-size: clamp(27px, 7.6vw, 36px);
+    line-height: 1.38;
+  }
+
   .not-this-grid { grid-template-columns: 1fr; }
   .not-this:nth-child(odd),
   .not-this:nth-child(even) {
