@@ -466,19 +466,44 @@
     text-align: center;
   }
 
-  .assurance-row > span,
-  .assurance-row > div { padding: 16px 0; }
-
-  .evolution-item {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .assurance-table,
+  .signal-grid,
+  .artifact-grid-v2,
+  .term-guide {
+    border-top: 0;
+    border-bottom: 0;
   }
 
-  .evolution-item p { grid-column: 1; }
+  .assurance-row {
+    padding: 18px 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .assurance-row:last-child,
+  .signal-card:last-child,
+  .artifact-card:last-child {
+    border-bottom: 0;
+  }
+
+  .assurance-row > span,
+  .assurance-row > div {
+    padding: 4px 0;
+    border-bottom: 0;
+  }
+
+  .signal-card,
+  .artifact-card {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .term-guide-section {
+    margin-top: 18px;
+  }
 
   .term-guide summary {
     align-items: flex-start;
     gap: 10px;
+    padding: 18px 0;
   }
 
   .term-guide summary small { margin-left: 0; }
@@ -486,66 +511,14 @@
   .term-guide-list > div {
     grid-template-columns: 1fr;
     gap: 6px;
-  }
-
-  /* On small screens, whitespace carries most of the grouping. */
-  .assurance-table,
-  .signal-grid,
-  .artifact-grid-v2 {
-    border-top: 0;
-    border-bottom: 0;
-  }
-
-  .assurance-row {
-    padding: 14px 0 18px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .assurance-row:last-child { border-bottom: 0; }
-
-  .assurance-row > span,
-  .assurance-row > div {
-    padding: 5px 0;
-    border-bottom: 0;
-  }
-
-  .signal-card,
-  .artifact-card {
-    border-bottom: 0 !important;
-  }
-
-  .signal-card {
-    padding: 18px 0 24px;
-  }
-
-  .signal-card + .signal-card {
-    padding-top: 26px;
-  }
-
-  .artifact-card {
-    padding: 18px 0 22px;
-  }
-
-  .term-guide-section {
-    margin-top: 22px;
-    padding-bottom: 0;
-  }
-
-  .term-guide {
-    border-top: 0;
-    border-bottom: 0;
-  }
-
-  .term-guide summary {
-    padding: 14px 0 18px;
-  }
-
-  .term-guide-list > div {
-    padding: 11px 0;
+    padding: 12px 0;
     border-top: 0;
   }
 
-  .term-guide-list > div + div {
-    margin-top: 6px;
+  .evolution-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
+
+  .evolution-item p { grid-column: 1; }
 }
