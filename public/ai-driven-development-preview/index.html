@@ -94,8 +94,8 @@
           <p class="skeleton-lead">要件を整理する、設計案を出す、Issueへ分ける、実装する、テストを書く、変更内容をまとめる。使う場所は少しずつ増えました。ただし、全部を同じように扱っているわけではありません。</p>
           <div class="golden-path-grid">
             <article><span>01</span><h3>考える</h3><p>利用場面、やりたいこと、やらないことを整理する。</p></article>
-            <article><span>02</span><h3>作る</h3><p>Requirements、Architecture、Issue、Branch、実装。</p></article>
-            <article><span>03</span><h3>確かめる</h3><p>CI、Test、Preview、実機確認。</p></article>
+            <article><span>02</span><h3>作る</h3><p>要件、設計、Issue、Branch、実装。</p></article>
+            <article><span>03</span><h3>確かめる</h3><p>CI、テスト、Preview、実機確認。</p></article>
             <article><span>04</span><h3>振り返る</h3><p>うまくいかなかったところを、次の開発へ残す。</p></article>
           </div>
         </div>
@@ -108,7 +108,7 @@
           <p class="skeleton-lead">人の確認を増やせば安全になるわけでもありません。今は、目的や利用者への影響が変わるところ、本番反映、認証や権限、実際の画面などを中心に人が確認しています。</p>
           <div class="statement-row"><span>本番反映</span><span>重要な変更は、人が内容を確認してから進める</span></div>
           <div class="statement-row"><span>仕様変更</span><span>目的や利用者への影響が変わる時は、人が判断する</span></div>
-          <div class="statement-row"><span>認証・権限</span><span>Secret、認証、データ操作は確認点を増やす</span></div>
+          <div class="statement-row"><span>認証・権限</span><span>APIキーなどの秘密情報、認証、データ操作は確認点を増やす</span></div>
           <div class="statement-row"><span>実際の画面</span><span>CIが通っていても、本番や実機で見る</span></div>
         </div>
       </section>
@@ -137,7 +137,7 @@
             <article class="evolution-item"><span>次</span><h3>Issue / PR / 設計へ広げる</h3><p>変更単位と、何を作っているかを残すようにした。</p></article>
             <article class="evolution-item"><span>その後</span><h3>CIと本番確認を増やす</h3><p>「作れた」だけで終わらず、確認した記録を残すようにした。</p></article>
             <article class="evolution-item"><span>見直し</span><h3>確認を増やしすぎたところは減らす</h3><p>アプリの大きさや危険度に合わせて、必要な確認だけ残す。</p></article>
-            <article class="evolution-item"><span>今</span><h3>三麻スコアで認証・DBまで試す</h3><p>Auth、D1、API、排他、Logging、Performanceを確認中。</p></article>
+            <article class="evolution-item"><span>今</span><h3>三麻スコアで認証・DBまで試す</h3><p>認証、D1、API、排他、ログ、性能を確認中。</p></article>
           </div>
         </div>
       </section>
@@ -147,18 +147,19 @@
         <div class="skeleton-body">
           <h2 id="actual-title">何を確認したか、あとから追えるようにしています。</h2>
           <p class="skeleton-lead">AIを使っているかどうかに関係なく、何を見て確認したのかが分からない状態は避けたいと考えています。必要なところではIssue、PR、CI、本番確認を残し、公開できる設計書やルールは実物へつなぎます。</p>
+          <p class="term-guide-hint"><a href="#terms">IssueやPRなど、このページで使っている言葉は末尾に簡単な説明があります。</a></p>
           <div class="assurance-table">
-            <div class="assurance-row"><span>品質</span><div><span>見るもの</span><p>CI / Test / Review</p></div><div><span>残るもの</span><p>Test結果・PR・本番確認</p></div><div><span>目的</span><p>AIが作ったコードをそのまま使わない</p></div></div>
-            <div class="assurance-row"><span>変更履歴</span><div><span>見るもの</span><p>Issue / Branch / PR</p></div><div><span>残るもの</span><p>Diff・Commit・Decision</p></div><div><span>目的</span><p>何を変えたか追えるようにする</p></div></div>
-            <div class="assurance-row"><span>本番</span><div><span>見るもの</span><p>Preview / 本番確認</p></div><div><span>残るもの</span><p>Deploy履歴・実画面確認</p></div><div><span>目的</span><p>CIが通っただけで終わらせない</p></div></div>
-            <div class="assurance-row"><span>Security</span><div><span>見るもの</span><p>認証・権限・Secret・設定</p></div><div><span>残るもの</span><p>Architecture・Policy・設定</p></div><div><span>目的</span><p>権限や情報を広く渡しすぎない</p></div></div>
+            <div class="assurance-row"><span>品質</span><div><span>見るもの</span><p>CI / テスト / レビュー</p></div><div><span>残るもの</span><p>テスト結果・PR・本番確認</p></div><div><span>目的</span><p>AIが作ったコードをそのまま使わない</p></div></div>
+            <div class="assurance-row"><span>変更履歴</span><div><span>見るもの</span><p>Issue / Branch / PR</p></div><div><span>残るもの</span><p>差分・Commit・判断記録</p></div><div><span>目的</span><p>何を変えたか追えるようにする</p></div></div>
+            <div class="assurance-row"><span>本番</span><div><span>見るもの</span><p>Preview / 本番確認</p></div><div><span>残るもの</span><p>デプロイ履歴・実画面確認</p></div><div><span>目的</span><p>CIが通っただけで終わらせない</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>見るもの</span><p>認証・権限・秘密情報・設定</p></div><div><span>残るもの</span><p>設計書・設定方針・設定</p></div><div><span>目的</span><p>権限や情報を広く渡しすぎない</p></div></div>
           </div>
           <div class="artifact-grid-v2">
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>今使っている開発のひな型。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>このページ自体の実装と変更履歴。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/HUMAN_AI_COLLABORATION.md" target="_blank" rel="noopener noreferrer"><span>開発ルール</span><strong>Human / AI Collaboration</strong><p>共同作業で起きた問題から追加してきたルール。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/GIT_WORKFLOW.md" target="_blank" rel="noopener noreferrer"><span>Git</span><strong>Git Workflow</strong><p>Issue、Branch、PR、CIをどう使っているか。</p></a>
-            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>本番確認</span><strong>Production Verification</strong><p>Deploy成功と、本番で正しく動くことを分けて確認する。</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>本番確認</span><strong>Production Verification</strong><p>デプロイ成功と、本番で正しく動くことを分けて確認する。</p></a>
             <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/SECURITY_BASELINE.md" target="_blank" rel="noopener noreferrer"><span>Security</span><strong>Security Baseline</strong><p>公開Webアプリで確認しているSecurityの基準。</p></a>
           </div>
         </div>
@@ -176,6 +177,22 @@
           </div>
           <p class="skeleton-note">公開版では、一次情報・確認日・CECIL側で実際に変えたことが揃ったものだけ掲載します。</p>
         </div>
+      </section>
+
+      <section class="term-guide-section" id="terms" aria-label="このページで使っている言葉">
+        <details class="term-guide">
+          <summary><span>このページで使っている言葉</span><small>必要な時だけ開く</small></summary>
+          <dl class="term-guide-list">
+            <div><dt>Issue</dt><dd>何を変えるか、なぜ変えるか、どこまで変えるかを記録する単位。</dd></div>
+            <div><dt>Branch</dt><dd>mainとは分けて、変更作業を進める場所。</dd></div>
+            <div><dt>PR</dt><dd>Pull Requestの略。変更内容を確認して、mainへ取り込むための単位。</dd></div>
+            <div><dt>CI</dt><dd>テストやビルドなどを自動で確認する仕組み。</dd></div>
+            <div><dt>Preview</dt><dd>本番へ出す前に、実際の画面や動きを確認する環境。</dd></div>
+            <div><dt>Repository</dt><dd>コード、設計書、変更履歴などをまとめて置く場所。</dd></div>
+            <div><dt>main</dt><dd>確認を終えた内容を置く、Repositoryの基準になるBranch。</dd></div>
+            <div><dt>Commit</dt><dd>変更内容をひとまとまりとして履歴に残したもの。</dd></div>
+          </dl>
+        </details>
       </section>
     </div>
   </main>
