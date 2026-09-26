@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="CECIL preview for AI-driven development Trust Design from Developer, Manager, and Customer perspectives.">
-  <title>AI-Driven Development Trust Design — Structure Preview | CECIL</title>
+  <meta name="description" content="A CECIL preview that records where AI is used in development, where people still check the work, and what changed after things went wrong.">
+  <title>AI-Driven Development Practice Log — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -53,189 +53,152 @@
       </div>
       <div class="ai-preview-copy wrap">
         <p class="eyebrow">AI-DRIVEN DEVELOPMENT — PRACTICE LOG</p>
-        <h1 id="ai-preview-title">Every app I built with AI<br>changed the way<br>I build software.</h1>
-        <p class="ai-preview-lead">Across multiple web apps, failures became rules, design artifacts, and reusable templates. This is a living record of a development practice that keeps changing.</p>
-        <p class="ai-preview-trust">The goal is not only to make AI build software, but to make the system executable by Developers, governable by Managers, and explainable to Customers.</p>
-        <p class="ai-preview-flow">PROJECT → FRICTION / EVIDENCE<span class="ai-preview-flow-break"><br></span> → CONTROL → RULE → NEXT PROJECT</p>
+        <h1 id="ai-preview-title">Every app I build with AI<br>changes the way<br>I build software.</h1>
+        <p class="ai-preview-lead">At first, I was not sure how far AI should be used in development. After building several apps, some things became clearer: where AI helps, where a person should still check the work, and which rules were simply too much. This page keeps that record.</p>
+        <p class="ai-preview-flow">Build → Check → Review → Change the next project</p>
       </div>
     </section>
 
     <section class="ai-preview-agenda wrap" id="agenda" aria-labelledby="agenda-title">
       <div class="skeleton-heading">
         <div>
-          <p class="eyebrow">AGENDA / ON THIS PAGE</p>
-          <h2 id="agenda-title">Not only faster to build.<br>Safe enough to delegate.</h2>
+          <p class="eyebrow">WHAT IS ON THIS PAGE</p>
+          <h2 id="agenda-title">Not a finished method.<br>A record of what changed.</h2>
         </div>
-        <p>This is not a Developer-only guide. It uses real controls, evidence, and artifacts to show how AI-driven development can also be governed and explained.</p>
+        <p>This is not a general guide to AI-driven development. It focuses on what happened while building real apps, what caused trouble, and what changed afterward. It also leaves enough detail for managers and customers to see how the work is checked.</p>
       </div>
       <nav class="agenda-list" aria-label="On this page">
-        <a href="#why"><span>01</span><strong>WHY THIS EXISTS</strong><em>Why build another AI-driven development page</em><b aria-hidden="true">↘</b></a>
-        <a href="#fear-control"><span>02</span><strong>FROM FEAR TO CONTROL</strong><em>Turn concerns into controls and evidence</em><b aria-hidden="true">↘</b></a>
-        <a href="#global-signals"><span>03</span><strong>GLOBAL SIGNALS</strong><em>What to adopt from global agentic development</em><b aria-hidden="true">↘</b></a>
-        <a href="#golden-path"><span>04</span><strong>GOLDEN PATH</strong><em>Imagine → Build → Verify → Evolve</em><b aria-hidden="true">↘</b></a>
-        <a href="#autonomy"><span>05</span><strong>AUTONOMY & HUMAN GATES</strong><em>How far AI may go and where it must stop</em><b aria-hidden="true">↘</b></a>
-        <a href="#rule-lifecycle"><span>06</span><strong>RULE LIFECYCLE</strong><em>Keep, relax, or retire rules</em><b aria-hidden="true">↘</b></a>
-        <a href="#assurance"><span>07</span><strong>ASSURANCE</strong><em>Make quality, security, traceability, and responsibility explainable</em><b aria-hidden="true">↘</b></a>
-        <a href="#project-evolution"><span>08</span><strong>PROJECT EVOLUTION</strong><em>How the development method changed by project</em><b aria-hidden="true">↘</b></a>
-        <a href="#artifacts"><span>09</span><strong>ARTIFACTS</strong><em>Real design documents, templates, and repositories</em><b aria-hidden="true">↘</b></a>
+        <a href="#about"><span>01</span><strong>About this page</strong><em>Why I keep this record</em><b aria-hidden="true">↘</b></a>
+        <a href="#where-ai"><span>02</span><strong>Where I use AI</strong><em>How development works today</em><b aria-hidden="true">↘</b></a>
+        <a href="#human-check"><span>03</span><strong>Where people still check</strong><em>Places I do not fully automate</em><b aria-hidden="true">↘</b></a>
+        <a href="#failed"><span>04</span><strong>What did not work</strong><em>Too many checks, too many rules, lost context</em><b aria-hidden="true">↘</b></a>
+        <a href="#changed"><span>05</span><strong>What changed afterward</strong><em>How the development method evolved</em><b aria-hidden="true">↘</b></a>
+        <a href="#rules"><span>06</span><strong>Rules I added and removed</strong><em>Keep, relax, or stop using them</em><b aria-hidden="true">↘</b></a>
+        <a href="#checking"><span>07</span><strong>How I check the work</strong><em>Quality, history, production, security</em><b aria-hidden="true">↘</b></a>
+        <a href="#overseas"><span>08</span><strong>Things I am watching overseas</strong><em>Not trends for their own sake</em><b aria-hidden="true">↘</b></a>
+        <a href="#actual"><span>09</span><strong>What I actually use</strong><em>GitHub, design docs, CI, Preview</em><b aria-hidden="true">↘</b></a>
       </nav>
     </section>
 
     <div class="ai-preview-sections wrap">
-      <section class="skeleton-section" id="why" aria-labelledby="why-title">
-        <div class="skeleton-number">01 / WHY THIS EXISTS</div>
+      <section class="skeleton-section" id="about" aria-labelledby="about-title">
+        <div class="skeleton-number">01 / ABOUT THIS PAGE</div>
         <div class="skeleton-body">
-          <p class="section-kicker">THREE LENSES / ONE DEVELOPMENT SYSTEM</p>
-          <h2 id="why-title">AI-driven development should not<br>belong only to Developers.</h2>
-          <p class="skeleton-lead">There is already plenty of material about what AI can do. This page focuses on the conditions that make the same development system usable by Developers, governable by Managers, and trustworthy to Customers.</p>
-          <div class="lens-strip">
-            <article class="lens-card"><span>DEVELOPER</span><h3>How to build</h3><p>How AI participates in design, implementation, validation, and documentation.</p></article>
-            <article class="lens-card"><span>MANAGER</span><h3>How to govern</h3><p>How authority, quality, cost, responsibility, and human gates are controlled.</p></article>
-            <article class="lens-card"><span>CUSTOMER</span><h3>Why it is trustworthy</h3><p>Which evidence explains changes, quality, and responsibility.</p></article>
-          </div>
-          <div class="not-this-grid" aria-label="What this page is not">
-            <div class="not-this"><span>NOT THIS / 01</span><p>Not another tool comparison or prompt collection.</p></div>
-            <div class="not-this"><span>NOT THIS / 02</span><p>Not a claim that AI can safely do everything.</p></div>
-            <div class="not-this"><span>NOT THIS / 03</span><p>Not only a generic specification-driven development guide.</p></div>
-            <div class="not-this"><span>NOT THIS / 04</span><p>Not a polished best-practice list with the failures removed.</p></div>
-          </div>
+          <h2 id="about-title">At first, I did not know how far<br>AI should be used in development.</h2>
+          <p class="skeleton-lead">I started with code generation, then gradually used AI for design, issues, tests, and documentation. At the same time, I found places where a person should still check the work, and places where I had added too many checks. This page keeps that unfinished process visible.</p>
+          <div class="statement-row"><span>Developer</span><span>See where AI actually helps the work move forward</span></div>
+          <div class="statement-row"><span>Manager</span><span>See where human checks remain and whether change history is preserved</span></div>
+          <div class="statement-row"><span>Customer</span><span>See what is checked before an AI-assisted change reaches production</span></div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="fear-control" aria-labelledby="fear-control-title">
-        <div class="skeleton-number">02 / FROM FEAR TO CONTROL</div>
+      <section class="skeleton-section" id="where-ai" aria-labelledby="where-ai-title">
+        <div class="skeleton-number">02 / WHERE I USE AI</div>
         <div class="skeleton-body">
-          <p class="section-kicker">FEAR → CONTROL → EVIDENCE</p>
-          <h2 id="fear-control-title">Do not dismiss concern.<br>Turn it into something verifiable.</h2>
-          <p class="skeleton-lead">Cloud adoption and AI-augmented development both came with barriers. AI-driven development should be treated the same way: translate concern into controls and evidence.</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span class="is-primary">CUSTOMER</span></div>
-          <div class="fear-control">
-            <div class="fear-row"><div><span>FEAR</span><p>Will AI change things outside the agreed scope?</p></div><div><span>CONTROL</span><p>Scope Lock / Planned Files</p></div><div><span>EVIDENCE</span><p>Issue, diff, and PR show the change boundary</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>Can AI push changes to production by itself?</p></div><div><span>CONTROL</span><p>Human Gate / Merge / Release control</p></div><div><span>EVIDENCE</span><p>Approval and deployment history</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>Who is responsible for quality?</p></div><div><span>CONTROL</span><p>CI / Preview / Human Review</p></div><div><span>EVIDENCE</span><p>Test results, preview, production verification</p></div></div>
-            <div class="fear-row"><div><span>FEAR</span><p>Can we trace what happened?</p></div><div><span>CONTROL</span><p>1 Issue / 1 Branch / 1 PR</p></div><div><span>EVIDENCE</span><p>History, decisions, and artifacts remain visible</p></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="global-signals" aria-labelledby="global-signals-title">
-        <div class="skeleton-number">03 / GLOBAL SIGNALS</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">PRIMARY SOURCES / NOT TREND CHASING</p>
-          <h2 id="global-signals-title">Track global change.<br>Do not chase it as fashion.</h2>
-          <p class="skeleton-lead">Primary sources are used only when they can change a rule, gate, or template in CECIL. The point is not to list new tools.</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="signal-grid">
-            <article class="signal-card"><span>SIGNAL 01</span><h3>From coding to agent operations</h3><p>Long-running work, authority, state continuity, and observation become part of the development environment.</p><p class="source-line">WATCH: Anthropic / OpenAI / GitHub</p></article>
-            <article class="signal-card"><span>SIGNAL 02</span><h3>From fixed rules to adaptive harnesses</h3><p>Guardrails should be re-evaluated when models and tools become more capable.</p><p class="source-line">WATCH: Anthropic / AWS / Microsoft</p></article>
-            <article class="signal-card"><span>SIGNAL 03</span><h3>From speed to production correctness</h3><p>Generated is not done. The result must work in production and remain explainable.</p><p class="source-line">WATCH: GitHub / OpenAI / Google</p></article>
-          </div>
-          <p class="skeleton-note">The public version will attach a primary source, review date, and resulting CECIL change to each signal.</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="golden-path" aria-labelledby="golden-path-title">
-        <div class="skeleton-number">04 / GOLDEN PATH</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">IDEA → BUILD → VERIFY → EVOLVE</p>
-          <h2 id="golden-path-title">Imagine. Build.<br>Verify. Evolve.</h2>
-          <p class="skeleton-lead">The goal is not more process. The goal is to make clear where AI advances the work, where humans take control, and what returns to the next project.</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span>MANAGER</span><span>CUSTOMER</span></div>
+          <h2 id="where-ai-title">It is no longer only<br>about writing code.</h2>
+          <p class="skeleton-lead">AI now helps organize requirements, propose designs, split work into issues, implement changes, write tests, and summarize diffs. But I do not treat every step the same way.</p>
           <div class="golden-path-grid">
-            <article><span>01</span><h3>Imagine</h3><p>Friction, idea, use case, MVP, and what not to build.</p></article>
-            <article><span>02</span><h3>Build</h3><p>Requirements, Architecture, Issue, Branch, and Implementation.</p></article>
-            <article><span>03</span><h3>Verify</h3><p>CI, Preview, Human Review, and Production Verification.</p></article>
-            <article><span>04</span><h3>Evolve</h3><p>Retrospective, knowledge, template feedback, and reuse.</p></article>
-          </div>
-          <div class="gate-summary">
-            <div class="statement-row"><span>HUMAN GATE</span><span>Purpose, value, priority, major design decisions, merge, release, and final responsibility</span></div>
-            <div class="statement-row"><span>AI</span><span>Organize, propose, decompose, implement, test, document, and assemble evidence</span></div>
-            <div class="statement-row"><span>AUTOMATION</span><span>lint / test / build / repository validation / preview / deploy</span></div>
+            <article><span>01</span><h3>Think</h3><p>Use cases, what to build, and what not to build.</p></article>
+            <article><span>02</span><h3>Build</h3><p>Requirements, Architecture, Issue, Branch, implementation.</p></article>
+            <article><span>03</span><h3>Check</h3><p>CI, Test, Preview, and device checks.</p></article>
+            <article><span>04</span><h3>Review</h3><p>Carry what went wrong into the next project.</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="autonomy" aria-labelledby="autonomy-title">
-        <div class="skeleton-number">05 / AUTONOMY & HUMAN GATES</div>
+      <section class="skeleton-section" id="human-check" aria-labelledby="human-check-title">
+        <div class="skeleton-number">03 / WHERE PEOPLE STILL CHECK</div>
         <div class="skeleton-body">
-          <p class="section-kicker">NOT USE / DON'T USE — DESIGN THE AUTHORITY</p>
-          <h2 id="autonomy-title">Do not ask whether AI is used.<br>Decide how much authority it gets.</h2>
-          <p class="skeleton-lead">AI-driven development is not all-or-nothing. Autonomy is assigned by action, while higher-risk actions keep stronger human gates.</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="autonomy-scale">
-            <div class="autonomy-row"><span>LEVEL 0</span><strong>Human only</strong><p>Humans perform the work without AI execution.</p></div>
-            <div class="autonomy-row"><span>LEVEL 1</span><strong>AI proposes</strong><p>AI proposes. A human executes.</p></div>
-            <div class="autonomy-row"><span>LEVEL 2</span><strong>AI changes</strong><p>AI changes within a defined scope and a human reviews.</p></div>
-            <div class="autonomy-row"><span>LEVEL 3</span><strong>AI changes + tests + PR</strong><p>AI reaches the PR; merge remains a human gate.</p></div>
-            <div class="autonomy-row"><span>LEVEL 4</span><strong>Defined autonomous scope</strong><p>Low-risk work proceeds autonomously; exceptions return to humans.</p></div>
-            <div class="autonomy-row"><span>LEVEL 5</span><strong>Higher autonomy</strong><p>Broader authority requires stronger policy, audit, and rollback.</p></div>
-          </div>
-          <p class="skeleton-note">Production release, secrets, and destructive data operations remain strong human-gate candidates in CECIL.</p>
+          <h2 id="human-check-title">Some things are easier to automate.<br>Some are still better checked by a person.</h2>
+          <p class="skeleton-lead">More human checkpoints do not automatically mean more safety. I try to keep human checks where the impact is larger, and use mechanical checks elsewhere.</p>
+          <div class="statement-row"><span>Production</span><span>Important changes are checked before release</span></div>
+          <div class="statement-row"><span>Large scope changes</span><span>A person decides when the purpose or user impact changes</span></div>
+          <div class="statement-row"><span>Permissions / Security</span><span>Secrets, authentication, and data operations get extra attention</span></div>
+          <div class="statement-row"><span>Actual UI</span><span>Even after CI passes, the real app is still checked</span></div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="rule-lifecycle" aria-labelledby="rule-lifecycle-title">
-        <div class="skeleton-number">06 / RULE LIFECYCLE</div>
+      <section class="skeleton-section" id="failed" aria-labelledby="failed-title">
+        <div class="skeleton-number">04 / WHAT DID NOT WORK</div>
         <div class="skeleton-body">
-          <p class="section-kicker">GUARDRAILS SHOULD ALSO EVOLVE</p>
-          <h2 id="rule-lifecycle-title">Rules should not only grow.<br>They should relax or disappear.</h2>
-          <p class="skeleton-lead">Adding a rule after every failure makes the process heavy. Evidence should also support standardizing, relaxing, or retiring controls.</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
-          <div class="lifecycle-flow" aria-label="Rule lifecycle">
-            <span>FRICTION</span><i>→</i><span>TEMPORARY<br>GUARDRAIL</span><i>→</i><span>EVIDENCE</span><i>→</i><span>STANDARDIZE</span><i>→</i><span>REUSE</span><i>→</i><span>MEASURE</span><i>→</i><span>KEEP / RELAX<br>/ RETIRE</span><i>→</i><span>NEXT PROJECT</span>
-          </div>
-          <p class="skeleton-note">Sample cases: too many human checkpoints / overly strict tests / upload ownership / context recovery / quota limits.</p>
-        </div>
-      </section>
-
-      <section class="skeleton-section" id="assurance" aria-labelledby="assurance-title">
-        <div class="skeleton-number">07 / ASSURANCE</div>
-        <div class="skeleton-body">
-          <p class="section-kicker">CONCERN → CONTROL → EVIDENCE</p>
-          <h2 id="assurance-title">Do not say “it is safe.”<br>Show what can be checked.</h2>
-          <p class="skeleton-lead">Managers and customers need verifiable evidence, not confidence statements. The public version will link each control to real artifacts.</p>
-          <div class="lens-tags"><span>DEVELOPER</span><span class="is-primary">MANAGER</span><span class="is-primary">CUSTOMER</span></div>
-          <div class="assurance-table">
-            <div class="assurance-row"><span>QUALITY</span><div><span>CONCERN</span><p>Can AI-generated code be trusted?</p></div><div><span>CONTROL</span><p>CI / Test / Human Review</p></div><div><span>EVIDENCE</span><p>Checks, review history, production verification</p></div></div>
-            <div class="assurance-row"><span>SECURITY</span><div><span>CONCERN</span><p>Does AI get too much access?</p></div><div><span>CONTROL</span><p>Trust Boundary / Least Privilege / Stop Conditions</p></div><div><span>EVIDENCE</span><p>Architecture, policy, secret handling</p></div></div>
-            <div class="assurance-row"><span>TRACEABILITY</span><div><span>CONCERN</span><p>Can changes and decisions be traced?</p></div><div><span>CONTROL</span><p>Issue / Branch / PR / ADR</p></div><div><span>EVIDENCE</span><p>Diffs, decisions, commit history</p></div></div>
-            <div class="assurance-row"><span>RESPONSIBILITY</span><div><span>CONCERN</span><p>Is final ownership clear?</p></div><div><span>CONTROL</span><p>Human Gate / Approval ownership</p></div><div><span>EVIDENCE</span><p>Merge, release, and review responsibility</p></div></div>
-            <div class="assurance-row"><span>RECOVERY</span><div><span>CONCERN</span><p>Can the system stop and recover?</p></div><div><span>CONTROL</span><p>Stop / Rollback / Environment separation</p></div><div><span>EVIDENCE</span><p>Deploy history, recovery procedure, versions</p></div></div>
-            <div class="assurance-row"><span>CONTINUITY</span><div><span>CONCERN</span><p>Can work resume when the agent or chat changes?</p></div><div><span>CONTROL</span><p>Docs / Issue / PR / main / Knowledge sync</p></div><div><span>EVIDENCE</span><p>Evidence-based resumption</p></div></div>
+          <h2 id="failed-title">The problems were not always<br>about the model itself.</h2>
+          <p class="skeleton-lead">I added too many human checkpoints, made some test conditions too strict, and sometimes lost the current state when a conversation was restarted. Using AI also made sloppy handoffs and unclear checks easier to notice.</p>
+          <div class="skeleton-grid skeleton-grid-2">
+            <article><p class="eyebrow">TOO MANY CHECKS</p><h3>Human checkpoints became a bottleneck</h3><p>Safe, but development stopped too often.</p></article>
+            <article><p class="eyebrow">TOO STRICT</p><h3>Some tests were heavier than the app needed</h3><p>Small apps inherited checks that did not always add enough value.</p></article>
+            <article><p class="eyebrow">UNCLEAR OWNERSHIP</p><h3>Images and files caused rework</h3><p>It helped to decide in advance what the AI does and what the person does.</p></article>
+            <article><p class="eyebrow">LOST CONTEXT</p><h3>Restarting a conversation could lose the current state</h3><p>Now I return to the Issue, Branch, PR, and main branch first.</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="project-evolution" aria-labelledby="project-evolution-title">
-        <div class="skeleton-number">08 / PROJECT EVOLUTION</div>
+      <section class="skeleton-section" id="changed" aria-labelledby="changed-title">
+        <div class="skeleton-number">05 / WHAT CHANGED AFTERWARD</div>
         <div class="skeleton-body">
-          <p class="section-kicker">THE METHOD CHANGES WITH THE PROJECT</p>
-          <h2 id="project-evolution-title">Not an app gallery—<br>a history of changing the method.</h2>
-          <p class="skeleton-lead">Each project will show what was tried, what friction appeared, and which controls were added, relaxed, or moved into the template.</p>
-          <div class="lens-tags"><span class="is-primary">DEVELOPER</span><span class="is-primary">MANAGER</span><span>CUSTOMER</span></div>
+          <h2 id="changed-title">The way I develop changed<br>with each app.</h2>
+          <p class="skeleton-lead">The current process did not exist from day one. Issues, pull requests, design docs, CI, and production checks were added when they became necessary. The mahjong score app now adds authentication and a database, which brings the process closer to business-system concerns.</p>
           <div class="evolution-timeline">
-            <article class="evolution-item"><span>PHASE 01</span><h3>Let AI write code</h3><p>Validate speed and feasibility while the process remains human-led.</p></article>
-            <article class="evolution-item"><span>PHASE 02</span><h3>Expand into Issue / PR / Design</h3><p>Delegate roles, not only coding tasks, and control change units.</p></article>
-            <article class="evolution-item"><span>PHASE 03</span><h3>Add guardrails and evidence</h3><p>Introduce human gates, production verification, and resumption protocols.</p></article>
-            <article class="evolution-item"><span>CURRENT</span><h3>Move into full-stack with the mahjong score app</h3><p>Auth, DB, API, concurrency, logging, performance, and D1 query design.</p></article>
-            <article class="evolution-item"><span>NEXT</span><h3>See which rules can be removed</h3><p>Keep safety while reducing human effort and process weight.</p></article>
+            <article class="evolution-item"><span>FIRST</span><h3>Use AI to write code</h3><p>Start by testing how much could actually be built.</p></article>
+            <article class="evolution-item"><span>NEXT</span><h3>Add Issue / PR / design</h3><p>Keep track of the change and why it exists.</p></article>
+            <article class="evolution-item"><span>THEN</span><h3>Add CI and production checks</h3><p>Do not stop at “it was generated.” Keep evidence of what was checked.</p></article>
+            <article class="evolution-item"><span>NOW</span><h3>Try authentication and D1</h3><p>Auth, API, concurrency, logging, performance, and D1 query design are being tested.</p></article>
           </div>
         </div>
       </section>
 
-      <section class="skeleton-section" id="artifacts" aria-labelledby="artifacts-title">
-        <div class="skeleton-number">09 / ARTIFACTS</div>
+      <section class="skeleton-section" id="rules" aria-labelledby="rules-title">
+        <div class="skeleton-number">06 / RULES I ADDED AND REMOVED</div>
         <div class="skeleton-body">
-          <p class="section-kicker">SHOW THE WORK</p>
-          <h2 id="artifacts-title">End with the artifacts,<br>not the explanation.</h2>
-          <p class="skeleton-lead">The public page should lead directly to templates, repositories, design documents, and guardrails.</p>
+          <h2 id="rules-title">A failure can add a rule.<br>That rule does not have to stay forever.</h2>
+          <p class="skeleton-lead">A check that was useful once may stop being useful when the model, tool, or project changes. I review whether to keep it, make it lighter, or remove it.</p>
+          <div class="lifecycle-flow" aria-label="How rules are reviewed">
+            <span>Something feels wrong</span><i>→</i><span>Temporary rule</span><i>→</i><span>Use it</span><i>→</i><span>See the result</span><i>→</i><span>Keep / lighten / remove</span><i>→</i><span>Next project</span>
+          </div>
+          <p class="skeleton-note">Examples: too many human checkpoints / strict test conditions / upload ownership / context recovery / quota limits.</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="checking" aria-labelledby="checking-title">
+        <div class="skeleton-number">07 / HOW I CHECK THE WORK</div>
+        <div class="skeleton-body">
+          <h2 id="checking-title">Not “it should be fine.”<br>Leave something that can be checked.</h2>
+          <p class="skeleton-lead">Whether AI is used or not, I do not want the basis for “checked” to disappear. Where it matters, I keep Issues, PRs, CI results, Preview checks, and production verification.</p>
+          <div class="assurance-table">
+            <div class="assurance-row"><span>Quality</span><div><span>Concern</span><p>Was AI-generated code used as-is?</p></div><div><span>Current approach</span><p>CI / Test / Review</p></div><div><span>What remains</span><p>Test results / PR / production check</p></div></div>
+            <div class="assurance-row"><span>History</span><div><span>Concern</span><p>Can we see what changed?</p></div><div><span>Current approach</span><p>Issue / Branch / PR</p></div><div><span>What remains</span><p>Diff / Commit / Decision</p></div></div>
+            <div class="assurance-row"><span>Production</span><div><span>Concern</span><p>Did the work stop when CI passed?</p></div><div><span>Current approach</span><p>Preview / production check</p></div><div><span>What remains</span><p>Deploy history / real-screen check</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>Concern</span><p>Were permissions or data exposed too broadly?</p></div><div><span>Current approach</span><p>Separate permissions / keep secrets out of code</p></div><div><span>What remains</span><p>Architecture / settings / policy</p></div></div>
+            <div class="assurance-row"><span>Continuity</span><div><span>Concern</span><p>Can work continue after the conversation changes?</p></div><div><span>Current approach</span><p>Docs / Issue / PR / main</p></div><div><span>What remains</span><p>The current state can be recovered from the repository</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="overseas" aria-labelledby="overseas-title">
+        <div class="skeleton-number">08 / THINGS I AM WATCHING OVERSEAS</div>
+        <div class="skeleton-body">
+          <h2 id="overseas-title">I care less about a new tool<br>than whether my process should change.</h2>
+          <p class="skeleton-lead">I follow primary sources, but not to collect product names. I keep the ones that make me reconsider how the work is handed off, checked, or resumed.</p>
+          <div class="signal-grid">
+            <article class="signal-card"><span>UNDER REVIEW</span><h3>Can long-running work resume cleanly?</h3><p>Look at whether the current state can be recovered from Issues and PRs after a conversation changes.</p><p class="source-line">Anthropic / OpenAI / GitHub</p></article>
+            <article class="signal-card"><span>UNDER REVIEW</span><h3>Are old rules becoming unnecessary?</h3><p>When models and tools improve, check whether older constraints still add value.</p><p class="source-line">Anthropic / AWS / Microsoft</p></article>
+            <article class="signal-card"><span>UNDER REVIEW</span><h3>Does it work correctly in production?</h3><p>Care more about the real environment than the fact that code was generated successfully.</p><p class="source-line">GitHub / OpenAI / Google</p></article>
+          </div>
+          <p class="skeleton-note">The public version will pair each item with the primary source, review date, and an actual change made in CECIL.</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="actual" aria-labelledby="actual-title">
+        <div class="skeleton-number">09 / WHAT I ACTUALLY USE</div>
+        <div class="skeleton-body">
+          <h2 id="actual-title">Do not stop at explanation.<br>Link to the actual work.</h2>
+          <p class="skeleton-lead">Where possible, this page links to the real repository and design documents. Technical terms are not hidden; when Issue, PR, or CI is the real name of what is being used, I keep that name.</p>
           <div class="artifact-grid-v2">
-            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>AI-driven Web App Template</strong><p>Golden Path and reusable development foundation.</p></a>
-            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>CECIL Repository</strong><p>Implementation and change history for this page itself.</p></a>
-            <div class="artifact-card"><span>DESIGN DOCS</span><strong>Requirements / Architecture / ADR</strong><p>Artifacts that preserve design decisions and responsibility boundaries.</p></div>
-            <div class="artifact-card"><span>GUARDRAILS</span><strong>Human / AI Collaboration</strong><p>Scope, stop conditions, and resumption rules.</p></div>
-            <div class="artifact-card"><span>VALIDATION</span><strong>CI / Preview / Production</strong><p>Evidence behind the word “verified.”</p></div>
-            <div class="artifact-card"><span>WRITING</span><strong>Related note articles</strong><p>Long-form context and reflections behind the implementation.</p></div>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>The development template currently in use.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>The implementation and change history of this site.</p></a>
+            <div class="artifact-card"><span>Design docs</span><strong>Requirements / Architecture / ADR</strong><p>What is being built, how, and why a decision was made.</p></div>
+            <div class="artifact-card"><span>Working rules</span><strong>Human / AI Collaboration</strong><p>Scope, stop conditions, and how work resumes after interruption.</p></div>
+            <div class="artifact-card"><span>Checks</span><strong>CI / Preview / Production</strong><p>Keep track of how far a change was actually checked.</p></div>
+            <div class="artifact-card"><span>Writing</span><strong>Related note articles</strong><p>Longer background and reflections live in note.</p></div>
           </div>
         </div>
       </section>
