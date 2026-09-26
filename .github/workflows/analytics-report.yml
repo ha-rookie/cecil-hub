@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/analytics-report.yml"
       - "scripts/analytics-report.mjs"
+      - "scripts/analytics-qa-check.mjs"
       - "docs/ANALYTICS.md"
       - "docs/ANALYTICS_REPORT.md"
 
@@ -33,3 +34,6 @@ jobs:
 
       - name: Query Cecil analytics backfill window
         run: node scripts/analytics-report.mjs
+
+      - name: Query QA campaign check
+        run: node scripts/analytics-qa-check.mjs
