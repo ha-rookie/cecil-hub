@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="CECIL AI駆動開発ページのキービジュアルとHeroレイアウト確認用テストページです。">
+  <title>AI駆動開発 実践記録 — Hero Preview | CECIL</title>
+  <meta name="theme-color" content="#F2EFE8" id="themeColor">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/ai-driven-development-preview/styles.css">
+</head>
+<body class="ai-preview-body">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="CECIL ホーム">CECIL</a>
+      <div class="header-actions">
+        <nav class="nav" aria-label="主要メニュー">
+          <a href="/#featured">Featured</a>
+          <a href="/#apps">Apps</a>
+          <a href="/#writing">Writing</a>
+          <a href="/#local">Local</a>
+          <a href="/#about">About</a>
+        </nav>
+        <div class="header-utilities">
+          <nav class="language-switch" aria-label="言語切替">
+            <span class="language-current" aria-current="page">JA</span>
+            <span class="language-separator" aria-hidden="true">/</span>
+            <a href="/en/" lang="en" hreflang="en">EN</a>
+          </nav>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="表示テーマを切り替え">
+            <span class="theme-icon" aria-hidden="true">◐</span>
+            <span class="theme-label">AUTO</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="ai-preview-hero" aria-labelledby="ai-preview-title">
+      <div class="ai-preview-media" aria-hidden="true">
+        <picture class="ai-preview-picture ai-preview-picture-light">
+          <img src="/images/ai-driven-development/cecil-ai-driven-development-hero-light.png" alt="" fetchpriority="high">
+        </picture>
+        <picture class="ai-preview-picture ai-preview-picture-dark">
+          <img src="/images/ai-driven-development/cecil-ai-driven-development-hero-dark.png" alt="" fetchpriority="high">
+        </picture>
+      </div>
+
+      <div class="ai-preview-copy wrap">
+        <p class="eyebrow">AI駆動開発 実践記録</p>
+        <h1 id="ai-preview-title">AIとアプリを作るたびに、<br>開発のやり方そのものが<br>変わっていった。</h1>
+        <p class="ai-preview-lead">複数のWebアプリをAIと作りながら、失敗をルールに変え、設計やテンプレートへ残してきた。これは、今も更新を続けているAI駆動開発の実践記録です。</p>
+        <p class="ai-preview-flow">PROJECT → FAILURE / LEARNING → RULE → TEMPLATE → NEXT PROJECT</p>
+      </div>
+    </section>
+
+    <section class="ai-preview-sample wrap" aria-labelledby="sample-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SAMPLE CONTENT</p>
+          <h2 id="sample-title">ここから先は、まだサンプル。</h2>
+        </div>
+        <p class="section-intro">今回はキービジュアル、タイトル、共通ヘッダー／フッターの見え方を確認するためのテストページです。</p>
+      </div>
+
+      <div class="ai-preview-sample-grid">
+        <article>
+          <span>01</span>
+          <h3>思いつく</h3>
+          <p>小さな違和感やアイデアから、何を作るのか、何を作らないのかを整理する。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>確かめる</h3>
+          <p>実装しただけで終わらせず、CI、Preview、Human Review、本番確認まで証拠を残す。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>育てる</h3>
+          <p>失敗や改善をルールとTemplateへ戻し、次のProjectで同じところから始めない。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>© CECIL — Explore. Inquire. Create.</p>
+    <a href="/privacy">Privacy</a>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
