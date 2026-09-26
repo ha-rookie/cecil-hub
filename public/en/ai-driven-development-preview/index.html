@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Preview page for the CECIL AI-driven development key visual and Hero layout.">
-  <title>AI-Driven Development Practice Log — Hero Preview | CECIL</title>
+  <meta name="description" content="Structure preview for the CECIL AI-driven development page, including its agenda and section skeleton.">
+  <title>AI-Driven Development Practice Log — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -50,7 +50,6 @@
           <img src="/images/ai-driven-development/cecil-ai-driven-development-hero-dark.png" alt="" fetchpriority="high">
         </picture>
       </div>
-
       <div class="ai-preview-copy wrap">
         <p class="eyebrow">AI-DRIVEN DEVELOPMENT — PRACTICE LOG</p>
         <h1 id="ai-preview-title">Every app I built with AI<br>changed the way<br>I build software.</h1>
@@ -59,33 +58,110 @@
       </div>
     </section>
 
-    <section class="ai-preview-sample wrap" aria-labelledby="sample-title">
-      <div class="section-heading">
+    <section class="ai-preview-agenda wrap" id="agenda" aria-labelledby="agenda-title">
+      <div class="skeleton-heading">
         <div>
-          <p class="eyebrow">SAMPLE CONTENT</p>
-          <h2 id="sample-title">Everything below is still sample content.</h2>
+          <p class="eyebrow">AGENDA / ON THIS PAGE</p>
+          <h2 id="agenda-title">Not just how I build,<br>but how the way I build changed.</h2>
         </div>
-        <p class="section-intro">For now, this page exists to check the key visual, title, and shared CECIL header and footer.</p>
+        <p>The copy below is still provisional. This preview focuses on the reading order—from practice to standardization—before the full content is written.</p>
       </div>
-
-      <div class="ai-preview-sample-grid">
-        <article>
-          <span>01</span>
-          <h3>Imagine</h3>
-          <p>Start with a small friction or idea, then clarify what to build—and what not to build.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Verify</h3>
-          <p>Do not stop at implementation. Keep evidence through CI, Preview, Human Review, and production checks.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Evolve</h3>
-          <p>Turn failures and improvements into rules and templates so the next project does not start from zero.</p>
-        </article>
-      </div>
+      <nav class="agenda-list" aria-label="On this page">
+        <a href="#practice"><span>01</span><strong>PRACTICE</strong><em>How I define AI-driven development in practice</em><b aria-hidden="true">↘</b></a>
+        <a href="#golden-path"><span>02</span><strong>GOLDEN PATH</strong><em>Imagine → Build → Verify → Evolve</em><b aria-hidden="true">↘</b></a>
+        <a href="#roles"><span>03</span><strong>ROLES</strong><em>Human / AI / Automation</em><b aria-hidden="true">↘</b></a>
+        <a href="#feedback-loop"><span>04</span><strong>FEEDBACK LOOP</strong><em>Failure → Rule → Template → Next Project</em><b aria-hidden="true">↘</b></a>
+        <a href="#system"><span>05</span><strong>SYSTEM</strong><em>Design docs / Repository / Guardrails</em><b aria-hidden="true">↘</b></a>
+        <a href="#project-log"><span>06</span><strong>PROJECT LOG</strong><em>How the development method changed by project</em><b aria-hidden="true">↘</b></a>
+        <a href="#reference"><span>07</span><strong>REFERENCE</strong><em>Template / GitHub / Writing</em><b aria-hidden="true">↘</b></a>
+      </nav>
     </section>
+
+    <div class="ai-preview-sections wrap">
+      <section class="skeleton-section" id="practice" aria-labelledby="practice-title">
+        <div class="skeleton-number">01 / PRACTICE</div>
+        <div class="skeleton-body">
+          <h2 id="practice-title">The key is not only what AI can do,<br>but where work returns to a human.</h2>
+          <p class="skeleton-lead">This section will keep the definition short and practical instead of turning into a general guide to AI development.</p>
+          <div class="statement-row"><span>Human</span><span>Purpose / Value / Priority / Final judgment</span></div>
+          <div class="statement-row"><span>AI</span><span>Organize / Propose / Decompose / Implement / Verify / Document</span></div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="golden-path" aria-labelledby="golden-path-title">
+        <div class="skeleton-number">02 / GOLDEN PATH</div>
+        <div class="skeleton-body">
+          <h2 id="golden-path-title">Imagine. Build.<br>Verify. Evolve.</h2>
+          <p class="skeleton-lead">The full process is introduced through four stages first, with detailed steps shown later.</p>
+          <div class="golden-path-grid">
+            <article><span>01</span><h3>Imagine</h3><p>Friction, idea, use case, MVP, and what not to build.</p></article>
+            <article><span>02</span><h3>Build</h3><p>Requirements, Architecture, Issue, Branch, and Implementation.</p></article>
+            <article><span>03</span><h3>Verify</h3><p>CI, Preview, Human Review, and Production Verification.</p></article>
+            <article><span>04</span><h3>Evolve</h3><p>Retrospective, knowledge, template feedback, and reuse.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="roles" aria-labelledby="roles-title">
+        <div class="skeleton-number">03 / ROLES</div>
+        <div class="skeleton-body">
+          <h2 id="roles-title">Human, AI, and Automation<br>do not belong in the same box.</h2>
+          <div class="skeleton-grid skeleton-grid-3">
+            <article><p class="eyebrow">HUMAN</p><h3>Decide</h3><p>Purpose / Value / Priority / Risk / Merge / Release / Responsibility</p></article>
+            <article><p class="eyebrow">AI</p><h3>Advance</h3><p>Organize / Propose / Decompose / Implement / Test / Document / Evidence</p></article>
+            <article><p class="eyebrow">AUTOMATION</p><h3>Check mechanically</h3><p>lint / test / build / validation / preview / deploy</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="feedback-loop" aria-labelledby="feedback-loop-title">
+        <div class="skeleton-number">04 / FEEDBACK LOOP</div>
+        <div class="skeleton-body">
+          <h2 id="feedback-loop-title">Turn friction into<br>the next project's starting conditions.</h2>
+          <p class="skeleton-lead">This is the core differentiator: showing why a rule appeared, not only the final best practice.</p>
+          <div class="feedback-loop" aria-label="Improvement loop from one project to the next">
+            <span>PROJECT</span><i>→</i><span>FRICTION</span><i>→</i><span>RULE</span><i>→</i><span>TEMPLATE</span><i>→</i><span>NEXT PROJECT</span>
+          </div>
+          <p class="skeleton-note">Sample cases: too many human checkpoints / overly strict tests / upload ownership / context recovery / quota limits</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="system" aria-labelledby="system-title">
+        <div class="skeleton-number">05 / SYSTEM</div>
+        <div class="skeleton-body">
+          <h2 id="system-title">Show the artifacts,<br>not only the ideas.</h2>
+          <div class="skeleton-grid skeleton-grid-2">
+            <article><p class="eyebrow">DESIGN DOCS</p><h3>Keep the design</h3><p>Requirements / Architecture / Repository Structure / ADR / Traceability</p></article>
+            <article><p class="eyebrow">GUARDRAILS</p><h3>Keep the boundaries</h3><p>AGENTS / Human-AI Collaboration / Planned Files / Stop Conditions</p></article>
+            <article><p class="eyebrow">VALIDATION</p><h3>Keep the evidence</h3><p>CI / Preview / Human Review / Production Verification / Security Baseline</p></article>
+            <article><p class="eyebrow">REPOSITORY</p><h3>Make it reusable</h3><p>Issue / Branch / PR / Workflow / Template / Knowledge feedback</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="project-log" aria-labelledby="project-log-title">
+        <div class="skeleton-number">06 / PROJECT LOG</div>
+        <div class="skeleton-body">
+          <h2 id="project-log-title">Not an app gallery—<br>a log of how the method changed.</h2>
+          <p class="skeleton-lead">Each project will use the same format: experiment → friction → rule → template feedback.</p>
+          <div class="project-placeholder"><span>PROJECT</span><span>EXPERIMENT</span><span>FRICTION</span><span>RULE / TEMPLATE</span></div>
+          <p class="skeleton-note">After the three-player mahjong score app is complete, this section will add lessons from auth, database, API, concurrency, logging, performance, and D1 query design.</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="reference" aria-labelledby="reference-title">
+        <div class="skeleton-number">07 / REFERENCE</div>
+        <div class="skeleton-body">
+          <h2 id="reference-title">End with primary artifacts.</h2>
+          <p class="skeleton-lead">The page should lead to the actual template, repository, and related writing rather than ending with explanation alone.</p>
+          <div class="reference-grid">
+            <a href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><b aria-hidden="true">↗</b></a>
+            <a href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><b aria-hidden="true">↗</b></a>
+            <div><span>Writing</span><strong>Related note articles</strong><b aria-hidden="true">—</b></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="footer wrap">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="CECIL AI駆動開発ページのキービジュアルとHeroレイアウト確認用テストページです。">
-  <title>AI駆動開発 実践記録 — Hero Preview | CECIL</title>
+  <meta name="description" content="CECIL AI駆動開発ページのAgendaとページ骨格を確認するPreviewです。">
+  <title>AI駆動開発 実践記録 — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
@@ -50,7 +50,6 @@
           <img src="/images/ai-driven-development/cecil-ai-driven-development-hero-dark.png" alt="" fetchpriority="high">
         </picture>
       </div>
-
       <div class="ai-preview-copy wrap">
         <p class="eyebrow">AI駆動開発 実践記録</p>
         <h1 id="ai-preview-title">AIとアプリを作るたびに、<br>開発のやり方そのものが<br>変わっていった。</h1>
@@ -59,33 +58,116 @@
       </div>
     </section>
 
-    <section class="ai-preview-sample wrap" aria-labelledby="sample-title">
-      <div class="section-heading">
+    <section class="ai-preview-agenda wrap" id="agenda" aria-labelledby="agenda-title">
+      <div class="skeleton-heading">
         <div>
-          <p class="eyebrow">SAMPLE CONTENT</p>
-          <h2 id="sample-title">ここから先は、まだサンプル。</h2>
+          <p class="eyebrow">AGENDA / ON THIS PAGE</p>
+          <h2 id="agenda-title">作り方ではなく、<br>作り方がどう変わったか。</h2>
         </div>
-        <p class="section-intro">今回はキービジュアル、タイトル、共通ヘッダー／フッターの見え方を確認するためのテストページです。</p>
+        <p>本文はまだサンプルです。まずは、実践から標準化までをどう読ませるかというページの骨格だけを確認します。</p>
       </div>
-
-      <div class="ai-preview-sample-grid">
-        <article>
-          <span>01</span>
-          <h3>思いつく</h3>
-          <p>小さな違和感やアイデアから、何を作るのか、何を作らないのかを整理する。</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>確かめる</h3>
-          <p>実装しただけで終わらせず、CI、Preview、Human Review、本番確認まで証拠を残す。</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>育てる</h3>
-          <p>失敗や改善をルールとTemplateへ戻し、次のProjectで同じところから始めない。</p>
-        </article>
-      </div>
+      <nav class="agenda-list" aria-label="このページの目次">
+        <a href="#practice"><span>01</span><strong>PRACTICE</strong><em>AI駆動開発をどう捉えているか</em><b aria-hidden="true">↘</b></a>
+        <a href="#golden-path"><span>02</span><strong>GOLDEN PATH</strong><em>思いつく → 作る → 確かめる → 育てる</em><b aria-hidden="true">↘</b></a>
+        <a href="#roles"><span>03</span><strong>ROLES</strong><em>Human / AI / Automation</em><b aria-hidden="true">↘</b></a>
+        <a href="#feedback-loop"><span>04</span><strong>FEEDBACK LOOP</strong><em>Failure → Rule → Template → Next Project</em><b aria-hidden="true">↘</b></a>
+        <a href="#system"><span>05</span><strong>SYSTEM</strong><em>Design docs / Repository / Guardrails</em><b aria-hidden="true">↘</b></a>
+        <a href="#project-log"><span>06</span><strong>PROJECT LOG</strong><em>Projectごとに何が変わったか</em><b aria-hidden="true">↘</b></a>
+        <a href="#reference"><span>07</span><strong>REFERENCE</strong><em>Template / GitHub / note</em><b aria-hidden="true">↘</b></a>
+      </nav>
     </section>
+
+    <div class="ai-preview-sections wrap">
+      <section class="skeleton-section" id="practice" aria-labelledby="practice-title">
+        <div class="skeleton-number">01 / PRACTICE</div>
+        <div class="skeleton-body">
+          <h2 id="practice-title">AIに何をさせるかより、<br>どこで人に戻すか。</h2>
+          <p class="skeleton-lead">ここでは一般的なAI開発論ではなく、このサイトで「AI駆動開発」と呼んでいる実践上の定義を短く置きます。</p>
+          <div class="statement-row">
+            <span>Human</span><span>目的・価値・優先順位・最終判断</span>
+          </div>
+          <div class="statement-row">
+            <span>AI</span><span>整理・提案・分解・実装・検証・文書化</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="golden-path" aria-labelledby="golden-path-title">
+        <div class="skeleton-number">02 / GOLDEN PATH</div>
+        <div class="skeleton-body">
+          <h2 id="golden-path-title">思いつく。作る。<br>確かめる。育てる。</h2>
+          <p class="skeleton-lead">細かい工程を最初から並べず、まず4段階で全体像を見せます。</p>
+          <div class="golden-path-grid">
+            <article><span>01</span><h3>思いつく</h3><p>違和感、Idea、利用場面、MVP、やらないこと。</p></article>
+            <article><span>02</span><h3>作る</h3><p>Requirements、Architecture、Issue、Branch、Implementation。</p></article>
+            <article><span>03</span><h3>確かめる</h3><p>CI、Preview、Human Review、Production Verification。</p></article>
+            <article><span>04</span><h3>育てる</h3><p>振り返り、知識化、Template還流、次Projectで再利用。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="roles" aria-labelledby="roles-title">
+        <div class="skeleton-number">03 / ROLES</div>
+        <div class="skeleton-body">
+          <h2 id="roles-title">Human / AI / Automationを<br>同じ箱に入れない。</h2>
+          <div class="skeleton-grid skeleton-grid-3">
+            <article><p class="eyebrow">HUMAN</p><h3>判断する</h3><p>Purpose / Value / Priority / Risk / Merge / Release / Responsibility</p></article>
+            <article><p class="eyebrow">AI</p><h3>進める</h3><p>Organize / Propose / Decompose / Implement / Test / Document / Evidence</p></article>
+            <article><p class="eyebrow">AUTOMATION</p><h3>機械的に確かめる</h3><p>lint / test / build / validation / preview / deploy</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="feedback-loop" aria-labelledby="feedback-loop-title">
+        <div class="skeleton-number">04 / FEEDBACK LOOP</div>
+        <div class="skeleton-body">
+          <h2 id="feedback-loop-title">失敗を、次のProjectの<br>初期条件に変える。</h2>
+          <p class="skeleton-lead">このページの中心。完成したBest Practiceではなく、なぜそのRuleが増えたのかを見せます。</p>
+          <div class="feedback-loop" aria-label="Projectから次Projectへの改善ループ">
+            <span>PROJECT</span><i>→</i><span>FRICTION</span><i>→</i><span>RULE</span><i>→</i><span>TEMPLATE</span><i>→</i><span>NEXT PROJECT</span>
+          </div>
+          <p class="skeleton-note">Sample cases: Human checkpoint過多 / Test条件過多 / Upload分担 / Context復帰 / Quota制約</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="system" aria-labelledby="system-title">
+        <div class="skeleton-number">05 / SYSTEM</div>
+        <div class="skeleton-body">
+          <h2 id="system-title">考え方だけではなく、<br>実物を見せる。</h2>
+          <div class="skeleton-grid skeleton-grid-2">
+            <article><p class="eyebrow">DESIGN DOCS</p><h3>設計を残す</h3><p>Requirements / Architecture / Repository Structure / ADR / Traceability</p></article>
+            <article><p class="eyebrow">GUARDRAILS</p><h3>境界を残す</h3><p>AGENTS / Human-AI Collaboration / Planned Files / Stop Conditions</p></article>
+            <article><p class="eyebrow">VALIDATION</p><h3>証拠を残す</h3><p>CI / Preview / Human Review / Production Verification / Security Baseline</p></article>
+            <article><p class="eyebrow">REPOSITORY</p><h3>再利用できる形にする</h3><p>Issue / Branch / PR / Workflow / Template / Knowledge feedback</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="project-log" aria-labelledby="project-log-title">
+        <div class="skeleton-number">06 / PROJECT LOG</div>
+        <div class="skeleton-body">
+          <h2 id="project-log-title">アプリ一覧ではなく、<br>開発方法の変化を残す。</h2>
+          <p class="skeleton-lead">各Projectについて「試したこと → 起きた摩擦 → 追加したRule → Templateへ戻したもの」を同じ形式で並べる予定です。</p>
+          <div class="project-placeholder">
+            <span>PROJECT</span><span>EXPERIMENT</span><span>FRICTION</span><span>RULE / TEMPLATE</span>
+          </div>
+          <p class="skeleton-note">三麻スコア完成後、Auth / DB / API / 排他 / Logging / Performance / D1 query設計の振り返りを追加予定。</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="reference" aria-labelledby="reference-title">
+        <div class="skeleton-number">07 / REFERENCE</div>
+        <div class="skeleton-body">
+          <h2 id="reference-title">最後は、一次資料へ。</h2>
+          <p class="skeleton-lead">説明で閉じず、実際のTemplate、Repository、関連する文章へつなぎます。</p>
+          <div class="reference-grid">
+            <a href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><b aria-hidden="true">↗</b></a>
+            <a href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><b aria-hidden="true">↗</b></a>
+            <div><span>Writing</span><strong>Related note articles</strong><b aria-hidden="true">—</b></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="footer wrap">
