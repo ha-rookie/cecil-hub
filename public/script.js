@@ -13,6 +13,42 @@
 
   if (!modes.includes(current)) current = 'auto';
 
+  function syncMazumePortalCopy() {
+    const featured = document.querySelector('[data-analytics-link-id="featured-asamazume"]');
+    if (featured) {
+      const image = featured.querySelector('.feature-media img');
+      const meta = featured.querySelector('.feature-meta span');
+      const description = featured.querySelector(':scope > p');
+
+      if (image) {
+        image.alt = isEnglish
+          ? 'Morning and evening mazume tide navigation app'
+          : '朝・夕マズメに対応した朝マズメ潮ナビ';
+      }
+      if (meta) {
+        meta.textContent = isEnglish ? 'APP / MORNING + EVENING' : 'APP / 朝・夕対応';
+      }
+      if (description) {
+        description.textContent = isEnglish
+          ? 'A Japanese-language web app for comparing morning and evening mazume windows with tide movement, and scanning 30 or 60 days ahead for weekend and holiday candidates with larger tide-level changes.'
+          : '週末の朝・夕、釣りに行く前に、マズメ時間帯と潮の動きをひと目で確認。30日・60日先の週末・祝日から、潮位変化が大きい候補を探せるWebアプリです。';
+      }
+    }
+
+    const appRow = document.querySelector('[data-analytics-link-id="apps-asamazume"]');
+    if (appRow) {
+      const attribute = appRow.querySelector('.app-attribute');
+      const description = appRow.querySelector(':scope > p');
+
+      if (attribute) attribute.textContent = 'FISHING / TIDE / MAZUME';
+      if (description) {
+        description.textContent = isEnglish
+          ? 'Switch between morning and evening mazume to check tide-level changes around sunrise and sunset, with 30- or 60-day weekend and holiday candidate searches. The interface is in Japanese.'
+          : '朝マズメ・夕マズメを切り替え、日の出・日の入り前後の潮位変化を確認。30日・60日先の週末・祝日から候補を探せるWebアプリ。';
+      }
+    }
+  }
+
   function resolvedTheme(mode) {
     return mode === 'auto' ? (media.matches ? 'dark' : 'light') : mode;
   }
@@ -54,5 +90,6 @@
     if (current === 'auto') syncThemeColor('auto');
   });
 
+  syncMazumePortalCopy();
   apply(current, false);
 })();
