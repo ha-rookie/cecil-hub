@@ -14,6 +14,8 @@
   if (!modes.includes(current)) current = 'auto';
 
   function syncMazumePortalCopy() {
+    if (typeof document.querySelector !== 'function') return;
+
     const featured = document.querySelector('[data-analytics-link-id="featured-asamazume"]');
     if (featured) {
       const image = featured.querySelector('.feature-media img');
