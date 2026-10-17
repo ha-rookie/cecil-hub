@@ -4,6 +4,15 @@
 
 今後の追加改善をここへ記録する。
 
+### CECIL SEO title production release — 2026-10-17
+
+- 日本語トップのtitle / og:title：`CECIL｜Webアプリ・文章・名古屋の記録`
+- 英語トップのtitle / og:title：`CECIL | Web Apps, Writing & Local Discoveries`
+- 実装：PR #88、main Squash commit `d44125d20f178d870c5c371968d071450f7fb273`
+- 検証済み：Project validation CI・npm test（40/40）・Cloudflare Preview smoke（日本語/英語・Privacy・404・icons）・Human Preview確認
+- 本番反映：Release Issue #89に従い、別PRをマージ後に既存main-push GitHub Actionsで実行・検証する。実際のProduction Deploy・本番表示・Security/Analytics smokeの成功を確認するまではリリース完了と扱わない
+- リリース記録の追加によって、既存HTML・JS・CSS・Assets・Cloudflare設定・Secrets・GitHub Actions workflowは変更しない
+
 ## v0.2 - 2026-09-20
 
 朝マズメ潮ナビ、あと一杯ナビ、よう拝（遥拝）アプリ、くるくるソムリエ等の実証から、公開・運用フェーズの共通知見をTemplateへ還流した。
