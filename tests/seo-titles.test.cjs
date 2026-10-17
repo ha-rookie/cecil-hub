@@ -30,7 +30,7 @@ for (const page of pages) {
     assert.match(html, /<meta name="description" content="[^"]+">/);
     assert.ok(html.includes('<link rel="canonical" href="' + page.canonical + '">'));
     assert.ok(html.includes('lang="' + page.locale + '"'));
-    assert.equal((html.match(/<h1\\b/g) || []).length, 1);
+    assert.equal((html.match(/<h1\b/g) || []).length, 1);
     for (const lang of ["ja", "en", "x-default"]) {
       assert.ok(html.includes('hreflang="' + lang + '"'));
     }
