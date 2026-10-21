@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Preview page for the CECIL AI-driven development key visual and Hero layout.">
-  <title>AI-Driven Development Practice Log — Hero Preview | CECIL</title>
+  <meta name="description" content="CECIL practice log showing where AI is used in development, where people still check, and what changed after failures.">
+  <title>AI-Driven Development Practice Log — Structure Preview | CECIL</title>
   <meta name="theme-color" content="#F2EFE8" id="themeColor">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/ai-driven-development-preview/styles.css">
+  <link rel="stylesheet" href="/ai-driven-development-preview/wireframe-v2.css">
 </head>
 <body class="ai-preview-body">
   <header class="site-header">
@@ -50,42 +51,150 @@
           <img src="/images/ai-driven-development/cecil-ai-driven-development-hero-dark.png" alt="" fetchpriority="high">
         </picture>
       </div>
-
       <div class="ai-preview-copy wrap">
-        <p class="eyebrow">AI-DRIVEN DEVELOPMENT — PRACTICE LOG</p>
-        <h1 id="ai-preview-title">Every app I built with AI<br>changed the way<br>I build software.</h1>
-        <p class="ai-preview-lead">Across multiple web apps, I have turned failures into rules and carried them forward into design documents and reusable templates. This is a living record of an AI-driven development practice that continues to evolve.</p>
-        <p class="ai-preview-flow">PROJECT → FAILURE / LEARNING<span class="ai-preview-flow-break"><br></span> → RULE → TEMPLATE → NEXT PROJECT</p>
+        <p class="eyebrow">AI-DRIVEN DEVELOPMENT PRACTICE LOG</p>
+        <h1 id="ai-preview-title">Each app changed<br>the way I develop<br>with AI.</h1>
+        <p class="ai-preview-lead">At first, I was not sure where AI should be used in development. After building several apps, it became clearer where AI helps, where people should still check, and where I had added too many checks. This page keeps that evolving record.</p>
+        <p class="ai-preview-flow">BUILD → CHECK → REVIEW → CHANGE THE NEXT PROJECT</p>
       </div>
     </section>
 
-    <section class="ai-preview-sample wrap" aria-labelledby="sample-title">
-      <div class="section-heading">
+    <section class="ai-preview-agenda wrap" id="agenda" aria-labelledby="agenda-title">
+      <div class="skeleton-heading">
         <div>
-          <p class="eyebrow">SAMPLE CONTENT</p>
-          <h2 id="sample-title">Everything below is still sample content.</h2>
+          <p class="eyebrow">WHAT IS ON THIS PAGE</p>
+          <h2 id="agenda-title">What I actually tried,<br>and what changed.</h2>
         </div>
-        <p class="section-intro">For now, this page exists to check the key visual, title, and shared CECIL header and footer.</p>
+        <p>This is not a general guide to AI-driven development. It is a record of methods used in real app development, what failed, and what changed afterward.</p>
       </div>
-
-      <div class="ai-preview-sample-grid">
-        <article>
-          <span>01</span>
-          <h3>Imagine</h3>
-          <p>Start with a small friction or idea, then clarify what to build—and what not to build.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Verify</h3>
-          <p>Do not stop at implementation. Keep evidence through CI, Preview, Human Review, and production checks.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Evolve</h3>
-          <p>Turn failures and improvements into rules and templates so the next project does not start from zero.</p>
-        </article>
-      </div>
+      <nav class="agenda-list" aria-label="On this page">
+        <a href="#about"><span>01</span><strong>ABOUT THIS PAGE</strong><em>Why this record exists</em><b aria-hidden="true">↘</b></a>
+        <a href="#where-ai"><span>02</span><strong>WHERE AI IS USED</strong><em>How development works now</em><b aria-hidden="true">↘</b></a>
+        <a href="#human-check"><span>03</span><strong>WHERE PEOPLE STILL CHECK</strong><em>Places that are not fully automatic</em><b aria-hidden="true">↘</b></a>
+        <a href="#failed"><span>04</span><strong>WHAT DID NOT WORK</strong><em>Too many checks, strict tests, lost context</em><b aria-hidden="true">↘</b></a>
+        <a href="#changed"><span>05</span><strong>WHAT CHANGED AFTERWARD</strong><em>What was added and what was reduced</em><b aria-hidden="true">↘</b></a>
+        <a href="#actual"><span>06</span><strong>RECORDS AND REAL FILES</strong><em>Issues, PRs, CI, production checks, docs</em><b aria-hidden="true">↘</b></a>
+        <a href="#overseas"><span>07</span><strong>THINGS I WATCH OVERSEAS</strong><em>Only when they may change our own process</em><b aria-hidden="true">↘</b></a>
+      </nav>
     </section>
+
+    <div class="ai-preview-sections wrap">
+      <section class="skeleton-section" id="about" aria-labelledby="about-title">
+        <div class="skeleton-number">01 / ABOUT THIS PAGE</div>
+        <div class="skeleton-body">
+          <h2 id="about-title">Using AI changed more than coding.</h2>
+          <p class="skeleton-lead">I started by asking AI to write code. Over time, I also used it for design, Issues, tests, and documentation. As that scope grew, it became clearer where human checks still matter—and where I had added more checks than needed. This page keeps that process visible.</p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="where-ai" aria-labelledby="where-ai-title">
+        <div class="skeleton-number">02 / WHERE AI IS USED</div>
+        <div class="skeleton-body">
+          <h2 id="where-ai-title">AI is now used beyond writing code.</h2>
+          <p class="skeleton-lead">It helps organize requirements, propose designs, split work into Issues, implement changes, write tests, and summarize changes. But not every step is treated the same way.</p>
+          <div class="golden-path-grid">
+            <article><span>01</span><h3>Think</h3><p>Clarify use cases, goals, and what not to build.</p></article>
+            <article><span>02</span><h3>Build</h3><p>Requirements, Architecture, Issue, Branch, implementation.</p></article>
+            <article><span>03</span><h3>Check</h3><p>CI, Test, Preview, device checks.</p></article>
+            <article><span>04</span><h3>Review</h3><p>Keep what did not work so the next project can change.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="human-check" aria-labelledby="human-check-title">
+        <div class="skeleton-number">03 / WHERE PEOPLE STILL CHECK</div>
+        <div class="skeleton-body">
+          <h2 id="human-check-title">People still check the parts with larger impact.</h2>
+          <p class="skeleton-lead">More human checkpoints do not automatically make a process safer. Today, people mainly review changes that affect purpose, users, production, authentication, permissions, or the actual user experience.</p>
+          <div class="statement-row"><span>Production</span><span>Important changes are reviewed before release</span></div>
+          <div class="statement-row"><span>Specification</span><span>People decide when the purpose or user impact changes</span></div>
+          <div class="statement-row"><span>Auth / permissions</span><span>Secrets, authentication, and data operations get extra checks</span></div>
+          <div class="statement-row"><span>Real screens</span><span>Passing CI is not enough; production and devices are checked too</span></div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="failed" aria-labelledby="failed-title">
+        <div class="skeleton-number">04 / WHAT DID NOT WORK</div>
+        <div class="skeleton-body">
+          <h2 id="failed-title">Some problems had little to do with model capability.</h2>
+          <p class="skeleton-lead">I added too many human checkpoints, made test conditions too strict, and sometimes lost the current state when resuming a long conversation. Using AI exposed weak handoffs and weak verification just as much as it exposed AI limitations.</p>
+          <div class="skeleton-grid skeleton-grid-2">
+            <article><p class="eyebrow">TOO MANY CHECKS</p><h3>There were too many places to stop</h3><p>The process became heavy even when the risk was small.</p></article>
+            <article><p class="eyebrow">TOO STRICT</p><h3>Tests grew beyond what small apps needed</h3><p>More checks did not always mean more useful confidence.</p></article>
+            <article><p class="eyebrow">UNCLEAR HANDOFF</p><h3>Images and files caused rework</h3><p>The human and AI responsibilities had not been decided early enough.</p></article>
+            <article><p class="eyebrow">LOST CONTEXT</p><h3>Resuming later made the current state unclear</h3><p>Now Issue, Branch, PR, and main are checked before resuming.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="changed" aria-labelledby="changed-title">
+        <div class="skeleton-number">05 / WHAT CHANGED AFTERWARD</div>
+        <div class="skeleton-body">
+          <h2 id="changed-title">I add what becomes necessary and remove what becomes too heavy.</h2>
+          <p class="skeleton-lead">The current process did not exist from the beginning. Issues, PRs, design docs, CI, and production checks were added when they became useful. Checks are also reduced when they no longer fit the size or risk of the project.</p>
+          <div class="evolution-timeline">
+            <article class="evolution-item"><span>FIRST</span><h3>Ask AI to write code</h3><p>Start by seeing what could actually be built.</p></article>
+            <article class="evolution-item"><span>NEXT</span><h3>Expand into Issues, PRs, and design</h3><p>Keep the change unit and the reason for the work visible.</p></article>
+            <article class="evolution-item"><span>LATER</span><h3>Add CI and production checks</h3><p>Keep evidence of what was actually checked.</p></article>
+            <article class="evolution-item"><span>REVIEW</span><h3>Reduce checks that became too heavy</h3><p>Match verification to project size and risk.</p></article>
+            <article class="evolution-item"><span>NOW</span><h3>Test auth and DB work in the Mahjong app</h3><p>Auth, D1, API, concurrency, logging, and performance are now in scope.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="actual" aria-labelledby="actual-title">
+        <div class="skeleton-number">06 / RECORDS AND REAL FILES</div>
+        <div class="skeleton-body">
+          <h2 id="actual-title">I try to leave enough evidence to see what was checked.</h2>
+          <p class="skeleton-lead">Whether AI is involved or not, I do not want “checked” to mean something vague. Issues, PRs, CI results, and production checks are kept where needed, and public design or process documents link to the actual files.</p>
+          <div class="assurance-table">
+            <div class="assurance-row"><span>Quality</span><div><span>Check</span><p>CI / Test / Review</p></div><div><span>Record</span><p>Test results / PR / production check</p></div><div><span>Why</span><p>Avoid using generated code without review</p></div></div>
+            <div class="assurance-row"><span>Changes</span><div><span>Check</span><p>Issue / Branch / PR</p></div><div><span>Record</span><p>Diff / Commit / Decision</p></div><div><span>Why</span><p>Keep changes traceable</p></div></div>
+            <div class="assurance-row"><span>Production</span><div><span>Check</span><p>Preview / production check</p></div><div><span>Record</span><p>Deploy history / real screen check</p></div><div><span>Why</span><p>Do not stop at “CI passed”</p></div></div>
+            <div class="assurance-row"><span>Security</span><div><span>Check</span><p>Auth / permissions / secrets / config</p></div><div><span>Record</span><p>Architecture / policy / configuration</p></div><div><span>Why</span><p>Avoid giving wider access than necessary</p></div></div>
+          </div>
+          <div class="artifact-grid-v2">
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>AI-driven Web App Template</strong><p>The development template currently in use.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/cecil-hub" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>CECIL Repository</strong><p>The implementation and history of this page itself.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/HUMAN_AI_COLLABORATION.md" target="_blank" rel="noopener noreferrer"><span>Working rules</span><strong>Human / AI Collaboration</strong><p>Rules added after real collaboration problems.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/GIT_WORKFLOW.md" target="_blank" rel="noopener noreferrer"><span>Git</span><strong>Git Workflow</strong><p>How Issues, Branches, PRs, and CI are used.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/PRODUCTION_VERIFICATION.md" target="_blank" rel="noopener noreferrer"><span>Production</span><strong>Production Verification</strong><p>Separates deploy success from production correctness.</p></a>
+            <a class="artifact-card" href="https://github.com/ha-rookie/ai-driven-webapp-template/blob/main/docs/SECURITY_BASELINE.md" target="_blank" rel="noopener noreferrer"><span>Security</span><strong>Security Baseline</strong><p>The security checks used for public web apps.</p></a>
+          </div>
+          <p class="term-guide-hint"><a href="#terms">Issue, PR, and other terms used on this page are explained briefly at the end.</a></p>
+        </div>
+      </section>
+
+      <section class="skeleton-section" id="overseas" aria-labelledby="overseas-title">
+        <div class="skeleton-number">07 / THINGS I WATCH OVERSEAS</div>
+        <div class="skeleton-body">
+          <h2 id="overseas-title">I watch overseas work only when it may change how we build.</h2>
+          <p class="skeleton-lead">This section is not for listing new tools. I only want to keep items where a primary source is available and where the idea caused a concrete change—or a concrete review—in the CECIL process.</p>
+          <div class="signal-grid">
+            <article class="signal-card"><span>REVIEWING</span><h3>Can long work resume cleanly?</h3><p>Check whether Issue and PR evidence are enough to recover the current state after a conversation changes.</p></article>
+            <article class="signal-card"><span>REVIEWING</span><h3>Have too many rules accumulated?</h3><p>Revisit older restrictions when models and tools change.</p></article>
+            <article class="signal-card"><span>REVIEWING</span><h3>Are we checking production correctness?</h3><p>Focus on whether the real application works, not only whether code was generated.</p></article>
+          </div>
+          <p class="skeleton-note">The public version will only keep items that have a primary source, a review date, and a concrete CECIL change or review attached.</p>
+        </div>
+      </section>
+
+      <section class="term-guide-section" id="terms" aria-label="Terms used on this page">
+        <details class="term-guide">
+          <summary><span>Terms used on this page</span><small>Open only when needed</small></summary>
+          <dl class="term-guide-list">
+            <div><dt>Issue</dt><dd>A unit that records what will change, why it will change, and the intended scope.</dd></div>
+            <div><dt>Branch</dt><dd>A separate place to work on changes without editing main directly.</dd></div>
+            <div><dt>PR</dt><dd>Short for Pull Request. A unit used to review changes before merging them into main.</dd></div>
+            <div><dt>CI</dt><dd>Automated checks such as tests and builds.</dd></div>
+            <div><dt>Preview</dt><dd>An environment used to check the real screen and behavior before production.</dd></div>
+            <div><dt>Repository</dt><dd>A place that keeps code, design documents, and change history together.</dd></div>
+            <div><dt>main</dt><dd>The baseline branch that keeps changes after they have been reviewed.</dd></div>
+            <div><dt>Commit</dt><dd>A recorded unit of changes kept in version history.</dd></div>
+          </dl>
+        </details>
+      </section>
+    </div>
   </main>
 
   <footer class="footer wrap">
