@@ -4,10 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - analytics-refresh-control
     paths:
       - ".github/analytics-refresh"
-      - ".github/workflows/analytics-report.yml"
   pull_request:
     paths:
       - ".github/workflows/analytics-report.yml"
@@ -29,6 +28,8 @@ jobs:
       CLOUDFLARE_ANALYTICS_READ_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_READ_TOKEN }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'push' && 'main' || github.ref }}
 
       - name: Validate analytics secrets
         shell: bash
